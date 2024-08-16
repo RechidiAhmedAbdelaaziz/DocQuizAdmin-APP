@@ -1,7 +1,10 @@
 part 'tokens.model.dart';
 part 'pagination.model.dart';
 
-class ApiResponse<T> {
+/// A model representing the structure of an API response.
+///
+/// [T] is the type of data expected in the response.
+abstract class ApiResponseModel<T> {
   final bool? success;
   final int? statusCode;
   final String? message;
@@ -9,7 +12,7 @@ class ApiResponse<T> {
   final _Paginations? pagination;
   final T? data;
 
-  ApiResponse({
+  ApiResponseModel({
     this.success,
     this.statusCode,
     this.message,
@@ -18,9 +21,10 @@ class ApiResponse<T> {
     this.data,
   });
 
-  factory ApiResponse.fromJson(Map<String, dynamic>? json,
+  static ApiResponseModel<T> fromJson<T>(
+      Map<String, dynamic>? json,
       T Function(Map<String, dynamic>?) fromJson) {
-    return ApiResponse(
+    return _ApiResponseModelImpl<T>(
       success: json?['success'],
       statusCode: json?['statusCode'],
       message: json?['message'],
@@ -34,3 +38,16 @@ class ApiResponse<T> {
     );
   }
 }
+
+class _ApiResponseModelImpl<T> extends ApiResponseModel<T> {
+  _ApiResponseModelImpl({
+    super.success,
+    super.statusCode,
+    super.message,
+    super.tokens,
+    super.pagination,
+    super.data,
+  });
+}
+
+

@@ -1,12 +1,12 @@
 class ApiErrorModel {
   final bool? success;
   final int? statusCode;
-  final String? message;
+  final String message;
 
-  ApiErrorModel({
+  const ApiErrorModel({
     this.success,
     this.statusCode,
-    this.message,
+    this.message = 'Oops! Something went wrong',
   });
 
   factory ApiErrorModel.fromJson(Map<String, dynamic>? json) {

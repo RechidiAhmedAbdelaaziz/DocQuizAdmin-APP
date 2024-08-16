@@ -1,10 +1,15 @@
 import 'package:admin_app/core/router/abstract_route.dart';
+import 'package:admin_app/module/auth/view/login.screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
   const AppRouter();
   Route<T> generateRoute<T>(RouteSettings settings) {
-    final routeModel = settings.arguments as AbstractRoute;
-    return routeModel.buildRoute();
+    if (settings.arguments is AbstractRoute) {
+      final route = settings.arguments as AbstractRoute;
+      return route.buildRoute();
+    }
+
+    return MaterialPageRoute(builder: (_) => LoginScreen());
   }
 }

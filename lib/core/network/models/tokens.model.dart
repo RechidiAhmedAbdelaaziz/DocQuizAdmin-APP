@@ -1,4 +1,4 @@
-part of 'server_response.model.dart';
+part of 'api_response.model.dart';
 
 class _Tokens {
   _Tokens({

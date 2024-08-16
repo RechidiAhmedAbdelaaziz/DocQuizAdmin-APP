@@ -1,9 +1,8 @@
 abstract class AdminApiConstants {
-  static const baseUrl = 'https://api.example.com';
+  static const _baseUrl = 'http://192.168.1.12:3001';
 
   //*LEVEL
-  static const create = '/levels';
-  static const addMajor = '/levels/major';
-  static const addCourse = '/levels/course';
+  static const create = '$_baseUrl/levels';
+  static const addMajor = '$_baseUrl/levels/major';
+  static const addCourse = '$_baseUrl/levels/course';
 }
-

@@ -1,6 +1,6 @@
 abstract class UserApiConstants {
-  static const baseUrl = 'https://api.example.com';
+  static const _baseUrl = 'http://192.168.1.12:3000';
 
   //*AUTH
-  static const login = '/auth/login';
+  static const login = '$_baseUrl/auth/login';
 }
