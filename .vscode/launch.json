@@ -1,0 +1,44 @@
+// development {
+//     dimension "default"
+//     applicationIdSuffix ".dev"
+//     versionNameSuffix "-dev"
+//     resValue "string", "app_name", "DocQuiz Admin Dev"
+//     resValue "string", "base_url", "http://"
+// }
+// production {
+//     dimension "default"
+//     resValue "string", "app_name", "DocQuiz Admin"
+//     resValue "string", "base_url", "https://"
+// }
+
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Development",
+			"request": "launch",
+			"type": "dart",
+			"program": "lib/main_development.dart",
+			"args": [
+				"--flavor",
+				"development",
+				"--target",
+				"lib/main_development.dart",
+			]
+		},
+
+		{
+			"name": "Production",
+			"request": "launch",
+			"type": "dart",
+			"program": "lib/main_production.dart",
+			"args": [
+				"--flavor",
+				"production",
+				"--target",
+				"lib/main_production.dart"
+			]
+		}
+	],
+	"compounds": []
+}
