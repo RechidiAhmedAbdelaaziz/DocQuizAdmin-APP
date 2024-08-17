@@ -5,7 +5,7 @@ class _Scaffold extends StatelessWidget {
     required Widget logo,
     required Widget form,
     required Widget loginButton,
-    required void Function(BuildContext, AuthState) listener,
+    required void Function(BuildContext, LoginState) listener,
   })  : _logo = logo,
         _form = form,
         _loginButton = loginButton,
@@ -14,11 +14,11 @@ class _Scaffold extends StatelessWidget {
   final Widget _logo;
   final Widget _form;
   final Widget _loginButton;
-  final void Function(BuildContext, AuthState) _listener;
+  final void Function(BuildContext, LoginState) _listener;
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthCubit, AuthState>(
+    return BlocListener<LoginCubit, LoginState>(
       listener: _listener,
       child: Scaffold(
         body: SizedBox(

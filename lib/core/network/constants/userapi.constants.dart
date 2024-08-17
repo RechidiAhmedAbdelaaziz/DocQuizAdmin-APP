@@ -3,4 +3,5 @@ abstract class UserApiConstants {
 
   //*AUTH
   static const login = '$_baseUrl/auth/login';
+  static const refreshToken = '$_baseUrl/auth/refresh-token';
 }

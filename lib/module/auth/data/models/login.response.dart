@@ -1,8 +1,8 @@
 import 'package:admin_app/core/network/models/api_response.model.dart';
 import 'package:admin_app/module/auth/data/models/user.model.dart';
 
-class LoginResponseModel extends ApiResponseModel<UserModel> {
-  LoginResponseModel({
+class LoginResponse extends ApiResponseModel<UserModel> {
+  LoginResponse({
     super.success,
     super.statusCode,
     super.message,
@@ -11,10 +11,10 @@ class LoginResponseModel extends ApiResponseModel<UserModel> {
     super.data,
   });
 
-  factory LoginResponseModel._fromJson(Map<String, dynamic>? json) {
+  factory LoginResponse._fromJson(Map<String, dynamic>? json) {
     final apiResponseModel =
         ApiResponseModel.fromJson(json, UserModel.fromJson);
-    return LoginResponseModel(
+    return LoginResponse(
       success: apiResponseModel.success,
       statusCode: apiResponseModel.statusCode,
       message: apiResponseModel.message,
@@ -24,6 +24,6 @@ class LoginResponseModel extends ApiResponseModel<UserModel> {
     );
   }
 
-  factory LoginResponseModel.fromJson(Map<String, dynamic>? json) =>
-      LoginResponseModel._fromJson(json);
+  factory LoginResponse.fromJson(Map<String, dynamic>? json) =>
+      LoginResponse._fromJson(json);
 }

@@ -8,7 +8,7 @@ class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isLoding = context
-        .watch<AuthCubit>()
+        .watch<LoginCubit>()
         .state
         .maybeWhen(orElse: () => false, loginInProgress: () => true);
 
@@ -19,7 +19,7 @@ class _LoginButton extends StatelessWidget {
         onPressed: () {
           if (!isLoding &&
               _formKey.currentState?.validate() == true) {
-            context.read<AuthCubit>().login();
+            context.read<LoginCubit>().login();
           }
         },
         style: ElevatedButton.styleFrom(

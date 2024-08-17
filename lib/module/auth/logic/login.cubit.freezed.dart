@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'auth_cubit.dart';
+part of 'login.cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$AuthState {
+mixin _$LoginState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -69,22 +69,23 @@ mixin _$AuthState {
 }
 
 /// @nodoc
-abstract class $AuthStateCopyWith<$Res> {
-  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
-      _$AuthStateCopyWithImpl<$Res, AuthState>;
+abstract class $LoginStateCopyWith<$Res> {
+  factory $LoginStateCopyWith(
+          LoginState value, $Res Function(LoginState) then) =
+      _$LoginStateCopyWithImpl<$Res, LoginState>;
 }
 
 /// @nodoc
-class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
-    implements $AuthStateCopyWith<$Res> {
-  _$AuthStateCopyWithImpl(this._value, this._then);
+class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
+    implements $LoginStateCopyWith<$Res> {
+  _$LoginStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -97,13 +98,13 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$LoginStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -114,7 +115,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'AuthState.initial()';
+    return 'LoginState.initial()';
   }
 
   @override
@@ -201,7 +202,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements AuthState {
+abstract class _Initial implements LoginState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -214,13 +215,13 @@ abstract class _$$LoginInProgressImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoginInProgressImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$LoginInProgressImpl>
+    extends _$LoginStateCopyWithImpl<$Res, _$LoginInProgressImpl>
     implements _$$LoginInProgressImplCopyWith<$Res> {
   __$$LoginInProgressImplCopyWithImpl(
       _$LoginInProgressImpl _value, $Res Function(_$LoginInProgressImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -231,7 +232,7 @@ class _$LoginInProgressImpl implements _LoginInProgress {
 
   @override
   String toString() {
-    return 'AuthState.loginInProgress()';
+    return 'LoginState.loginInProgress()';
   }
 
   @override
@@ -318,7 +319,7 @@ class _$LoginInProgressImpl implements _LoginInProgress {
   }
 }
 
-abstract class _LoginInProgress implements AuthState {
+abstract class _LoginInProgress implements LoginState {
   const factory _LoginInProgress() = _$LoginInProgressImpl;
 }
 
@@ -331,13 +332,13 @@ abstract class _$$LoginSuccessImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoginSuccessImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$LoginSuccessImpl>
+    extends _$LoginStateCopyWithImpl<$Res, _$LoginSuccessImpl>
     implements _$$LoginSuccessImplCopyWith<$Res> {
   __$$LoginSuccessImplCopyWithImpl(
       _$LoginSuccessImpl _value, $Res Function(_$LoginSuccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -348,7 +349,7 @@ class _$LoginSuccessImpl implements _LoginSuccess {
 
   @override
   String toString() {
-    return 'AuthState.loginSuccess()';
+    return 'LoginState.loginSuccess()';
   }
 
   @override
@@ -435,7 +436,7 @@ class _$LoginSuccessImpl implements _LoginSuccess {
   }
 }
 
-abstract class _LoginSuccess implements AuthState {
+abstract class _LoginSuccess implements LoginState {
   const factory _LoginSuccess() = _$LoginSuccessImpl;
 }
 
@@ -450,13 +451,13 @@ abstract class _$$LoginFailureImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoginFailureImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$LoginFailureImpl>
+    extends _$LoginStateCopyWithImpl<$Res, _$LoginFailureImpl>
     implements _$$LoginFailureImplCopyWith<$Res> {
   __$$LoginFailureImplCopyWithImpl(
       _$LoginFailureImpl _value, $Res Function(_$LoginFailureImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -482,7 +483,7 @@ class _$LoginFailureImpl implements _LoginFailure {
 
   @override
   String toString() {
-    return 'AuthState.loginFailure(error: $error)';
+    return 'LoginState.loginFailure(error: $error)';
   }
 
   @override
@@ -496,7 +497,7 @@ class _$LoginFailureImpl implements _LoginFailure {
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -579,12 +580,12 @@ class _$LoginFailureImpl implements _LoginFailure {
   }
 }
 
-abstract class _LoginFailure implements AuthState {
+abstract class _LoginFailure implements LoginState {
   const factory _LoginFailure(final ApiErrorModel error) = _$LoginFailureImpl;
 
   ApiErrorModel get error;
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoginFailureImplCopyWith<_$LoginFailureImpl> get copyWith =>

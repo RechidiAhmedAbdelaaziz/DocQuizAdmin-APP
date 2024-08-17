@@ -5,22 +5,21 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'login.state.dart';
+part 'login.cubit.freezed.dart';
 
-part 'auth_state.dart';
-part 'auth_cubit.freezed.dart';
-
-class AuthCubit extends Cubit<AuthState> {
+class LoginCubit extends Cubit<LoginState> {
   final LoginUsecase _login;
 
-  AuthCubit()
+  LoginCubit()
       : _login = locator(),
-        super(const AuthState.initial());
+        super(const LoginState.initial());
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   Future<void> login() async {
-    emit(const AuthState.loginInProgress());
+    emit(const LoginState.loginInProgress());
 
     final email = emailController.text;
     final password = passwordController.text;
@@ -29,10 +28,10 @@ class AuthCubit extends Cubit<AuthState> {
 
     result.when(
       success: (data) {
-        emit(const AuthState.loginSuccess());
+        emit(const LoginState.loginSuccess());
       },
       failure: (error) {
-        emit(AuthState.loginFailure(error));
+        emit(LoginState.loginFailure(error));
       },
     );
   }

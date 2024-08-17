@@ -1,8 +1,7 @@
 import 'package:admin_app/core/router/router_generator.dart';
+import 'package:admin_app/core/utils/auth_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'module/auth/view/login.screen.dart';
 
 class AdminApp extends StatelessWidget {
   const AdminApp({super.key, required AppRouter router})
@@ -18,7 +17,7 @@ class AdminApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) => MaterialApp(
-        home: LoginScreen(),
+        home: const AuthListener(),
         onGenerateRoute: _router.generateRoute,
       ),
     );

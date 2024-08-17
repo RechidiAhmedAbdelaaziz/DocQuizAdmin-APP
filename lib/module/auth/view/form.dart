@@ -7,9 +7,10 @@ class _Form extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final emailController = context.read<AuthCubit>().emailController;
+    final emailController =
+        context.read<LoginCubit>().emailController;
     final passwordController =
-        context.read<AuthCubit>().passwordController;
+        context.read<LoginCubit>().passwordController;
 
     return SizedBox(
       child: Form(
