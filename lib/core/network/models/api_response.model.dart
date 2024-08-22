@@ -1,10 +1,11 @@
+import 'package:json_annotation/json_annotation.dart';
+
 part 'tokens.model.dart';
 part 'pagination.model.dart';
 
-/// A model representing the structure of an API response.
-///
-/// [T] is the type of data expected in the response.
-abstract class ApiResponseModel<T> {
+part 'api_response.model.g.dart';
+
+abstract class ApiResponseModelTMP<T> {
   final bool? success;
   final int? statusCode;
   final String? message;
@@ -12,7 +13,7 @@ abstract class ApiResponseModel<T> {
   final _Paginations? pagination;
   final T? data;
 
-  ApiResponseModel({
+  ApiResponseModelTMP({
     this.success,
     this.statusCode,
     this.message,
@@ -21,10 +22,10 @@ abstract class ApiResponseModel<T> {
     this.data,
   });
 
-  static ApiResponseModel<T> fromJson<T>(
-      Map<String, dynamic>? json,
-      T Function(Map<String, dynamic>?) fromJson) {
+  static ApiResponseModelTMP<T> fromJson<T, D>(
+      Map<String, dynamic>? json, T Function(D?) fromJson) {
     return _ApiResponseModelImpl<T>(
+      data: json?['data'] != null ? fromJson(json?['data']) : null,
       success: json?['success'],
       statusCode: json?['statusCode'],
       message: json?['message'],
@@ -34,12 +35,11 @@ abstract class ApiResponseModel<T> {
       pagination: json?['pagination'] != null
           ? _Paginations.fromJson(json?['pagination'])
           : null,
-      data: json?['data'] != null ? fromJson(json?['data']) : null,
     );
   }
 }
 
-class _ApiResponseModelImpl<T> extends ApiResponseModel<T> {
+class _ApiResponseModelImpl<T> extends ApiResponseModelTMP<T> {
   _ApiResponseModelImpl({
     super.success,
     super.statusCode,
@@ -50,4 +50,73 @@ class _ApiResponseModelImpl<T> extends ApiResponseModel<T> {
   });
 }
 
+//TODO I will refactor the code to use the new model
 
+abstract class _ApiResponseModel {
+  final bool? success;
+  final int? statusCode;
+
+  _ApiResponseModel({
+    this.success,
+    this.statusCode,
+  });
+}
+
+@JsonSerializable(createToJson: false)
+class TokensResponse extends _ApiResponseModel {
+  final _Tokens? tokens;
+
+  TokensResponse({
+    super.success,
+    super.statusCode,
+    this.tokens,
+  });
+
+  factory TokensResponse.fromJson(Map<String, dynamic>? json) =>
+      _$TokensResponseFromJson(json ?? {});
+}
+
+@JsonSerializable(createToJson: false)
+class MessageResponse extends _ApiResponseModel {
+  final String? message;
+
+  MessageResponse({
+    super.success,
+    super.statusCode,
+    this.message,
+  });
+
+  factory MessageResponse.fromJson(Map<String, dynamic>? json) =>
+      _$MessageResponseFromJson(json ?? {});
+}
+
+@JsonSerializable(createToJson: false)
+class DataResponse extends _ApiResponseModel {
+  final Map<String, dynamic>? data;
+
+  DataResponse({
+    super.success,
+    super.statusCode,
+    this.data,
+  });
+
+  factory DataResponse.fromJson(Map<String, dynamic>? json) =>
+      _$DataResponseFromJson(json ?? {});
+}
+
+@JsonSerializable(createToJson: false)
+class PaginatedDataResponse extends _ApiResponseModel {
+  final List<Map<String, dynamic>>? data;
+  final _Paginations? pagination;
+
+  PaginatedDataResponse({
+    super.success,
+    super.statusCode,
+    this.data = const [],
+    this.pagination,
+  });
+
+  factory PaginatedDataResponse.fromJson(
+          Map<String, dynamic>? json) =>
+      _$PaginatedDataResponseFromJson(json ?? {});
+}

@@ -8,10 +8,12 @@ extension Snackbar on BuildContext {
           children: [
             const Icon(Icons.error, color: Colors.white),
             const SizedBox(width: 10),
-            Text(message),
+            Expanded(
+              child: Text(message, maxLines: 4),
+            )
           ],
         ),
-        duration: const Duration(seconds: 1),
+        duration: const Duration(milliseconds: 1500),
         backgroundColor: Colors.red,
       ),
     );
@@ -24,10 +26,13 @@ extension Snackbar on BuildContext {
           children: [
             const Icon(Icons.check, color: Colors.white),
             const SizedBox(width: 10),
-            Text(message),
+            Text(
+              message,
+              maxLines: 4,
+            ),
           ],
         ),
-        duration: const Duration(seconds: 1),
+        duration: const Duration(milliseconds: 1500),
         backgroundColor: Colors.green,
       ),
     );

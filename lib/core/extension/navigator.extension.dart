@@ -1,15 +1,19 @@
+import 'package:admin_app/core/di/container.dart';
+import 'package:admin_app/core/router/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_app/core/router/abstract_route.dart';
 
 extension NavigatorExtension on BuildContext {
   /// Navigate to a named route with the provided AbstractRoute
-  Future<T?> to<T>(AbstractRoute<T> route) {
-    return _tryNavigate(() => Navigator.of(this).pushNamed<T>(route.path, arguments: route));
+  Future<T?> to<T>(AbstractRoute route, {bool canPop = true}) {
+    if (!canPop) route.navigator = locator<NoPopNavigator>();
+
+    return _tryNavigate(() => Navigator.of(this)
+        .pushNamed<T>(route.path, arguments: route));
   }
 
   /// Navigate to a named route and replace the current route
-  Future<T?> off<T, TO>(AbstractRoute<T> route,
-      {TO? result}) {
+  Future<T?> off<T, TO>(AbstractRoute route, {TO? result}) {
     return _tryNavigate(() {
       return Navigator.of(this).pushReplacementNamed<T, TO>(
         route.path,
@@ -20,7 +24,7 @@ extension NavigatorExtension on BuildContext {
   }
 
   /// Navigate to a named route and remove all previous routes until a condition is met
-  Future<T?> offAll<T>(AbstractRoute<T> route,
+  Future<T?> offAll<T>(AbstractRoute route,
       {bool Function(Route<dynamic>)? predicate}) {
     return _tryNavigate(() {
       return Navigator.of(this).pushNamedAndRemoveUntil<T>(

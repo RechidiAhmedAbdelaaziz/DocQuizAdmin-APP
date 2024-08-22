@@ -1,6 +1,6 @@
 import 'package:admin_app/core/network/models/api_response.model.dart';
 
-class RefreshTokenResponse extends ApiResponseModel<void> {
+class RefreshTokenResponse extends ApiResponseModelTMP<void> {
   RefreshTokenResponse({
     super.success,
     super.statusCode,
@@ -10,7 +10,8 @@ class RefreshTokenResponse extends ApiResponseModel<void> {
   });
 
   factory RefreshTokenResponse._fromJson(Map<String, dynamic>? json) {
-    final apiResponseModel = ApiResponseModel.fromJson(json, (_) {});
+    final apiResponseModel =
+        ApiResponseModelTMP.fromJson(json, (_) {});
     return RefreshTokenResponse(
       success: apiResponseModel.success,
       statusCode: apiResponseModel.statusCode,

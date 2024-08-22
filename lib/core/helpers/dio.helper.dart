@@ -8,7 +8,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 class DioHelper {
   static Dio? _dio;
 
-  static Dio getDio()  {
+  static Dio getDio() {
     Duration timeOut = const Duration(seconds: 30);
 
     if (_dio == null) {
@@ -47,7 +47,6 @@ class DioHelper {
     final authCubit = locator<AuthCubit>();
 
     return InterceptorsWrapper(
-
       onRequest: (options, handler) async {
         final accessToken = await authCacheHelper.accessToken;
 
@@ -62,8 +61,13 @@ class DioHelper {
 
           if (refreshToken.isNotEmptyOrNull) {
             await authCubit.onRefreshToken(refreshToken!);
+
+            // retry request
+            return handler
+                .resolve(await _dio!.fetch(error.requestOptions));
           }
         }
+
         return handler.next(error);
       },
     );

@@ -4,4 +4,9 @@ abstract class UserApiConstants {
   //*AUTH
   static const login = '$_baseUrl/auth/login';
   static const refreshToken = '$_baseUrl/auth/refresh-token';
+
+  //*LEVEL
+  static const getLevels = '$_baseUrl/levels';
+  static const getMajors = '$_baseUrl/levels/majors';
+  static const getCourses = '$_baseUrl/levels/courses';
 }

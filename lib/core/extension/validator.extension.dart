@@ -1,5 +1,6 @@
-extension Validator on String? {
+// ignore_for_file: curly_braces_in_flow_control_structures
 
+extension Validator on String? {
   /// Email validation
   String? get isValidEmail {
     if (this == null) return 'Email is required';
@@ -12,16 +13,24 @@ extension Validator on String? {
     if (this == null) return 'Password is required';
 
     final hasMinLength = this!.length >= 8;
-    if (!hasMinLength)return 'Password must contain at least 8 characters';
-    
+    if (!hasMinLength)
+      return 'Password must contain at least 8 characters';
+
     final hasUppercase = RegExp(r'[A-Z]').hasMatch(this!);
-    if (!hasUppercase)return 'Password must contain an uppercase letter';
+    if (!hasUppercase)
+      return 'Password must contain an uppercase letter';
 
     final hasDigits = RegExp(r'\d').hasMatch(this!);
     if (!hasDigits) return 'Password must contain a number';
 
-    
+    return null;
+  }
 
+  /// String must not be empty or null and not end with whitespace
+  String? get isString {
+    if (this == null || this!.isEmpty) return 'This is required';
+    if (this!.endsWith(' '))
+      return 'This must not end with whitespace';
     return null;
   }
 
