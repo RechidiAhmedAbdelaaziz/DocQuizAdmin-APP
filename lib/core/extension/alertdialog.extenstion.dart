@@ -1,29 +1,30 @@
+import 'package:admin_app/core/extension/navigator.extension.dart';
 import 'package:flutter/material.dart';
 
 extension AlertDialogExtension on BuildContext {
-  Future<void> showAlertDialog({
+  Future<T?> showAlertDialog<T>({
     required String title,
-    String content = '',
+    String body = '',
+    Widget? content,
     String? confirmText,
-    VoidCallback? onConfirm,
+    void Function(VoidCallback)? onConfirm,
     String? cancelText,
-    VoidCallback? onCancel,
+    void Function(VoidCallback)? onCancel,
     bool canPop = true,
   }) async {
-    return showDialog(
+    return showDialog<T>(
       context: this,
       builder: (context) {
         return PopScope(
           canPop: canPop,
           child: AlertDialog(
             title: Text(title),
-            content: Text(content),
+            content: content ?? Text(body),
             actions: <Widget>[
               if (cancelText != null)
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
-                    if (onCancel != null) onCancel();
+                    if (onCancel != null) onCancel(context.back);
                   },
                   child: Text(
                     cancelText,
@@ -33,8 +34,7 @@ extension AlertDialogExtension on BuildContext {
               if (confirmText != null)
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
-                    if (onConfirm != null) onConfirm();
+                    if (onConfirm != null) onConfirm(context.back);
                   },
                   child: Text(
                     confirmText,

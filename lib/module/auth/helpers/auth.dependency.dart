@@ -1,4 +1,4 @@
-import 'package:admin_app/module/auth/data/repository/auth.repository.dart';
+import 'package:admin_app/module/auth/data/repo/auth.repo.dart';
 import 'package:admin_app/module/auth/data/source/auth.api.dart';
 import 'package:admin_app/module/auth/domain/usecases/login.usecase.dart';
 import 'package:admin_app/module/auth/data/source/auth.cache.dart';

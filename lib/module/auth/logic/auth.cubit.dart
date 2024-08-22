@@ -2,7 +2,7 @@ import 'package:admin_app/core/di/container.dart';
 import 'package:admin_app/core/extension/validator.extension.dart';
 import 'package:admin_app/core/helpers/dio.helper.dart';
 import 'package:admin_app/core/network/models/api_response.model.dart';
-import 'package:admin_app/module/auth/data/repository/auth.repository.dart';
+import 'package:admin_app/module/auth/data/repo/auth.repo.dart';
 import 'package:admin_app/module/auth/data/source/auth.cache.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -17,14 +17,17 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(const AuthState.initial());
 
   Future<void> checkAuth() async {
+    emit(const AuthState.checkingAuth());
     final accessToken = await _authCacheHelper.accessToken;
+
 
     accessToken.isNotEmptyOrNull
         ? _emitAuthenticated()
         : _emitUnauthenticated();
+   
   }
 
-  Future<void> onLogin(ApiResponseModel data) async {
+  Future<void> onLogin(ApiResponseModelTMP data) async {
     final tokens = data.tokens!;
 
     await _authCacheHelper.setTokens(
@@ -57,6 +60,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> onLogout() async {
+    emit(const AuthState.loggingOut());
     await _authCacheHelper.clearTokens();
     _emitUnauthenticated();
   }

@@ -19,56 +19,68 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() checkingAuth,
     required TResult Function() unauthenticated,
     required TResult Function() authenticated,
     required TResult Function() sessionExpired,
     required TResult Function() sessionRefreshed,
+    required TResult Function() loggingOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? checkingAuth,
     TResult? Function()? unauthenticated,
     TResult? Function()? authenticated,
     TResult? Function()? sessionExpired,
     TResult? Function()? sessionRefreshed,
+    TResult? Function()? loggingOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? checkingAuth,
     TResult Function()? unauthenticated,
     TResult Function()? authenticated,
     TResult Function()? sessionExpired,
     TResult Function()? sessionRefreshed,
+    TResult Function()? loggingOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_CheckingAuth value) checkingAuth,
     required TResult Function(_Unauthenticated value) unauthenticated,
     required TResult Function(_Authenticated value) authenticated,
     required TResult Function(_SessionExpired value) sessionExpired,
     required TResult Function(_SessionRefreshed value) sessionRefreshed,
+    required TResult Function(_LoggingOut value) loggingOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_CheckingAuth value)? checkingAuth,
     TResult? Function(_Unauthenticated value)? unauthenticated,
     TResult? Function(_Authenticated value)? authenticated,
     TResult? Function(_SessionExpired value)? sessionExpired,
     TResult? Function(_SessionRefreshed value)? sessionRefreshed,
+    TResult? Function(_LoggingOut value)? loggingOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_CheckingAuth value)? checkingAuth,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Authenticated value)? authenticated,
     TResult Function(_SessionExpired value)? sessionExpired,
     TResult Function(_SessionRefreshed value)? sessionRefreshed,
+    TResult Function(_LoggingOut value)? loggingOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -136,10 +148,12 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() checkingAuth,
     required TResult Function() unauthenticated,
     required TResult Function() authenticated,
     required TResult Function() sessionExpired,
     required TResult Function() sessionRefreshed,
+    required TResult Function() loggingOut,
   }) {
     return initial();
   }
@@ -148,10 +162,12 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? checkingAuth,
     TResult? Function()? unauthenticated,
     TResult? Function()? authenticated,
     TResult? Function()? sessionExpired,
     TResult? Function()? sessionRefreshed,
+    TResult? Function()? loggingOut,
   }) {
     return initial?.call();
   }
@@ -160,10 +176,12 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? checkingAuth,
     TResult Function()? unauthenticated,
     TResult Function()? authenticated,
     TResult Function()? sessionExpired,
     TResult Function()? sessionRefreshed,
+    TResult Function()? loggingOut,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -176,10 +194,12 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_CheckingAuth value) checkingAuth,
     required TResult Function(_Unauthenticated value) unauthenticated,
     required TResult Function(_Authenticated value) authenticated,
     required TResult Function(_SessionExpired value) sessionExpired,
     required TResult Function(_SessionRefreshed value) sessionRefreshed,
+    required TResult Function(_LoggingOut value) loggingOut,
   }) {
     return initial(this);
   }
@@ -188,10 +208,12 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_CheckingAuth value)? checkingAuth,
     TResult? Function(_Unauthenticated value)? unauthenticated,
     TResult? Function(_Authenticated value)? authenticated,
     TResult? Function(_SessionExpired value)? sessionExpired,
     TResult? Function(_SessionRefreshed value)? sessionRefreshed,
+    TResult? Function(_LoggingOut value)? loggingOut,
   }) {
     return initial?.call(this);
   }
@@ -200,10 +222,12 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_CheckingAuth value)? checkingAuth,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Authenticated value)? authenticated,
     TResult Function(_SessionExpired value)? sessionExpired,
     TResult Function(_SessionRefreshed value)? sessionRefreshed,
+    TResult Function(_LoggingOut value)? loggingOut,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -215,6 +239,141 @@ class _$InitialImpl implements _Initial {
 
 abstract class _Initial implements AuthState {
   const factory _Initial() = _$InitialImpl;
+}
+
+/// @nodoc
+abstract class _$$CheckingAuthImplCopyWith<$Res> {
+  factory _$$CheckingAuthImplCopyWith(
+          _$CheckingAuthImpl value, $Res Function(_$CheckingAuthImpl) then) =
+      __$$CheckingAuthImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CheckingAuthImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$CheckingAuthImpl>
+    implements _$$CheckingAuthImplCopyWith<$Res> {
+  __$$CheckingAuthImplCopyWithImpl(
+      _$CheckingAuthImpl _value, $Res Function(_$CheckingAuthImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$CheckingAuthImpl implements _CheckingAuth {
+  const _$CheckingAuthImpl();
+
+  @override
+  String toString() {
+    return 'AuthState.checkingAuth()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$CheckingAuthImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() checkingAuth,
+    required TResult Function() unauthenticated,
+    required TResult Function() authenticated,
+    required TResult Function() sessionExpired,
+    required TResult Function() sessionRefreshed,
+    required TResult Function() loggingOut,
+  }) {
+    return checkingAuth();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? checkingAuth,
+    TResult? Function()? unauthenticated,
+    TResult? Function()? authenticated,
+    TResult? Function()? sessionExpired,
+    TResult? Function()? sessionRefreshed,
+    TResult? Function()? loggingOut,
+  }) {
+    return checkingAuth?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? checkingAuth,
+    TResult Function()? unauthenticated,
+    TResult Function()? authenticated,
+    TResult Function()? sessionExpired,
+    TResult Function()? sessionRefreshed,
+    TResult Function()? loggingOut,
+    required TResult orElse(),
+  }) {
+    if (checkingAuth != null) {
+      return checkingAuth();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_CheckingAuth value) checkingAuth,
+    required TResult Function(_Unauthenticated value) unauthenticated,
+    required TResult Function(_Authenticated value) authenticated,
+    required TResult Function(_SessionExpired value) sessionExpired,
+    required TResult Function(_SessionRefreshed value) sessionRefreshed,
+    required TResult Function(_LoggingOut value) loggingOut,
+  }) {
+    return checkingAuth(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_CheckingAuth value)? checkingAuth,
+    TResult? Function(_Unauthenticated value)? unauthenticated,
+    TResult? Function(_Authenticated value)? authenticated,
+    TResult? Function(_SessionExpired value)? sessionExpired,
+    TResult? Function(_SessionRefreshed value)? sessionRefreshed,
+    TResult? Function(_LoggingOut value)? loggingOut,
+  }) {
+    return checkingAuth?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_CheckingAuth value)? checkingAuth,
+    TResult Function(_Unauthenticated value)? unauthenticated,
+    TResult Function(_Authenticated value)? authenticated,
+    TResult Function(_SessionExpired value)? sessionExpired,
+    TResult Function(_SessionRefreshed value)? sessionRefreshed,
+    TResult Function(_LoggingOut value)? loggingOut,
+    required TResult orElse(),
+  }) {
+    if (checkingAuth != null) {
+      return checkingAuth(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CheckingAuth implements AuthState {
+  const factory _CheckingAuth() = _$CheckingAuthImpl;
 }
 
 /// @nodoc
@@ -259,10 +418,12 @@ class _$UnauthenticatedImpl implements _Unauthenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() checkingAuth,
     required TResult Function() unauthenticated,
     required TResult Function() authenticated,
     required TResult Function() sessionExpired,
     required TResult Function() sessionRefreshed,
+    required TResult Function() loggingOut,
   }) {
     return unauthenticated();
   }
@@ -271,10 +432,12 @@ class _$UnauthenticatedImpl implements _Unauthenticated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? checkingAuth,
     TResult? Function()? unauthenticated,
     TResult? Function()? authenticated,
     TResult? Function()? sessionExpired,
     TResult? Function()? sessionRefreshed,
+    TResult? Function()? loggingOut,
   }) {
     return unauthenticated?.call();
   }
@@ -283,10 +446,12 @@ class _$UnauthenticatedImpl implements _Unauthenticated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? checkingAuth,
     TResult Function()? unauthenticated,
     TResult Function()? authenticated,
     TResult Function()? sessionExpired,
     TResult Function()? sessionRefreshed,
+    TResult Function()? loggingOut,
     required TResult orElse(),
   }) {
     if (unauthenticated != null) {
@@ -299,10 +464,12 @@ class _$UnauthenticatedImpl implements _Unauthenticated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_CheckingAuth value) checkingAuth,
     required TResult Function(_Unauthenticated value) unauthenticated,
     required TResult Function(_Authenticated value) authenticated,
     required TResult Function(_SessionExpired value) sessionExpired,
     required TResult Function(_SessionRefreshed value) sessionRefreshed,
+    required TResult Function(_LoggingOut value) loggingOut,
   }) {
     return unauthenticated(this);
   }
@@ -311,10 +478,12 @@ class _$UnauthenticatedImpl implements _Unauthenticated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_CheckingAuth value)? checkingAuth,
     TResult? Function(_Unauthenticated value)? unauthenticated,
     TResult? Function(_Authenticated value)? authenticated,
     TResult? Function(_SessionExpired value)? sessionExpired,
     TResult? Function(_SessionRefreshed value)? sessionRefreshed,
+    TResult? Function(_LoggingOut value)? loggingOut,
   }) {
     return unauthenticated?.call(this);
   }
@@ -323,10 +492,12 @@ class _$UnauthenticatedImpl implements _Unauthenticated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_CheckingAuth value)? checkingAuth,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Authenticated value)? authenticated,
     TResult Function(_SessionExpired value)? sessionExpired,
     TResult Function(_SessionRefreshed value)? sessionRefreshed,
+    TResult Function(_LoggingOut value)? loggingOut,
     required TResult orElse(),
   }) {
     if (unauthenticated != null) {
@@ -382,10 +553,12 @@ class _$AuthenticatedImpl implements _Authenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() checkingAuth,
     required TResult Function() unauthenticated,
     required TResult Function() authenticated,
     required TResult Function() sessionExpired,
     required TResult Function() sessionRefreshed,
+    required TResult Function() loggingOut,
   }) {
     return authenticated();
   }
@@ -394,10 +567,12 @@ class _$AuthenticatedImpl implements _Authenticated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? checkingAuth,
     TResult? Function()? unauthenticated,
     TResult? Function()? authenticated,
     TResult? Function()? sessionExpired,
     TResult? Function()? sessionRefreshed,
+    TResult? Function()? loggingOut,
   }) {
     return authenticated?.call();
   }
@@ -406,10 +581,12 @@ class _$AuthenticatedImpl implements _Authenticated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? checkingAuth,
     TResult Function()? unauthenticated,
     TResult Function()? authenticated,
     TResult Function()? sessionExpired,
     TResult Function()? sessionRefreshed,
+    TResult Function()? loggingOut,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
@@ -422,10 +599,12 @@ class _$AuthenticatedImpl implements _Authenticated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_CheckingAuth value) checkingAuth,
     required TResult Function(_Unauthenticated value) unauthenticated,
     required TResult Function(_Authenticated value) authenticated,
     required TResult Function(_SessionExpired value) sessionExpired,
     required TResult Function(_SessionRefreshed value) sessionRefreshed,
+    required TResult Function(_LoggingOut value) loggingOut,
   }) {
     return authenticated(this);
   }
@@ -434,10 +613,12 @@ class _$AuthenticatedImpl implements _Authenticated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_CheckingAuth value)? checkingAuth,
     TResult? Function(_Unauthenticated value)? unauthenticated,
     TResult? Function(_Authenticated value)? authenticated,
     TResult? Function(_SessionExpired value)? sessionExpired,
     TResult? Function(_SessionRefreshed value)? sessionRefreshed,
+    TResult? Function(_LoggingOut value)? loggingOut,
   }) {
     return authenticated?.call(this);
   }
@@ -446,10 +627,12 @@ class _$AuthenticatedImpl implements _Authenticated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_CheckingAuth value)? checkingAuth,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Authenticated value)? authenticated,
     TResult Function(_SessionExpired value)? sessionExpired,
     TResult Function(_SessionRefreshed value)? sessionRefreshed,
+    TResult Function(_LoggingOut value)? loggingOut,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
@@ -505,10 +688,12 @@ class _$SessionExpiredImpl implements _SessionExpired {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() checkingAuth,
     required TResult Function() unauthenticated,
     required TResult Function() authenticated,
     required TResult Function() sessionExpired,
     required TResult Function() sessionRefreshed,
+    required TResult Function() loggingOut,
   }) {
     return sessionExpired();
   }
@@ -517,10 +702,12 @@ class _$SessionExpiredImpl implements _SessionExpired {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? checkingAuth,
     TResult? Function()? unauthenticated,
     TResult? Function()? authenticated,
     TResult? Function()? sessionExpired,
     TResult? Function()? sessionRefreshed,
+    TResult? Function()? loggingOut,
   }) {
     return sessionExpired?.call();
   }
@@ -529,10 +716,12 @@ class _$SessionExpiredImpl implements _SessionExpired {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? checkingAuth,
     TResult Function()? unauthenticated,
     TResult Function()? authenticated,
     TResult Function()? sessionExpired,
     TResult Function()? sessionRefreshed,
+    TResult Function()? loggingOut,
     required TResult orElse(),
   }) {
     if (sessionExpired != null) {
@@ -545,10 +734,12 @@ class _$SessionExpiredImpl implements _SessionExpired {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_CheckingAuth value) checkingAuth,
     required TResult Function(_Unauthenticated value) unauthenticated,
     required TResult Function(_Authenticated value) authenticated,
     required TResult Function(_SessionExpired value) sessionExpired,
     required TResult Function(_SessionRefreshed value) sessionRefreshed,
+    required TResult Function(_LoggingOut value) loggingOut,
   }) {
     return sessionExpired(this);
   }
@@ -557,10 +748,12 @@ class _$SessionExpiredImpl implements _SessionExpired {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_CheckingAuth value)? checkingAuth,
     TResult? Function(_Unauthenticated value)? unauthenticated,
     TResult? Function(_Authenticated value)? authenticated,
     TResult? Function(_SessionExpired value)? sessionExpired,
     TResult? Function(_SessionRefreshed value)? sessionRefreshed,
+    TResult? Function(_LoggingOut value)? loggingOut,
   }) {
     return sessionExpired?.call(this);
   }
@@ -569,10 +762,12 @@ class _$SessionExpiredImpl implements _SessionExpired {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_CheckingAuth value)? checkingAuth,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Authenticated value)? authenticated,
     TResult Function(_SessionExpired value)? sessionExpired,
     TResult Function(_SessionRefreshed value)? sessionRefreshed,
+    TResult Function(_LoggingOut value)? loggingOut,
     required TResult orElse(),
   }) {
     if (sessionExpired != null) {
@@ -628,10 +823,12 @@ class _$SessionRefreshedImpl implements _SessionRefreshed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() checkingAuth,
     required TResult Function() unauthenticated,
     required TResult Function() authenticated,
     required TResult Function() sessionExpired,
     required TResult Function() sessionRefreshed,
+    required TResult Function() loggingOut,
   }) {
     return sessionRefreshed();
   }
@@ -640,10 +837,12 @@ class _$SessionRefreshedImpl implements _SessionRefreshed {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? checkingAuth,
     TResult? Function()? unauthenticated,
     TResult? Function()? authenticated,
     TResult? Function()? sessionExpired,
     TResult? Function()? sessionRefreshed,
+    TResult? Function()? loggingOut,
   }) {
     return sessionRefreshed?.call();
   }
@@ -652,10 +851,12 @@ class _$SessionRefreshedImpl implements _SessionRefreshed {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? checkingAuth,
     TResult Function()? unauthenticated,
     TResult Function()? authenticated,
     TResult Function()? sessionExpired,
     TResult Function()? sessionRefreshed,
+    TResult Function()? loggingOut,
     required TResult orElse(),
   }) {
     if (sessionRefreshed != null) {
@@ -668,10 +869,12 @@ class _$SessionRefreshedImpl implements _SessionRefreshed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_CheckingAuth value) checkingAuth,
     required TResult Function(_Unauthenticated value) unauthenticated,
     required TResult Function(_Authenticated value) authenticated,
     required TResult Function(_SessionExpired value) sessionExpired,
     required TResult Function(_SessionRefreshed value) sessionRefreshed,
+    required TResult Function(_LoggingOut value) loggingOut,
   }) {
     return sessionRefreshed(this);
   }
@@ -680,10 +883,12 @@ class _$SessionRefreshedImpl implements _SessionRefreshed {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_CheckingAuth value)? checkingAuth,
     TResult? Function(_Unauthenticated value)? unauthenticated,
     TResult? Function(_Authenticated value)? authenticated,
     TResult? Function(_SessionExpired value)? sessionExpired,
     TResult? Function(_SessionRefreshed value)? sessionRefreshed,
+    TResult? Function(_LoggingOut value)? loggingOut,
   }) {
     return sessionRefreshed?.call(this);
   }
@@ -692,10 +897,12 @@ class _$SessionRefreshedImpl implements _SessionRefreshed {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_CheckingAuth value)? checkingAuth,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Authenticated value)? authenticated,
     TResult Function(_SessionExpired value)? sessionExpired,
     TResult Function(_SessionRefreshed value)? sessionRefreshed,
+    TResult Function(_LoggingOut value)? loggingOut,
     required TResult orElse(),
   }) {
     if (sessionRefreshed != null) {
@@ -707,4 +914,139 @@ class _$SessionRefreshedImpl implements _SessionRefreshed {
 
 abstract class _SessionRefreshed implements AuthState {
   const factory _SessionRefreshed() = _$SessionRefreshedImpl;
+}
+
+/// @nodoc
+abstract class _$$LoggingOutImplCopyWith<$Res> {
+  factory _$$LoggingOutImplCopyWith(
+          _$LoggingOutImpl value, $Res Function(_$LoggingOutImpl) then) =
+      __$$LoggingOutImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoggingOutImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$LoggingOutImpl>
+    implements _$$LoggingOutImplCopyWith<$Res> {
+  __$$LoggingOutImplCopyWithImpl(
+      _$LoggingOutImpl _value, $Res Function(_$LoggingOutImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$LoggingOutImpl implements _LoggingOut {
+  const _$LoggingOutImpl();
+
+  @override
+  String toString() {
+    return 'AuthState.loggingOut()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoggingOutImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() checkingAuth,
+    required TResult Function() unauthenticated,
+    required TResult Function() authenticated,
+    required TResult Function() sessionExpired,
+    required TResult Function() sessionRefreshed,
+    required TResult Function() loggingOut,
+  }) {
+    return loggingOut();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? checkingAuth,
+    TResult? Function()? unauthenticated,
+    TResult? Function()? authenticated,
+    TResult? Function()? sessionExpired,
+    TResult? Function()? sessionRefreshed,
+    TResult? Function()? loggingOut,
+  }) {
+    return loggingOut?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? checkingAuth,
+    TResult Function()? unauthenticated,
+    TResult Function()? authenticated,
+    TResult Function()? sessionExpired,
+    TResult Function()? sessionRefreshed,
+    TResult Function()? loggingOut,
+    required TResult orElse(),
+  }) {
+    if (loggingOut != null) {
+      return loggingOut();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_CheckingAuth value) checkingAuth,
+    required TResult Function(_Unauthenticated value) unauthenticated,
+    required TResult Function(_Authenticated value) authenticated,
+    required TResult Function(_SessionExpired value) sessionExpired,
+    required TResult Function(_SessionRefreshed value) sessionRefreshed,
+    required TResult Function(_LoggingOut value) loggingOut,
+  }) {
+    return loggingOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_CheckingAuth value)? checkingAuth,
+    TResult? Function(_Unauthenticated value)? unauthenticated,
+    TResult? Function(_Authenticated value)? authenticated,
+    TResult? Function(_SessionExpired value)? sessionExpired,
+    TResult? Function(_SessionRefreshed value)? sessionRefreshed,
+    TResult? Function(_LoggingOut value)? loggingOut,
+  }) {
+    return loggingOut?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_CheckingAuth value)? checkingAuth,
+    TResult Function(_Unauthenticated value)? unauthenticated,
+    TResult Function(_Authenticated value)? authenticated,
+    TResult Function(_SessionExpired value)? sessionExpired,
+    TResult Function(_SessionRefreshed value)? sessionRefreshed,
+    TResult Function(_LoggingOut value)? loggingOut,
+    required TResult orElse(),
+  }) {
+    if (loggingOut != null) {
+      return loggingOut(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoggingOut implements AuthState {
+  const factory _LoggingOut() = _$LoggingOutImpl;
 }

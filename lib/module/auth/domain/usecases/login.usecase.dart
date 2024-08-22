@@ -3,7 +3,7 @@ import 'package:admin_app/core/types/api_result.type.dart';
 import 'package:admin_app/module/auth/data/models/login.response.dart';
 import 'package:admin_app/module/auth/logic/auth.cubit.dart';
 
-import '../../data/repository/auth.repository.dart';
+import '../../data/repo/auth.repo.dart';
 
 class LoginUsecase {
   final AuthRepository _authRepository = locator();
