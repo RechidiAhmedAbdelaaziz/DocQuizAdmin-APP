@@ -51,7 +51,7 @@ class ExamRepo {
 
   RepoListResult<ExamModel> getExams({
     required int page,
-    required int limit,
+    int limit = 15,
   }) async {
     apiCall() async {
       final response =
