@@ -9,4 +9,9 @@ abstract class UserApiConstants {
   static const getLevels = '$_baseUrl/levels';
   static const getMajors = '$_baseUrl/levels/majors';
   static const getCourses = '$_baseUrl/levels/courses';
+
+  //*EXAM
+  static const getExams = '$_baseUrl/exam';
+  static const getExam = '$_baseUrl/exam/{id}';
+
 }
