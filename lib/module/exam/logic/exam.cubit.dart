@@ -16,6 +16,8 @@ class ExamCubit extends Cubit<ExamState> {
   final List<ExamModel> _exams = [];
   int _page = 1;
 
+  List<ExamModel> get exams => _exams;
+
   Future<void> fetchExams() async {
     emit(const ExamState.fetchingExams());
 
