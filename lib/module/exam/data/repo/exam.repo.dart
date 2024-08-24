@@ -1,6 +1,7 @@
 import 'package:admin_app/core/di/container.dart';
 import 'package:admin_app/core/network/try_call_api.dart';
 import 'package:admin_app/core/types/repo_functions.type.dart';
+import 'package:admin_app/module/exam/data/models/create_exam.param.dart';
 import 'package:admin_app/module/exam/data/source/exam.api.dart';
 
 import '../models/exam.model.dart';
@@ -8,19 +9,9 @@ import '../models/exam.model.dart';
 class ExamRepo {
   final _examApi = locator<ExamApiService>();
 
-  RepoResult<ExamModel> createExam({
-    required String major,
-    required int time,
-    required int year,
-    required String city,
-  }) async {
+  RepoResult<ExamModel> createExam(CreateExamParam details) async {
     apiCall() async {
-      final response = await _examApi.createExam({
-        'major': major,
-        'time': time,
-        'year': year,
-        'city': city,
-      });
+      final response = await _examApi.createExam(details.toJson());
 
       return ExamModel.fromJson(response.data!);
     }
