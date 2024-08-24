@@ -34,7 +34,7 @@ class _FloatingButton extends StatelessWidget {
   Widget _buidlForm() {
     return TextFormField(
       controller: _nameController,
-      validator: (value) => value.isString,
+      validator: (value) => value.isValidString,
       decoration: const InputDecoration(
         hintText: 'Enter level name',
       ),
