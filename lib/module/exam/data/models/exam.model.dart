@@ -20,6 +20,11 @@ class ExamModel extends Equatable {
   final num? time;
   final num? year;
 
+  // title : "Exam: Major | Year | City"
+  String get city => title!.split('|').last.trim();
+  // remove "Exam: " from title
+  String get major => title!.split('|').first.split(':').last.trim();
+
   ExamModel copyWith({
     num? questions,
     String? id,
