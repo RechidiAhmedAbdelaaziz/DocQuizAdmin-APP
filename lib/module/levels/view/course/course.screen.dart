@@ -27,8 +27,8 @@ class CourseScreen extends StatelessWidget {
           CourseCubit(_level, _major)..fetchCourses(),
       child: _Scaffold(
         title: "Courses for $_major",
-        courseList: _CourseList(),
-        floatingActionButton: _FloatingButton(),
+        courseList: const _CourseList(),
+        floatingActionButton: const _FloatingButton(),
         builder: (scaffold) => _Listener(scaffold),
       ),
     );

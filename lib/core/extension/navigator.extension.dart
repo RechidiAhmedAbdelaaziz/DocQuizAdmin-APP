@@ -1,14 +1,13 @@
-import 'package:admin_app/core/di/container.dart';
 import 'package:admin_app/core/router/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_app/core/router/abstract_route.dart';
 
 extension NavigatorExtension on BuildContext {
   /// Navigate to a named route with the provided AbstractRoute
-  Future<T?> to<T>(AbstractRoute route, {bool canPop = true}) {
-    if (!canPop) route.navigator = locator<NoPopNavigator>();
+  Future<T?> to<T>(AbstractRoute route, {bool canPop = true}) async {
+    if (!canPop) route.navigator = NoPopNavigator<T>();
 
-    return _tryNavigate(() => Navigator.of(this)
+    return await _tryNavigate<T>(() => Navigator.of(this)
         .pushNamed<T>(route.path, arguments: route));
   }
 

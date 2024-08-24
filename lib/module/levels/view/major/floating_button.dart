@@ -54,7 +54,7 @@ class __FormState extends State<_Form> {
         children: [
           TextFormField(
             controller: widget._nameController,
-            validator: (value) => value.isString,
+            validator: (value) => value.isValidString,
             decoration: const InputDecoration(
               labelText: 'Name',
             ),

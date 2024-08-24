@@ -1,21 +1,21 @@
-import 'package:admin_app/core/di/container.dart';
 import 'package:admin_app/core/router/navigator.dart';
 import 'package:flutter/material.dart';
 
-abstract class AbstractRoute {
+/// [T] return type of the route
+abstract class AbstractRoute<T> {
   AbstractRoute(this._path, {required Widget child}) : _child = child;
 
   final String _path;
   final Widget _child;
-  AppNavigator _navigator = locator<NormalNavigator>();
+  AppNavigator<T> _navigator = NormalNavigator<T>();
 
   String get path => _path;
 
-  set navigator(AppNavigator navigator) {
+  set navigator(AppNavigator<T> navigator) {
     _navigator = navigator;
   }
 
-  MaterialPageRoute<D> buildRoute<D>() =>
+  MaterialPageRoute<T> buildRoute() =>
       _navigator.buildRoute(_path, _child);
 }
 

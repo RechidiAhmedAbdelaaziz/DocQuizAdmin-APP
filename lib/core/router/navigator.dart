@@ -1,17 +1,17 @@
 import 'package:admin_app/core/router/abstract_route.dart';
 import 'package:flutter/material.dart';
 
-abstract class AppNavigator {
+abstract class AppNavigator<D> {
   set generateRoute(AbstractRoute settings) {
     settings.navigator = this;
   }
 
-  MaterialPageRoute<D> buildRoute<D>(String path, Widget child);
+  MaterialPageRoute<D> buildRoute(String path, Widget child);
 }
 
-class NormalNavigator extends AppNavigator {
+class NormalNavigator<D> extends AppNavigator<D> {
   @override
-  MaterialPageRoute<D> buildRoute<D>(String path, Widget child) {
+  MaterialPageRoute<D> buildRoute(String path, Widget child) {
     return MaterialPageRoute(
       settings: RouteSettings(name: path),
       builder: (_) => child,
@@ -20,9 +20,9 @@ class NormalNavigator extends AppNavigator {
 }
 
 // navigator that you can't pop to it when you navigate from it
-class NoPopNavigator extends AppNavigator {
+class NoPopNavigator<D> extends AppNavigator<D> {
   @override
-  MaterialPageRoute<D> buildRoute<D>(String path, Widget child) {
+  MaterialPageRoute<D> buildRoute(String path, Widget child) {
     return MaterialPageRoute(
       settings: RouteSettings(name: path),
       builder: (_) => PopScope(
