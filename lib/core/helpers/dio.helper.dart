@@ -1,7 +1,7 @@
 import 'package:admin_app/core/di/container.dart';
 import 'package:admin_app/core/extension/validator.extension.dart';
-import 'package:admin_app/module/auth/data/source/auth.cache.dart';
-import 'package:admin_app/module/auth/logic/auth.cubit.dart';
+import 'package:admin_app/feature/auth/data/source/auth.cache.dart';
+import 'package:admin_app/feature/auth/logic/auth.cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
