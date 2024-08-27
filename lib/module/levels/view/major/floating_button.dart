@@ -8,7 +8,7 @@ class _FloatingButton extends StatelessWidget {
     return FloatingActionButton(
       onPressed: () {
         final form = _Form();
-        context.showAlertDialog(
+        context.showDialogBox(
           title: 'Add Major',
           content: form,
           confirmText: 'Add',

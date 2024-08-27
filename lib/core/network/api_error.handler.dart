@@ -32,7 +32,7 @@ class ApiErrorHandler {
           return const ApiErrorModel(message: "Something went wrong");
       }
     } else {
-      return ApiErrorModel(message: error?.toString() ?? "Something went wrong");
+      return const ApiErrorModel(message: "Something went wrong");
     }
   }
 }

@@ -13,7 +13,7 @@ class _FloatingButton extends StatelessWidget {
 
     return FloatingActionButton(
       onPressed: () {
-        context.showAlertDialog(
+        context.showDialogBox(
           title: 'Add Level',
           content: Form(key: _formKey, child: _buidlForm()),
           confirmText: 'Add',

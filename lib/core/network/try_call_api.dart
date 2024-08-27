@@ -8,7 +8,8 @@ class TryCallApi {
     try {
       return ApiResult.success(await apiCall());
     } catch (error) {
-      debugPrint('TryCallApi error: ${error.toString()}');
+      debugPrint(
+          '\n\n!!!\n TryCallApi error: ${error.toString()} \n!!!\n\n');
       return ApiResult.failure(ApiErrorHandler.handle(error));
     }
   }

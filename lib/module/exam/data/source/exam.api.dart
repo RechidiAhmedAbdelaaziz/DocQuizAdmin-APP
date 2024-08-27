@@ -11,10 +11,10 @@ abstract class ExamApiService {
   factory ExamApiService(Dio dio, {String baseUrl}) =
       _ExamApiService;
 
-  @POST(AdminApiConstants.createExam)
+  @POST(AdminApiConstants.exam)
   Future<DataResponse> createExam(@Body() Map<String, dynamic> body);
 
-  @PATCH(AdminApiConstants.updateExam)
+  @PATCH(AdminApiConstants.examWithID)
   Future<DataResponse> updateExam(
     @Path('id') String id,
     @Body() Map<String, dynamic> body,

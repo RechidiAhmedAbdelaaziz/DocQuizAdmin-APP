@@ -21,9 +21,9 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton(() => CacheHelper());
   locator.registerLazySingleton(() => ImagePickerHelper());
 
-
-
   await setupAuthDependency(locator);
   await setupLevelDependency(locator);
   await setupExamDependency(locator);
+  // await setupQuestionDependency(locator);
+  // await setupHomeDependency(locator);
 }
