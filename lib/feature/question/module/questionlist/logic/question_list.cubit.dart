@@ -1,8 +1,8 @@
 import 'package:admin_app/core/di/container.dart';
 import 'package:admin_app/core/extension/list.extension.dart';
 import 'package:admin_app/core/shared/dto/pagination.dto.dart';
-import 'package:admin_app/feature/question/data/dto/list_question.dto.dart';
 import 'package:admin_app/feature/question/data/models/question.model.dart';
+import 'package:admin_app/feature/question/module/questionlist/logic/question_filter.cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,21 +13,34 @@ part 'question_list.cubit.freezed.dart';
 
 class QuestionListCubit extends Cubit<QuestionListState> {
   final _questionRepo = locator<QuestionRepo>();
+  final QuestionFilterCubit _filterCubit;
 
-  QuestionListCubit() : super(const QuestionListState.initial());
+  QuestionListCubit({
+    required QuestionFilterCubit filterCubit,
+  })  : _filterCubit = filterCubit,
+        super(const QuestionListState.initial());
 
   final List<QuestionModel> _questions = [];
+
   final _query = KeywordQuery();
 
   List<QuestionModel> get questions => _questions;
 
-  void setKeyword(String keyword) =>
-      _query.copyWith(keywords: keyword);
+  void setKeyword(String keyword) {
+    _query.copyWith(keywords: keyword);
+    fetchQuestions(more: false);
+  }
 
-  void onAddOrUpdateQuestion(QuestionModel question) {
-    emit(const QuestionListState.fetchedQuestions());
+  void onAddQuestion(QuestionModel question) {
+    emit(const QuestionListState.fetchingQuestions());
     questions.addUniq(question);
-    emit(const QuestionListState.fetchedQuestions());
+    emit(const QuestionListState.addedQuestions());
+  }
+
+  void onUpdateQuestion(QuestionModel question) {
+    emit(const QuestionListState.fetchingQuestions());
+    questions.update(question);
+    emit(const QuestionListState.updatedQuestions());
   }
 
   void onRemoveQuestion(QuestionModel question) {
@@ -37,14 +50,14 @@ class QuestionListCubit extends Cubit<QuestionListState> {
   }
 
   Future<void> fetchQuestions({
-    ListQuestionsBody? filter,
     bool more = true,
   }) async {
     emit(const QuestionListState.fetchingQuestions());
 
+
     final result = await _questionRepo.getQuestions(
       queries: _query,
-      body: filter,
+      body: _filterCubit.filter,
     );
 
     result.when(
@@ -60,7 +73,7 @@ class QuestionListCubit extends Cubit<QuestionListState> {
   }
 
   void _fetchMoreQuestion(List<QuestionModel> questions) {
-    questions.addAllUniq(questions);
+    _questions.addAllUniq(questions);
     if (questions.isNotEmpty) _query.copyWith(page: _query.page + 1);
   }
 

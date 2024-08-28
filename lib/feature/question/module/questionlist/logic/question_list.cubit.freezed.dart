@@ -21,6 +21,9 @@ mixin _$QuestionListState {
     required TResult Function() initial,
     required TResult Function() fetchingQuestions,
     required TResult Function() fetchedQuestions,
+    required TResult Function() addedQuestions,
+    required TResult Function() updatedQuestions,
+    required TResult Function() deletedQuestions,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +32,9 @@ mixin _$QuestionListState {
     TResult? Function()? initial,
     TResult? Function()? fetchingQuestions,
     TResult? Function()? fetchedQuestions,
+    TResult? Function()? addedQuestions,
+    TResult? Function()? updatedQuestions,
+    TResult? Function()? deletedQuestions,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +43,9 @@ mixin _$QuestionListState {
     TResult Function()? initial,
     TResult Function()? fetchingQuestions,
     TResult Function()? fetchedQuestions,
+    TResult Function()? addedQuestions,
+    TResult Function()? updatedQuestions,
+    TResult Function()? deletedQuestions,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -46,6 +55,9 @@ mixin _$QuestionListState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_FetchingQuestions value) fetchingQuestions,
     required TResult Function(_FetchedQuestions value) fetchedQuestions,
+    required TResult Function(_AddedQuestions value) addedQuestions,
+    required TResult Function(_UpdatedQuestions value) updatedQuestions,
+    required TResult Function(_DeletedQuestions value) deletedQuestions,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +66,9 @@ mixin _$QuestionListState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_FetchingQuestions value)? fetchingQuestions,
     TResult? Function(_FetchedQuestions value)? fetchedQuestions,
+    TResult? Function(_AddedQuestions value)? addedQuestions,
+    TResult? Function(_UpdatedQuestions value)? updatedQuestions,
+    TResult? Function(_DeletedQuestions value)? deletedQuestions,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +77,9 @@ mixin _$QuestionListState {
     TResult Function(_Initial value)? initial,
     TResult Function(_FetchingQuestions value)? fetchingQuestions,
     TResult Function(_FetchedQuestions value)? fetchedQuestions,
+    TResult Function(_AddedQuestions value)? addedQuestions,
+    TResult Function(_UpdatedQuestions value)? updatedQuestions,
+    TResult Function(_DeletedQuestions value)? deletedQuestions,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -133,6 +151,9 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() fetchingQuestions,
     required TResult Function() fetchedQuestions,
+    required TResult Function() addedQuestions,
+    required TResult Function() updatedQuestions,
+    required TResult Function() deletedQuestions,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -144,6 +165,9 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? fetchingQuestions,
     TResult? Function()? fetchedQuestions,
+    TResult? Function()? addedQuestions,
+    TResult? Function()? updatedQuestions,
+    TResult? Function()? deletedQuestions,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -155,6 +179,9 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? fetchingQuestions,
     TResult Function()? fetchedQuestions,
+    TResult Function()? addedQuestions,
+    TResult Function()? updatedQuestions,
+    TResult Function()? deletedQuestions,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -170,6 +197,9 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_FetchingQuestions value) fetchingQuestions,
     required TResult Function(_FetchedQuestions value) fetchedQuestions,
+    required TResult Function(_AddedQuestions value) addedQuestions,
+    required TResult Function(_UpdatedQuestions value) updatedQuestions,
+    required TResult Function(_DeletedQuestions value) deletedQuestions,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -181,6 +211,9 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_FetchingQuestions value)? fetchingQuestions,
     TResult? Function(_FetchedQuestions value)? fetchedQuestions,
+    TResult? Function(_AddedQuestions value)? addedQuestions,
+    TResult? Function(_UpdatedQuestions value)? updatedQuestions,
+    TResult? Function(_DeletedQuestions value)? deletedQuestions,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -192,6 +225,9 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_FetchingQuestions value)? fetchingQuestions,
     TResult Function(_FetchedQuestions value)? fetchedQuestions,
+    TResult Function(_AddedQuestions value)? addedQuestions,
+    TResult Function(_UpdatedQuestions value)? updatedQuestions,
+    TResult Function(_DeletedQuestions value)? deletedQuestions,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -250,6 +286,9 @@ class _$FetchingQuestionsImpl implements _FetchingQuestions {
     required TResult Function() initial,
     required TResult Function() fetchingQuestions,
     required TResult Function() fetchedQuestions,
+    required TResult Function() addedQuestions,
+    required TResult Function() updatedQuestions,
+    required TResult Function() deletedQuestions,
     required TResult Function(String message) error,
   }) {
     return fetchingQuestions();
@@ -261,6 +300,9 @@ class _$FetchingQuestionsImpl implements _FetchingQuestions {
     TResult? Function()? initial,
     TResult? Function()? fetchingQuestions,
     TResult? Function()? fetchedQuestions,
+    TResult? Function()? addedQuestions,
+    TResult? Function()? updatedQuestions,
+    TResult? Function()? deletedQuestions,
     TResult? Function(String message)? error,
   }) {
     return fetchingQuestions?.call();
@@ -272,6 +314,9 @@ class _$FetchingQuestionsImpl implements _FetchingQuestions {
     TResult Function()? initial,
     TResult Function()? fetchingQuestions,
     TResult Function()? fetchedQuestions,
+    TResult Function()? addedQuestions,
+    TResult Function()? updatedQuestions,
+    TResult Function()? deletedQuestions,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -287,6 +332,9 @@ class _$FetchingQuestionsImpl implements _FetchingQuestions {
     required TResult Function(_Initial value) initial,
     required TResult Function(_FetchingQuestions value) fetchingQuestions,
     required TResult Function(_FetchedQuestions value) fetchedQuestions,
+    required TResult Function(_AddedQuestions value) addedQuestions,
+    required TResult Function(_UpdatedQuestions value) updatedQuestions,
+    required TResult Function(_DeletedQuestions value) deletedQuestions,
     required TResult Function(_Error value) error,
   }) {
     return fetchingQuestions(this);
@@ -298,6 +346,9 @@ class _$FetchingQuestionsImpl implements _FetchingQuestions {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_FetchingQuestions value)? fetchingQuestions,
     TResult? Function(_FetchedQuestions value)? fetchedQuestions,
+    TResult? Function(_AddedQuestions value)? addedQuestions,
+    TResult? Function(_UpdatedQuestions value)? updatedQuestions,
+    TResult? Function(_DeletedQuestions value)? deletedQuestions,
     TResult? Function(_Error value)? error,
   }) {
     return fetchingQuestions?.call(this);
@@ -309,6 +360,9 @@ class _$FetchingQuestionsImpl implements _FetchingQuestions {
     TResult Function(_Initial value)? initial,
     TResult Function(_FetchingQuestions value)? fetchingQuestions,
     TResult Function(_FetchedQuestions value)? fetchedQuestions,
+    TResult Function(_AddedQuestions value)? addedQuestions,
+    TResult Function(_UpdatedQuestions value)? updatedQuestions,
+    TResult Function(_DeletedQuestions value)? deletedQuestions,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -367,6 +421,9 @@ class _$FetchedQuestionsImpl implements _FetchedQuestions {
     required TResult Function() initial,
     required TResult Function() fetchingQuestions,
     required TResult Function() fetchedQuestions,
+    required TResult Function() addedQuestions,
+    required TResult Function() updatedQuestions,
+    required TResult Function() deletedQuestions,
     required TResult Function(String message) error,
   }) {
     return fetchedQuestions();
@@ -378,6 +435,9 @@ class _$FetchedQuestionsImpl implements _FetchedQuestions {
     TResult? Function()? initial,
     TResult? Function()? fetchingQuestions,
     TResult? Function()? fetchedQuestions,
+    TResult? Function()? addedQuestions,
+    TResult? Function()? updatedQuestions,
+    TResult? Function()? deletedQuestions,
     TResult? Function(String message)? error,
   }) {
     return fetchedQuestions?.call();
@@ -389,6 +449,9 @@ class _$FetchedQuestionsImpl implements _FetchedQuestions {
     TResult Function()? initial,
     TResult Function()? fetchingQuestions,
     TResult Function()? fetchedQuestions,
+    TResult Function()? addedQuestions,
+    TResult Function()? updatedQuestions,
+    TResult Function()? deletedQuestions,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -404,6 +467,9 @@ class _$FetchedQuestionsImpl implements _FetchedQuestions {
     required TResult Function(_Initial value) initial,
     required TResult Function(_FetchingQuestions value) fetchingQuestions,
     required TResult Function(_FetchedQuestions value) fetchedQuestions,
+    required TResult Function(_AddedQuestions value) addedQuestions,
+    required TResult Function(_UpdatedQuestions value) updatedQuestions,
+    required TResult Function(_DeletedQuestions value) deletedQuestions,
     required TResult Function(_Error value) error,
   }) {
     return fetchedQuestions(this);
@@ -415,6 +481,9 @@ class _$FetchedQuestionsImpl implements _FetchedQuestions {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_FetchingQuestions value)? fetchingQuestions,
     TResult? Function(_FetchedQuestions value)? fetchedQuestions,
+    TResult? Function(_AddedQuestions value)? addedQuestions,
+    TResult? Function(_UpdatedQuestions value)? updatedQuestions,
+    TResult? Function(_DeletedQuestions value)? deletedQuestions,
     TResult? Function(_Error value)? error,
   }) {
     return fetchedQuestions?.call(this);
@@ -426,6 +495,9 @@ class _$FetchedQuestionsImpl implements _FetchedQuestions {
     TResult Function(_Initial value)? initial,
     TResult Function(_FetchingQuestions value)? fetchingQuestions,
     TResult Function(_FetchedQuestions value)? fetchedQuestions,
+    TResult Function(_AddedQuestions value)? addedQuestions,
+    TResult Function(_UpdatedQuestions value)? updatedQuestions,
+    TResult Function(_DeletedQuestions value)? deletedQuestions,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -438,6 +510,411 @@ class _$FetchedQuestionsImpl implements _FetchedQuestions {
 
 abstract class _FetchedQuestions implements QuestionListState {
   const factory _FetchedQuestions() = _$FetchedQuestionsImpl;
+}
+
+/// @nodoc
+abstract class _$$AddedQuestionsImplCopyWith<$Res> {
+  factory _$$AddedQuestionsImplCopyWith(_$AddedQuestionsImpl value,
+          $Res Function(_$AddedQuestionsImpl) then) =
+      __$$AddedQuestionsImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AddedQuestionsImplCopyWithImpl<$Res>
+    extends _$QuestionListStateCopyWithImpl<$Res, _$AddedQuestionsImpl>
+    implements _$$AddedQuestionsImplCopyWith<$Res> {
+  __$$AddedQuestionsImplCopyWithImpl(
+      _$AddedQuestionsImpl _value, $Res Function(_$AddedQuestionsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of QuestionListState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$AddedQuestionsImpl implements _AddedQuestions {
+  const _$AddedQuestionsImpl();
+
+  @override
+  String toString() {
+    return 'QuestionListState.addedQuestions()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AddedQuestionsImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() fetchingQuestions,
+    required TResult Function() fetchedQuestions,
+    required TResult Function() addedQuestions,
+    required TResult Function() updatedQuestions,
+    required TResult Function() deletedQuestions,
+    required TResult Function(String message) error,
+  }) {
+    return addedQuestions();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? fetchingQuestions,
+    TResult? Function()? fetchedQuestions,
+    TResult? Function()? addedQuestions,
+    TResult? Function()? updatedQuestions,
+    TResult? Function()? deletedQuestions,
+    TResult? Function(String message)? error,
+  }) {
+    return addedQuestions?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? fetchingQuestions,
+    TResult Function()? fetchedQuestions,
+    TResult Function()? addedQuestions,
+    TResult Function()? updatedQuestions,
+    TResult Function()? deletedQuestions,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (addedQuestions != null) {
+      return addedQuestions();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_FetchingQuestions value) fetchingQuestions,
+    required TResult Function(_FetchedQuestions value) fetchedQuestions,
+    required TResult Function(_AddedQuestions value) addedQuestions,
+    required TResult Function(_UpdatedQuestions value) updatedQuestions,
+    required TResult Function(_DeletedQuestions value) deletedQuestions,
+    required TResult Function(_Error value) error,
+  }) {
+    return addedQuestions(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_FetchingQuestions value)? fetchingQuestions,
+    TResult? Function(_FetchedQuestions value)? fetchedQuestions,
+    TResult? Function(_AddedQuestions value)? addedQuestions,
+    TResult? Function(_UpdatedQuestions value)? updatedQuestions,
+    TResult? Function(_DeletedQuestions value)? deletedQuestions,
+    TResult? Function(_Error value)? error,
+  }) {
+    return addedQuestions?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_FetchingQuestions value)? fetchingQuestions,
+    TResult Function(_FetchedQuestions value)? fetchedQuestions,
+    TResult Function(_AddedQuestions value)? addedQuestions,
+    TResult Function(_UpdatedQuestions value)? updatedQuestions,
+    TResult Function(_DeletedQuestions value)? deletedQuestions,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (addedQuestions != null) {
+      return addedQuestions(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddedQuestions implements QuestionListState {
+  const factory _AddedQuestions() = _$AddedQuestionsImpl;
+}
+
+/// @nodoc
+abstract class _$$UpdatedQuestionsImplCopyWith<$Res> {
+  factory _$$UpdatedQuestionsImplCopyWith(_$UpdatedQuestionsImpl value,
+          $Res Function(_$UpdatedQuestionsImpl) then) =
+      __$$UpdatedQuestionsImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UpdatedQuestionsImplCopyWithImpl<$Res>
+    extends _$QuestionListStateCopyWithImpl<$Res, _$UpdatedQuestionsImpl>
+    implements _$$UpdatedQuestionsImplCopyWith<$Res> {
+  __$$UpdatedQuestionsImplCopyWithImpl(_$UpdatedQuestionsImpl _value,
+      $Res Function(_$UpdatedQuestionsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of QuestionListState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$UpdatedQuestionsImpl implements _UpdatedQuestions {
+  const _$UpdatedQuestionsImpl();
+
+  @override
+  String toString() {
+    return 'QuestionListState.updatedQuestions()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$UpdatedQuestionsImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() fetchingQuestions,
+    required TResult Function() fetchedQuestions,
+    required TResult Function() addedQuestions,
+    required TResult Function() updatedQuestions,
+    required TResult Function() deletedQuestions,
+    required TResult Function(String message) error,
+  }) {
+    return updatedQuestions();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? fetchingQuestions,
+    TResult? Function()? fetchedQuestions,
+    TResult? Function()? addedQuestions,
+    TResult? Function()? updatedQuestions,
+    TResult? Function()? deletedQuestions,
+    TResult? Function(String message)? error,
+  }) {
+    return updatedQuestions?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? fetchingQuestions,
+    TResult Function()? fetchedQuestions,
+    TResult Function()? addedQuestions,
+    TResult Function()? updatedQuestions,
+    TResult Function()? deletedQuestions,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (updatedQuestions != null) {
+      return updatedQuestions();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_FetchingQuestions value) fetchingQuestions,
+    required TResult Function(_FetchedQuestions value) fetchedQuestions,
+    required TResult Function(_AddedQuestions value) addedQuestions,
+    required TResult Function(_UpdatedQuestions value) updatedQuestions,
+    required TResult Function(_DeletedQuestions value) deletedQuestions,
+    required TResult Function(_Error value) error,
+  }) {
+    return updatedQuestions(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_FetchingQuestions value)? fetchingQuestions,
+    TResult? Function(_FetchedQuestions value)? fetchedQuestions,
+    TResult? Function(_AddedQuestions value)? addedQuestions,
+    TResult? Function(_UpdatedQuestions value)? updatedQuestions,
+    TResult? Function(_DeletedQuestions value)? deletedQuestions,
+    TResult? Function(_Error value)? error,
+  }) {
+    return updatedQuestions?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_FetchingQuestions value)? fetchingQuestions,
+    TResult Function(_FetchedQuestions value)? fetchedQuestions,
+    TResult Function(_AddedQuestions value)? addedQuestions,
+    TResult Function(_UpdatedQuestions value)? updatedQuestions,
+    TResult Function(_DeletedQuestions value)? deletedQuestions,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (updatedQuestions != null) {
+      return updatedQuestions(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdatedQuestions implements QuestionListState {
+  const factory _UpdatedQuestions() = _$UpdatedQuestionsImpl;
+}
+
+/// @nodoc
+abstract class _$$DeletedQuestionsImplCopyWith<$Res> {
+  factory _$$DeletedQuestionsImplCopyWith(_$DeletedQuestionsImpl value,
+          $Res Function(_$DeletedQuestionsImpl) then) =
+      __$$DeletedQuestionsImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DeletedQuestionsImplCopyWithImpl<$Res>
+    extends _$QuestionListStateCopyWithImpl<$Res, _$DeletedQuestionsImpl>
+    implements _$$DeletedQuestionsImplCopyWith<$Res> {
+  __$$DeletedQuestionsImplCopyWithImpl(_$DeletedQuestionsImpl _value,
+      $Res Function(_$DeletedQuestionsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of QuestionListState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$DeletedQuestionsImpl implements _DeletedQuestions {
+  const _$DeletedQuestionsImpl();
+
+  @override
+  String toString() {
+    return 'QuestionListState.deletedQuestions()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DeletedQuestionsImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() fetchingQuestions,
+    required TResult Function() fetchedQuestions,
+    required TResult Function() addedQuestions,
+    required TResult Function() updatedQuestions,
+    required TResult Function() deletedQuestions,
+    required TResult Function(String message) error,
+  }) {
+    return deletedQuestions();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? fetchingQuestions,
+    TResult? Function()? fetchedQuestions,
+    TResult? Function()? addedQuestions,
+    TResult? Function()? updatedQuestions,
+    TResult? Function()? deletedQuestions,
+    TResult? Function(String message)? error,
+  }) {
+    return deletedQuestions?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? fetchingQuestions,
+    TResult Function()? fetchedQuestions,
+    TResult Function()? addedQuestions,
+    TResult Function()? updatedQuestions,
+    TResult Function()? deletedQuestions,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (deletedQuestions != null) {
+      return deletedQuestions();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_FetchingQuestions value) fetchingQuestions,
+    required TResult Function(_FetchedQuestions value) fetchedQuestions,
+    required TResult Function(_AddedQuestions value) addedQuestions,
+    required TResult Function(_UpdatedQuestions value) updatedQuestions,
+    required TResult Function(_DeletedQuestions value) deletedQuestions,
+    required TResult Function(_Error value) error,
+  }) {
+    return deletedQuestions(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_FetchingQuestions value)? fetchingQuestions,
+    TResult? Function(_FetchedQuestions value)? fetchedQuestions,
+    TResult? Function(_AddedQuestions value)? addedQuestions,
+    TResult? Function(_UpdatedQuestions value)? updatedQuestions,
+    TResult? Function(_DeletedQuestions value)? deletedQuestions,
+    TResult? Function(_Error value)? error,
+  }) {
+    return deletedQuestions?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_FetchingQuestions value)? fetchingQuestions,
+    TResult Function(_FetchedQuestions value)? fetchedQuestions,
+    TResult Function(_AddedQuestions value)? addedQuestions,
+    TResult Function(_UpdatedQuestions value)? updatedQuestions,
+    TResult Function(_DeletedQuestions value)? deletedQuestions,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (deletedQuestions != null) {
+      return deletedQuestions(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeletedQuestions implements QuestionListState {
+  const factory _DeletedQuestions() = _$DeletedQuestionsImpl;
 }
 
 /// @nodoc
@@ -511,6 +988,9 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() fetchingQuestions,
     required TResult Function() fetchedQuestions,
+    required TResult Function() addedQuestions,
+    required TResult Function() updatedQuestions,
+    required TResult Function() deletedQuestions,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -522,6 +1002,9 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? fetchingQuestions,
     TResult? Function()? fetchedQuestions,
+    TResult? Function()? addedQuestions,
+    TResult? Function()? updatedQuestions,
+    TResult? Function()? deletedQuestions,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -533,6 +1016,9 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? fetchingQuestions,
     TResult Function()? fetchedQuestions,
+    TResult Function()? addedQuestions,
+    TResult Function()? updatedQuestions,
+    TResult Function()? deletedQuestions,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -548,6 +1034,9 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_FetchingQuestions value) fetchingQuestions,
     required TResult Function(_FetchedQuestions value) fetchedQuestions,
+    required TResult Function(_AddedQuestions value) addedQuestions,
+    required TResult Function(_UpdatedQuestions value) updatedQuestions,
+    required TResult Function(_DeletedQuestions value) deletedQuestions,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -559,6 +1048,9 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_FetchingQuestions value)? fetchingQuestions,
     TResult? Function(_FetchedQuestions value)? fetchedQuestions,
+    TResult? Function(_AddedQuestions value)? addedQuestions,
+    TResult? Function(_UpdatedQuestions value)? updatedQuestions,
+    TResult? Function(_DeletedQuestions value)? deletedQuestions,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -570,6 +1062,9 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_FetchingQuestions value)? fetchingQuestions,
     TResult Function(_FetchedQuestions value)? fetchedQuestions,
+    TResult Function(_AddedQuestions value)? addedQuestions,
+    TResult Function(_UpdatedQuestions value)? updatedQuestions,
+    TResult Function(_DeletedQuestions value)? deletedQuestions,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

@@ -9,5 +9,9 @@ class QuestionListState with _$QuestionListState {
   const factory QuestionListState.fetchedQuestions() =
       _FetchedQuestions;
 
+  const factory QuestionListState.addedQuestions() = _AddedQuestions;
+  const factory QuestionListState.updatedQuestions() = _UpdatedQuestions;
+  const factory QuestionListState.deletedQuestions() = _DeletedQuestions;
+
   const factory QuestionListState.error(String message) = _Error;
 }

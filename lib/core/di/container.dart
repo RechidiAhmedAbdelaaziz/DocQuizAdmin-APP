@@ -4,6 +4,7 @@ import 'package:admin_app/core/helpers/picker.helper.dart';
 import 'package:admin_app/feature/auth/helpers/auth.dependency.dart';
 import 'package:admin_app/feature/exam/helper/exam.dependency.dart';
 import 'package:admin_app/feature/levels/helpers/level.dependency.dart';
+import 'package:admin_app/feature/question/helper/question.dependency.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,6 +25,6 @@ Future<void> setupLocator() async {
   await setupAuthDependency(locator);
   await setupLevelDependency(locator);
   await setupExamDependency(locator);
-  // await setupQuestionDependency(locator);
+  await setupQuestionDependency(locator);
   // await setupHomeDependency(locator);
 }

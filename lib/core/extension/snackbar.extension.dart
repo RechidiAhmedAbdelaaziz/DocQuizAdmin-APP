@@ -13,7 +13,7 @@ extension Snackbar on BuildContext {
             )
           ],
         ),
-        duration: const Duration(milliseconds: 1500),
+        duration: const Duration(seconds: 2),
         backgroundColor: Colors.red,
       ),
     );
