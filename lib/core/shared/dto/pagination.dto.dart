@@ -23,10 +23,10 @@ class PaginationQuery {
   }
 }
 
-class KeyWordQuery extends PaginationQuery {
+class KeywordQuery extends PaginationQuery {
   String? keywords;
 
-  KeyWordQuery({
+  KeywordQuery({
     this.keywords,
     super.page,
     super.limit,
