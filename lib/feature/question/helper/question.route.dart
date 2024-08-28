@@ -1,42 +1,23 @@
 import 'package:admin_app/core/router/abstract_route.dart';
-import 'package:admin_app/feature/exam/data/models/exam.model.dart';
-import 'package:admin_app/feature/question/data/dto/list_question.dto.dart';
 import 'package:admin_app/feature/question/data/models/question.model.dart';
-import 'package:admin_app/feature/question/module/questionlist/ui/questions_list.screen.dart';
+import 'package:admin_app/feature/question/module/question/ui/question.screen.dart';
 
-class QuestionListRoute extends AbstractRoute {
-  static const route = '/question-list';
+class CreateQuestionRoute extends AbstractRoute {
+  static const route = '/create-question';
 
-  QuestionListRoute()
-      : super(route, child: const QuestionsListScreen());
-}
-
-class ExamQuestionListRoute extends AbstractRoute {
-  static const route = '/exam-question-list';
-
-  ExamQuestionListRoute(ExamModel exam)
+  CreateQuestionRoute()
       : super(
           route,
-          child: QuestionsListScreen(
-            initialFilter: ListQuestionsBody(source: exam.id),
-          ),
+          child: const QuestionScreen(),
         );
 }
 
-class FieldQuestionListRoute extends AbstractRoute {
-  static const route = '/field-question-list';
+class UpdateQuestionRoute extends AbstractRoute {
+  static const route = '/update-question';
 
-  FieldQuestionListRoute(String level, String major, String course)
+  UpdateQuestionRoute(QuestionModel question)
       : super(
           route,
-          child: QuestionsListScreen(
-            initialFilter: ListQuestionsBody(fields: [
-              FieldModel(
-                level: level,
-                major: major,
-                course: course,
-              ),
-            ]),
-          ),
+          child: QuestionScreen(question: question),
         );
 }
