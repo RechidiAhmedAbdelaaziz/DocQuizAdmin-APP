@@ -9,10 +9,9 @@ part of 'create_question.dto.dart';
 Map<String, dynamic> _$CreateQuestionBodyToJson(CreateQuestionBody instance) =>
     <String, dynamic>{
       'questionText': instance.questionText,
-      'correctAnswers': instance.correctAnswers,
-      'wrongAnswers': instance.wrongAnswers,
       'difficulty': instance.difficulty,
       'field': instance.field,
       'source': instance.source,
       'explanation': instance.explanation,
+      'answers': instance.answers,
     };
