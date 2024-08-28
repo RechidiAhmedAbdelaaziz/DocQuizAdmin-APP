@@ -4,28 +4,27 @@ import '../models/question.model.dart';
 
 part 'create_question.dto.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createFactory: false)
 class CreateQuestionBody {
   CreateQuestionBody({
-    required this.questionText,
-    required this.correctAnswers,
-    required this.wrongAnswers,
-    required this.difficulty,
-    required this.field,
-    required this.source,
-    required this.explanation,
+    this.questionText,
+    this.correctAnswers,
+    this.wrongAnswers,
+    this.difficulty,
+    this.field,
+    this.source,
+    this.explanation,
   });
 
-  final String? questionText;
-  final List<String>? correctAnswers;
-  final List<String>? wrongAnswers;
-  final String? difficulty;
-  final FieldModel? field;
-  final String? source;
-  final String? explanation;
-
-  factory CreateQuestionBody.fromJson(Map<String, dynamic> json) =>
-      _$CreateQuestionBodyFromJson(json);
+  String? questionText;
+  List<String>? correctAnswers;
+  List<String>? wrongAnswers;
+  String? difficulty;
+  FieldModel? field;
+  String? source;
+  String? explanation;
 
   Map<String, dynamic> toJson() => _$CreateQuestionBodyToJson(this);
+
+  void copyWith() {} //TODO implement this
 }
