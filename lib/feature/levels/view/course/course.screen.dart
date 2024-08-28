@@ -1,6 +1,8 @@
 import 'package:admin_app/core/extension/alertdialog.extenstion.dart';
+import 'package:admin_app/core/extension/navigator.extension.dart';
 import 'package:admin_app/core/extension/snackbar.extension.dart';
 import 'package:admin_app/feature/levels/logic/course.cubit.dart';
+import 'package:admin_app/feature/question/helper/question.route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:admin_app/core/extension/validator.extension.dart';
@@ -19,7 +21,6 @@ class CourseScreen extends StatelessWidget {
   final String _level;
   final String _major;
 
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -27,7 +28,9 @@ class CourseScreen extends StatelessWidget {
           CourseCubit(_level, _major)..fetchCourses(),
       child: _Scaffold(
         title: "Courses for $_major",
-        courseList: const _CourseList(),
+        courseList: _CourseList((String course) {
+          context.to(FieldQuestionListRoute(_level, _major, course ));
+        }),
         floatingActionButton: const _FloatingButton(),
         builder: (scaffold) => _Listener(scaffold),
       ),

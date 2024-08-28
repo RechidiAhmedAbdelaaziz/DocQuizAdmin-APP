@@ -41,42 +41,46 @@ class _ExamItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 5.h, horizontal: 16.w),
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 1,
-            blurRadius: 2,
-            offset: const Offset(0, 1),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildTitle(_exam.title!),
-              height(12),
-              Row(
-                children: [
-                  _buildQuestionCount(_exam.questions!),
-                  width(35),
-                  _buildTime(_exam.time!),
-                ],
-              ),
-            ],
-          ),
-          _buildEditButton(
-            onPressed: () => _onEdit(_exam),
-          ),
-        ],
+    return InkWell(
+      onTap: () => context.to(ExamQuestionListRoute(_exam)),
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 5.h, horizontal: 16.w),
+        padding:
+            EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20.r),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 2,
+              offset: const Offset(0, 1),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildTitle(_exam.title!),
+                height(12),
+                Row(
+                  children: [
+                    _buildQuestionCount(_exam.questions!),
+                    width(35),
+                    _buildTime(_exam.time!),
+                  ],
+                ),
+              ],
+            ),
+            _buildEditButton(
+              onPressed: () => _onEdit(_exam),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -100,8 +104,9 @@ class _ExamItem extends StatelessWidget {
   Text _buildTitle(String title) {
     return Text(
       title,
+      maxLines: 2,
       style: TextStyle(
-        fontSize: 22.sp,
+        fontSize: 20.sp,
         fontWeight: FontWeight.bold,
       ),
     );

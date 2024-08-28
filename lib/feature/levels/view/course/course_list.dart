@@ -1,7 +1,9 @@
 part of 'course.screen.dart';
 
 class _CourseList extends StatelessWidget {
-  const _CourseList();
+  const _CourseList(this._showQuestions);
+
+  final void Function(String) _showQuestions;
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +11,8 @@ class _CourseList extends StatelessWidget {
     return Column(
       children: courseList
           .map(
-            (course) => _buildCourseItem(course, () {}),
+            (course) => _buildCourseItem(
+                course, () => _showQuestions(course.title!)),
           )
           .toList(),
     );
