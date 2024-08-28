@@ -22,8 +22,7 @@ class _QuestionApiService implements QuestionApiService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<DataResponse> createQuestion(
-      Map<String, dynamic> body) async {
+  Future<DataResponse> createQuestion(Map<String, dynamic> body) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

@@ -47,12 +47,12 @@ class QuestionRepo {
 
   RepoListResult<QuestionModel> getQuestions({
     required PaginationQuery queries,
-    required ListQuestionsBody body,
+     ListQuestionsBody? body,
   }) async {
     apiCall() async {
       final result = await _questionApi.getQuestions(
         queries: queries.toJson(),
-        body: body.toJson(),
+        body: body?.toJson() ?? {},
       );
       return result.data!
           .map((e) => QuestionModel.fromJson(e))
