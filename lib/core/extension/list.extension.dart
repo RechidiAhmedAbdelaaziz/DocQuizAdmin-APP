@@ -1,8 +1,6 @@
 extension UniqList<T> on List<T> {
   void addUniq(T value) {
-    if (!contains(value)) {
-      add(value);
-    }
+    contains(value) ? this[indexOf(value)] = value : add(value);
   }
 
   void addAllUniq(List<T> values) {
