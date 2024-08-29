@@ -1,11 +1,7 @@
-import 'package:admin_app/core/extension/list.extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:flutter/material.dart';
 
 import '../models/question.model.dart';
 
-part 'create_question.dto.g.dart';
-
-@JsonSerializable(createFactory: false)
 class CreateQuestionBody {
   CreateQuestionBody({
     this.questionText,
@@ -16,7 +12,9 @@ class CreateQuestionBody {
     this.source,
     this.explanation,
   })  : _wrongAnswers = wrongAnswers,
-        _correctAnswers = correctAnswers;
+        _correctAnswers = correctAnswers {
+    answers = _answers();
+  }
 
   String? questionText;
   final List<String> _correctAnswers;
@@ -26,9 +24,37 @@ class CreateQuestionBody {
   String? source;
   String? explanation;
 
-  List<String> get answers => _correctAnswers + _wrongAnswers;
+  List<Answer> answers = [];
 
-  Map<String, dynamic> toJson() => _$CreateQuestionBodyToJson(this);
+  List<Answer> _answers() => [
+        ..._correctAnswers.map((answer) => Answer(
+              index: _correctAnswers.indexOf(answer),
+              answer: answer,
+              isCorrect: true,
+            )),
+        ..._wrongAnswers.map((answer) => Answer(
+              index: _wrongAnswers.indexOf(answer) +
+                  _correctAnswers.length,
+              answer: answer,
+              isCorrect: false,
+            )),
+      ];
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'questionText': questionText,
+        'difficulty': difficulty,
+        'field': field,
+        'source': source,
+        'explanation': explanation,
+        'correctAnswers': answers
+            .where((answer) => answer.isCorrect)
+            .map((answer) => answer.answer)
+            .toList(),
+        'wrongAnswers': answers
+            .where((answer) => !answer.isCorrect)
+            .map((answer) => answer.answer)
+            .toList(),
+      };
 
   void setQuestionText(String text) => questionText = text;
 
@@ -40,17 +66,36 @@ class CreateQuestionBody {
 
   void setExplanation(String value) => explanation = value;
 
-  void addAnswer({
-    required String answer,
-    required bool isCorrect,
+  void addAnswer() => {
+        answers.add(
+          Answer(
+            index: answers.length,
+            answer: '',
+            isCorrect: false,
+          ),
+        )
+      };
+
+  void updateAnswer(
+    int index, {
+    String? answer,
+    bool? isCorrect,
   }) {
-    if (isCorrect) {
-      _wrongAnswers.remove(answer);
-      _correctAnswers.addUniq(answer);
-    } else {
-      _correctAnswers.remove(answer);
-      _wrongAnswers.addUniq(answer);
-    }
+    if (answer != null) answers[index].answer = answer;
+    if (isCorrect != null) answers[index].isCorrect = isCorrect;
+  }
+
+  void deleteAnswer(int index) {
+    answers.removeAt(index);
+    answers = answers
+        .map((answer) => answer.index > index
+            ? Answer(
+                index: answer.index - 1,
+                answer: answer.answer,
+                isCorrect: answer.isCorrect,
+              )
+            : answer)
+        .toList();
   }
 
   factory CreateQuestionBody.fromQuestion(QuestionModel question) =>
@@ -63,4 +108,22 @@ class CreateQuestionBody {
         source: question.source?.id,
         explanation: question.explanation,
       );
+}
+
+class Answer {
+  Answer({
+    required this.index,
+    required this.answer,
+    required this.isCorrect,
+  }) : controller = TextEditingController(text: answer);
+
+  final int index;
+  final TextEditingController controller;
+  String answer;
+  bool isCorrect;
+
+  Map<String, dynamic> toJson() => {
+        'answer': answer,
+        'isCorrect': isCorrect,
+      };
 }
