@@ -13,7 +13,7 @@ class CreateQuestionRoute extends AbstractRoute {
           route,
           child: BlocProvider.value(
             value: questionListCubit,
-            child: const QuestionScreen(),
+            child: QuestionScreen(),
           ),
         );
 }
