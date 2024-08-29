@@ -3,9 +3,9 @@ part of 'question.model.dart';
 @JsonSerializable()
 class FieldModel {
   FieldModel({
-    required this.level,
-    required this.major,
-    required this.course,
+     this.level,
+     this.major,
+     this.course,
   });
 
   final String? level;
