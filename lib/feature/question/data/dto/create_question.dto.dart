@@ -11,7 +11,7 @@ class CreateQuestionBody {
     this.questionText,
     List<String> correctAnswers = const [],
     List<String> wrongAnswers = const [],
-    this.difficulty,
+    this.difficulty = 'medium',
     this.field,
     this.source,
     this.explanation,
@@ -52,4 +52,15 @@ class CreateQuestionBody {
       _wrongAnswers.addUniq(answer);
     }
   }
+
+  factory CreateQuestionBody.fromQuestion(QuestionModel question) =>
+      CreateQuestionBody(
+        questionText: question.questionText,
+        correctAnswers: question.correctAnswers ?? [],
+        wrongAnswers: question.wrongAnswers ?? [],
+        difficulty: question.difficulty,
+        field: question.field,
+        source: question.source?.id,
+        explanation: question.explanation,
+      );
 }

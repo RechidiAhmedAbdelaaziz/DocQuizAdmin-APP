@@ -1,23 +1,34 @@
 import 'package:admin_app/core/router/abstract_route.dart';
 import 'package:admin_app/feature/question/data/models/question.model.dart';
-import 'package:admin_app/feature/question/module/question/ui/question.screen.dart';
+import 'package:admin_app/feature/question/module/question/screen/question.screen.dart';
+import 'package:admin_app/feature/question/module/questionlist/logic/question_list.cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CreateQuestionRoute extends AbstractRoute {
   static const route = '/create-question';
 
-  CreateQuestionRoute()
-      : super(
+  CreateQuestionRoute({
+    required QuestionListCubit questionListCubit,
+  }) : super(
           route,
-          child: const QuestionScreen(),
+          child: BlocProvider.value(
+            value: questionListCubit,
+            child: const QuestionScreen(),
+          ),
         );
 }
 
 class UpdateQuestionRoute extends AbstractRoute {
   static const route = '/update-question';
 
-  UpdateQuestionRoute(QuestionModel question)
-      : super(
+  UpdateQuestionRoute(
+    QuestionModel question, {
+    required QuestionListCubit questionListCubit,
+  }) : super(
           route,
-          child: QuestionScreen(question: question),
+          child: BlocProvider.value(
+            value: questionListCubit,
+            child: QuestionScreen(question: question),
+          ),
         );
 }

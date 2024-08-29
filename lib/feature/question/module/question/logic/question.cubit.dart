@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:admin_app/core/di/container.dart';
 import 'package:admin_app/feature/question/data/dto/create_question.dto.dart';
 import 'package:admin_app/feature/question/data/models/question.model.dart';
@@ -16,16 +18,21 @@ class QuestionCubit extends Cubit<QuestionState> {
 
   QuestionCubit({
     required QuestionListCubit questionListCubit,
+    QuestionModel? question,
   })  : _questionListCubit = questionListCubit,
+        _details = question != null
+            ? CreateQuestionBody.fromQuestion(question)
+            : CreateQuestionBody(),
         super(const QuestionState.initial());
 
-  final _details = CreateQuestionBody();
+  final CreateQuestionBody _details;
 
   CreateQuestionBody get details => _details;
 
   void setQuestionText(String text) => _details.setQuestionText(text);
 
-  void setDifficulty(String value) => _details.setDifficulty(value);
+  void setDifficulty(String value) =>
+      _updateDetails(() => _details.setDifficulty(value));
 
   void setField(FieldModel value) => _details.setField(value);
 
@@ -75,5 +82,11 @@ class QuestionCubit extends Cubit<QuestionState> {
       },
       failure: (error) => emit(QuestionState.error(error.message)),
     );
+  }
+
+  void _updateDetails(VoidCallback updateCallBack) {
+    emit(const QuestionState.loading());
+    updateCallBack();
+    emit(const QuestionState.loaded());
   }
 }

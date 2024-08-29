@@ -49,7 +49,15 @@ class _Question extends StatelessWidget {
             ],
           ),
           height(8),
-          _buildTitle(),
+          _buildTitle(
+            onEdit: () {
+              context.to(
+                UpdateQuestionRoute(_question,
+                    questionListCubit:
+                        context.read<QuestionListCubit>()),
+              );
+            },
+          ),
           height(8),
           Row(
             children: [
@@ -65,14 +73,26 @@ class _Question extends StatelessWidget {
     );
   }
 
-  Widget _buildTitle() {
-    return Text(
-      _question.questionText!,
-      maxLines: 3,
-      style: TextStyle(
-        fontSize: 18.sp,
-        fontWeight: FontWeight.bold,
-      ),
+  Widget _buildTitle({
+    required VoidCallback onEdit,
+  }) {
+    return Row(
+      children: [
+        Expanded(
+          child: Text(
+            _question.questionText!,
+            maxLines: 3,
+            style: TextStyle(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        IconButton(
+          icon: const Icon(Icons.edit),
+          onPressed: onEdit,
+        ),
+      ],
     );
   }
 

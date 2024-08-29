@@ -4,6 +4,9 @@ part of 'question.cubit.dart';
 class QuestionState with _$QuestionState {
   const factory QuestionState.initial() = _Initial;
 
+  const factory QuestionState.loading() = _Loading;
+  const factory QuestionState.loaded() = _Load;
+
   const factory QuestionState.creatingQuestion() = _CreatingQuestion;
   const factory QuestionState.questionCreated() = _QuestionCreated;
 

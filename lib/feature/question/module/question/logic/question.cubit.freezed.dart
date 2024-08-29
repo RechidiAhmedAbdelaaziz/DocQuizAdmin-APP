@@ -19,6 +19,8 @@ mixin _$QuestionState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() loaded,
     required TResult Function() creatingQuestion,
     required TResult Function() questionCreated,
     required TResult Function() updatingQuestion,
@@ -31,6 +33,8 @@ mixin _$QuestionState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? loaded,
     TResult? Function()? creatingQuestion,
     TResult? Function()? questionCreated,
     TResult? Function()? updatingQuestion,
@@ -43,6 +47,8 @@ mixin _$QuestionState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loaded,
     TResult Function()? creatingQuestion,
     TResult Function()? questionCreated,
     TResult Function()? updatingQuestion,
@@ -56,6 +62,8 @@ mixin _$QuestionState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Load value) loaded,
     required TResult Function(_CreatingQuestion value) creatingQuestion,
     required TResult Function(_QuestionCreated value) questionCreated,
     required TResult Function(_UpdatingQuestion value) updatingQuestion,
@@ -68,6 +76,8 @@ mixin _$QuestionState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Load value)? loaded,
     TResult? Function(_CreatingQuestion value)? creatingQuestion,
     TResult? Function(_QuestionCreated value)? questionCreated,
     TResult? Function(_UpdatingQuestion value)? updatingQuestion,
@@ -80,6 +90,8 @@ mixin _$QuestionState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Load value)? loaded,
     TResult Function(_CreatingQuestion value)? creatingQuestion,
     TResult Function(_QuestionCreated value)? questionCreated,
     TResult Function(_UpdatingQuestion value)? updatingQuestion,
@@ -155,6 +167,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() loaded,
     required TResult Function() creatingQuestion,
     required TResult Function() questionCreated,
     required TResult Function() updatingQuestion,
@@ -170,6 +184,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? loaded,
     TResult? Function()? creatingQuestion,
     TResult? Function()? questionCreated,
     TResult? Function()? updatingQuestion,
@@ -185,6 +201,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loaded,
     TResult Function()? creatingQuestion,
     TResult Function()? questionCreated,
     TResult Function()? updatingQuestion,
@@ -204,6 +222,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Load value) loaded,
     required TResult Function(_CreatingQuestion value) creatingQuestion,
     required TResult Function(_QuestionCreated value) questionCreated,
     required TResult Function(_UpdatingQuestion value) updatingQuestion,
@@ -219,6 +239,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Load value)? loaded,
     TResult? Function(_CreatingQuestion value)? creatingQuestion,
     TResult? Function(_QuestionCreated value)? questionCreated,
     TResult? Function(_UpdatingQuestion value)? updatingQuestion,
@@ -234,6 +256,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Load value)? loaded,
     TResult Function(_CreatingQuestion value)? creatingQuestion,
     TResult Function(_QuestionCreated value)? questionCreated,
     TResult Function(_UpdatingQuestion value)? updatingQuestion,
@@ -252,6 +276,311 @@ class _$InitialImpl implements _Initial {
 
 abstract class _Initial implements QuestionState {
   const factory _Initial() = _$InitialImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadingImplCopyWith<$Res> {
+  factory _$$LoadingImplCopyWith(
+          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
+      __$$LoadingImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadingImplCopyWithImpl<$Res>
+    extends _$QuestionStateCopyWithImpl<$Res, _$LoadingImpl>
+    implements _$$LoadingImplCopyWith<$Res> {
+  __$$LoadingImplCopyWithImpl(
+      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of QuestionState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$LoadingImpl implements _Loading {
+  const _$LoadingImpl();
+
+  @override
+  String toString() {
+    return 'QuestionState.loading()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() loaded,
+    required TResult Function() creatingQuestion,
+    required TResult Function() questionCreated,
+    required TResult Function() updatingQuestion,
+    required TResult Function() questionUpdated,
+    required TResult Function() deletingQuestion,
+    required TResult Function() questionDeleted,
+    required TResult Function(String message) error,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? loaded,
+    TResult? Function()? creatingQuestion,
+    TResult? Function()? questionCreated,
+    TResult? Function()? updatingQuestion,
+    TResult? Function()? questionUpdated,
+    TResult? Function()? deletingQuestion,
+    TResult? Function()? questionDeleted,
+    TResult? Function(String message)? error,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loaded,
+    TResult Function()? creatingQuestion,
+    TResult Function()? questionCreated,
+    TResult Function()? updatingQuestion,
+    TResult Function()? questionUpdated,
+    TResult Function()? deletingQuestion,
+    TResult Function()? questionDeleted,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Load value) loaded,
+    required TResult Function(_CreatingQuestion value) creatingQuestion,
+    required TResult Function(_QuestionCreated value) questionCreated,
+    required TResult Function(_UpdatingQuestion value) updatingQuestion,
+    required TResult Function(_QuestionUpdated value) questionUpdated,
+    required TResult Function(_DeletingQuestion value) deletingQuestion,
+    required TResult Function(_QuestionDeleted value) questionDeleted,
+    required TResult Function(_Error value) error,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Load value)? loaded,
+    TResult? Function(_CreatingQuestion value)? creatingQuestion,
+    TResult? Function(_QuestionCreated value)? questionCreated,
+    TResult? Function(_UpdatingQuestion value)? updatingQuestion,
+    TResult? Function(_QuestionUpdated value)? questionUpdated,
+    TResult? Function(_DeletingQuestion value)? deletingQuestion,
+    TResult? Function(_QuestionDeleted value)? questionDeleted,
+    TResult? Function(_Error value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Load value)? loaded,
+    TResult Function(_CreatingQuestion value)? creatingQuestion,
+    TResult Function(_QuestionCreated value)? questionCreated,
+    TResult Function(_UpdatingQuestion value)? updatingQuestion,
+    TResult Function(_QuestionUpdated value)? questionUpdated,
+    TResult Function(_DeletingQuestion value)? deletingQuestion,
+    TResult Function(_QuestionDeleted value)? questionDeleted,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loading implements QuestionState {
+  const factory _Loading() = _$LoadingImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadImplCopyWith<$Res> {
+  factory _$$LoadImplCopyWith(
+          _$LoadImpl value, $Res Function(_$LoadImpl) then) =
+      __$$LoadImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadImplCopyWithImpl<$Res>
+    extends _$QuestionStateCopyWithImpl<$Res, _$LoadImpl>
+    implements _$$LoadImplCopyWith<$Res> {
+  __$$LoadImplCopyWithImpl(_$LoadImpl _value, $Res Function(_$LoadImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of QuestionState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$LoadImpl implements _Load {
+  const _$LoadImpl();
+
+  @override
+  String toString() {
+    return 'QuestionState.loaded()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() loaded,
+    required TResult Function() creatingQuestion,
+    required TResult Function() questionCreated,
+    required TResult Function() updatingQuestion,
+    required TResult Function() questionUpdated,
+    required TResult Function() deletingQuestion,
+    required TResult Function() questionDeleted,
+    required TResult Function(String message) error,
+  }) {
+    return loaded();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? loaded,
+    TResult? Function()? creatingQuestion,
+    TResult? Function()? questionCreated,
+    TResult? Function()? updatingQuestion,
+    TResult? Function()? questionUpdated,
+    TResult? Function()? deletingQuestion,
+    TResult? Function()? questionDeleted,
+    TResult? Function(String message)? error,
+  }) {
+    return loaded?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loaded,
+    TResult Function()? creatingQuestion,
+    TResult Function()? questionCreated,
+    TResult Function()? updatingQuestion,
+    TResult Function()? questionUpdated,
+    TResult Function()? deletingQuestion,
+    TResult Function()? questionDeleted,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Load value) loaded,
+    required TResult Function(_CreatingQuestion value) creatingQuestion,
+    required TResult Function(_QuestionCreated value) questionCreated,
+    required TResult Function(_UpdatingQuestion value) updatingQuestion,
+    required TResult Function(_QuestionUpdated value) questionUpdated,
+    required TResult Function(_DeletingQuestion value) deletingQuestion,
+    required TResult Function(_QuestionDeleted value) questionDeleted,
+    required TResult Function(_Error value) error,
+  }) {
+    return loaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Load value)? loaded,
+    TResult? Function(_CreatingQuestion value)? creatingQuestion,
+    TResult? Function(_QuestionCreated value)? questionCreated,
+    TResult? Function(_UpdatingQuestion value)? updatingQuestion,
+    TResult? Function(_QuestionUpdated value)? questionUpdated,
+    TResult? Function(_DeletingQuestion value)? deletingQuestion,
+    TResult? Function(_QuestionDeleted value)? questionDeleted,
+    TResult? Function(_Error value)? error,
+  }) {
+    return loaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Load value)? loaded,
+    TResult Function(_CreatingQuestion value)? creatingQuestion,
+    TResult Function(_QuestionCreated value)? questionCreated,
+    TResult Function(_UpdatingQuestion value)? updatingQuestion,
+    TResult Function(_QuestionUpdated value)? questionUpdated,
+    TResult Function(_DeletingQuestion value)? deletingQuestion,
+    TResult Function(_QuestionDeleted value)? questionDeleted,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Load implements QuestionState {
+  const factory _Load() = _$LoadImpl;
 }
 
 /// @nodoc
@@ -296,6 +625,8 @@ class _$CreatingQuestionImpl implements _CreatingQuestion {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() loaded,
     required TResult Function() creatingQuestion,
     required TResult Function() questionCreated,
     required TResult Function() updatingQuestion,
@@ -311,6 +642,8 @@ class _$CreatingQuestionImpl implements _CreatingQuestion {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? loaded,
     TResult? Function()? creatingQuestion,
     TResult? Function()? questionCreated,
     TResult? Function()? updatingQuestion,
@@ -326,6 +659,8 @@ class _$CreatingQuestionImpl implements _CreatingQuestion {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loaded,
     TResult Function()? creatingQuestion,
     TResult Function()? questionCreated,
     TResult Function()? updatingQuestion,
@@ -345,6 +680,8 @@ class _$CreatingQuestionImpl implements _CreatingQuestion {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Load value) loaded,
     required TResult Function(_CreatingQuestion value) creatingQuestion,
     required TResult Function(_QuestionCreated value) questionCreated,
     required TResult Function(_UpdatingQuestion value) updatingQuestion,
@@ -360,6 +697,8 @@ class _$CreatingQuestionImpl implements _CreatingQuestion {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Load value)? loaded,
     TResult? Function(_CreatingQuestion value)? creatingQuestion,
     TResult? Function(_QuestionCreated value)? questionCreated,
     TResult? Function(_UpdatingQuestion value)? updatingQuestion,
@@ -375,6 +714,8 @@ class _$CreatingQuestionImpl implements _CreatingQuestion {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Load value)? loaded,
     TResult Function(_CreatingQuestion value)? creatingQuestion,
     TResult Function(_QuestionCreated value)? questionCreated,
     TResult Function(_UpdatingQuestion value)? updatingQuestion,
@@ -437,6 +778,8 @@ class _$QuestionCreatedImpl implements _QuestionCreated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() loaded,
     required TResult Function() creatingQuestion,
     required TResult Function() questionCreated,
     required TResult Function() updatingQuestion,
@@ -452,6 +795,8 @@ class _$QuestionCreatedImpl implements _QuestionCreated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? loaded,
     TResult? Function()? creatingQuestion,
     TResult? Function()? questionCreated,
     TResult? Function()? updatingQuestion,
@@ -467,6 +812,8 @@ class _$QuestionCreatedImpl implements _QuestionCreated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loaded,
     TResult Function()? creatingQuestion,
     TResult Function()? questionCreated,
     TResult Function()? updatingQuestion,
@@ -486,6 +833,8 @@ class _$QuestionCreatedImpl implements _QuestionCreated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Load value) loaded,
     required TResult Function(_CreatingQuestion value) creatingQuestion,
     required TResult Function(_QuestionCreated value) questionCreated,
     required TResult Function(_UpdatingQuestion value) updatingQuestion,
@@ -501,6 +850,8 @@ class _$QuestionCreatedImpl implements _QuestionCreated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Load value)? loaded,
     TResult? Function(_CreatingQuestion value)? creatingQuestion,
     TResult? Function(_QuestionCreated value)? questionCreated,
     TResult? Function(_UpdatingQuestion value)? updatingQuestion,
@@ -516,6 +867,8 @@ class _$QuestionCreatedImpl implements _QuestionCreated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Load value)? loaded,
     TResult Function(_CreatingQuestion value)? creatingQuestion,
     TResult Function(_QuestionCreated value)? questionCreated,
     TResult Function(_UpdatingQuestion value)? updatingQuestion,
@@ -578,6 +931,8 @@ class _$UpdatingQuestionImpl implements _UpdatingQuestion {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() loaded,
     required TResult Function() creatingQuestion,
     required TResult Function() questionCreated,
     required TResult Function() updatingQuestion,
@@ -593,6 +948,8 @@ class _$UpdatingQuestionImpl implements _UpdatingQuestion {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? loaded,
     TResult? Function()? creatingQuestion,
     TResult? Function()? questionCreated,
     TResult? Function()? updatingQuestion,
@@ -608,6 +965,8 @@ class _$UpdatingQuestionImpl implements _UpdatingQuestion {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loaded,
     TResult Function()? creatingQuestion,
     TResult Function()? questionCreated,
     TResult Function()? updatingQuestion,
@@ -627,6 +986,8 @@ class _$UpdatingQuestionImpl implements _UpdatingQuestion {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Load value) loaded,
     required TResult Function(_CreatingQuestion value) creatingQuestion,
     required TResult Function(_QuestionCreated value) questionCreated,
     required TResult Function(_UpdatingQuestion value) updatingQuestion,
@@ -642,6 +1003,8 @@ class _$UpdatingQuestionImpl implements _UpdatingQuestion {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Load value)? loaded,
     TResult? Function(_CreatingQuestion value)? creatingQuestion,
     TResult? Function(_QuestionCreated value)? questionCreated,
     TResult? Function(_UpdatingQuestion value)? updatingQuestion,
@@ -657,6 +1020,8 @@ class _$UpdatingQuestionImpl implements _UpdatingQuestion {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Load value)? loaded,
     TResult Function(_CreatingQuestion value)? creatingQuestion,
     TResult Function(_QuestionCreated value)? questionCreated,
     TResult Function(_UpdatingQuestion value)? updatingQuestion,
@@ -719,6 +1084,8 @@ class _$QuestionUpdatedImpl implements _QuestionUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() loaded,
     required TResult Function() creatingQuestion,
     required TResult Function() questionCreated,
     required TResult Function() updatingQuestion,
@@ -734,6 +1101,8 @@ class _$QuestionUpdatedImpl implements _QuestionUpdated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? loaded,
     TResult? Function()? creatingQuestion,
     TResult? Function()? questionCreated,
     TResult? Function()? updatingQuestion,
@@ -749,6 +1118,8 @@ class _$QuestionUpdatedImpl implements _QuestionUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loaded,
     TResult Function()? creatingQuestion,
     TResult Function()? questionCreated,
     TResult Function()? updatingQuestion,
@@ -768,6 +1139,8 @@ class _$QuestionUpdatedImpl implements _QuestionUpdated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Load value) loaded,
     required TResult Function(_CreatingQuestion value) creatingQuestion,
     required TResult Function(_QuestionCreated value) questionCreated,
     required TResult Function(_UpdatingQuestion value) updatingQuestion,
@@ -783,6 +1156,8 @@ class _$QuestionUpdatedImpl implements _QuestionUpdated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Load value)? loaded,
     TResult? Function(_CreatingQuestion value)? creatingQuestion,
     TResult? Function(_QuestionCreated value)? questionCreated,
     TResult? Function(_UpdatingQuestion value)? updatingQuestion,
@@ -798,6 +1173,8 @@ class _$QuestionUpdatedImpl implements _QuestionUpdated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Load value)? loaded,
     TResult Function(_CreatingQuestion value)? creatingQuestion,
     TResult Function(_QuestionCreated value)? questionCreated,
     TResult Function(_UpdatingQuestion value)? updatingQuestion,
@@ -860,6 +1237,8 @@ class _$DeletingQuestionImpl implements _DeletingQuestion {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() loaded,
     required TResult Function() creatingQuestion,
     required TResult Function() questionCreated,
     required TResult Function() updatingQuestion,
@@ -875,6 +1254,8 @@ class _$DeletingQuestionImpl implements _DeletingQuestion {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? loaded,
     TResult? Function()? creatingQuestion,
     TResult? Function()? questionCreated,
     TResult? Function()? updatingQuestion,
@@ -890,6 +1271,8 @@ class _$DeletingQuestionImpl implements _DeletingQuestion {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loaded,
     TResult Function()? creatingQuestion,
     TResult Function()? questionCreated,
     TResult Function()? updatingQuestion,
@@ -909,6 +1292,8 @@ class _$DeletingQuestionImpl implements _DeletingQuestion {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Load value) loaded,
     required TResult Function(_CreatingQuestion value) creatingQuestion,
     required TResult Function(_QuestionCreated value) questionCreated,
     required TResult Function(_UpdatingQuestion value) updatingQuestion,
@@ -924,6 +1309,8 @@ class _$DeletingQuestionImpl implements _DeletingQuestion {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Load value)? loaded,
     TResult? Function(_CreatingQuestion value)? creatingQuestion,
     TResult? Function(_QuestionCreated value)? questionCreated,
     TResult? Function(_UpdatingQuestion value)? updatingQuestion,
@@ -939,6 +1326,8 @@ class _$DeletingQuestionImpl implements _DeletingQuestion {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Load value)? loaded,
     TResult Function(_CreatingQuestion value)? creatingQuestion,
     TResult Function(_QuestionCreated value)? questionCreated,
     TResult Function(_UpdatingQuestion value)? updatingQuestion,
@@ -1001,6 +1390,8 @@ class _$QuestionDeletedImpl implements _QuestionDeleted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() loaded,
     required TResult Function() creatingQuestion,
     required TResult Function() questionCreated,
     required TResult Function() updatingQuestion,
@@ -1016,6 +1407,8 @@ class _$QuestionDeletedImpl implements _QuestionDeleted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? loaded,
     TResult? Function()? creatingQuestion,
     TResult? Function()? questionCreated,
     TResult? Function()? updatingQuestion,
@@ -1031,6 +1424,8 @@ class _$QuestionDeletedImpl implements _QuestionDeleted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loaded,
     TResult Function()? creatingQuestion,
     TResult Function()? questionCreated,
     TResult Function()? updatingQuestion,
@@ -1050,6 +1445,8 @@ class _$QuestionDeletedImpl implements _QuestionDeleted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Load value) loaded,
     required TResult Function(_CreatingQuestion value) creatingQuestion,
     required TResult Function(_QuestionCreated value) questionCreated,
     required TResult Function(_UpdatingQuestion value) updatingQuestion,
@@ -1065,6 +1462,8 @@ class _$QuestionDeletedImpl implements _QuestionDeleted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Load value)? loaded,
     TResult? Function(_CreatingQuestion value)? creatingQuestion,
     TResult? Function(_QuestionCreated value)? questionCreated,
     TResult? Function(_UpdatingQuestion value)? updatingQuestion,
@@ -1080,6 +1479,8 @@ class _$QuestionDeletedImpl implements _QuestionDeleted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Load value)? loaded,
     TResult Function(_CreatingQuestion value)? creatingQuestion,
     TResult Function(_QuestionCreated value)? questionCreated,
     TResult Function(_UpdatingQuestion value)? updatingQuestion,
@@ -1169,6 +1570,8 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() loaded,
     required TResult Function() creatingQuestion,
     required TResult Function() questionCreated,
     required TResult Function() updatingQuestion,
@@ -1184,6 +1587,8 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? loaded,
     TResult? Function()? creatingQuestion,
     TResult? Function()? questionCreated,
     TResult? Function()? updatingQuestion,
@@ -1199,6 +1604,8 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loaded,
     TResult Function()? creatingQuestion,
     TResult Function()? questionCreated,
     TResult Function()? updatingQuestion,
@@ -1218,6 +1625,8 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Load value) loaded,
     required TResult Function(_CreatingQuestion value) creatingQuestion,
     required TResult Function(_QuestionCreated value) questionCreated,
     required TResult Function(_UpdatingQuestion value) updatingQuestion,
@@ -1233,6 +1642,8 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Load value)? loaded,
     TResult? Function(_CreatingQuestion value)? creatingQuestion,
     TResult? Function(_QuestionCreated value)? questionCreated,
     TResult? Function(_UpdatingQuestion value)? updatingQuestion,
@@ -1248,6 +1659,8 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Load value)? loaded,
     TResult Function(_CreatingQuestion value)? creatingQuestion,
     TResult Function(_QuestionCreated value)? questionCreated,
     TResult Function(_UpdatingQuestion value)? updatingQuestion,
