@@ -15,7 +15,7 @@ abstract class QuestionApiService {
   Future<DataResponse> createQuestion(
       @Body() Map<String, dynamic> body);
 
-  @PATCH(AdminApiConstants.questionWithId)
+  @POST(AdminApiConstants.questionWithId)
   Future<DataResponse> updateQuestion(
     @Path('id') String id,
     @Body() Map<String, dynamic> body,

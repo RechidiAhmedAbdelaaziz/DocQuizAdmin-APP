@@ -66,7 +66,7 @@ class _QuestionApiService implements QuestionApiService {
     final _data = <String, dynamic>{};
     _data.addAll(body);
     final _options = _setStreamType<DataResponse>(Options(
-      method: 'PATCH',
+      method: 'POST',
       headers: _headers,
       extra: _extra,
     )
