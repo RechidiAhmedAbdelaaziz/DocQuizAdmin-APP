@@ -7,6 +7,12 @@ abstract class AdminApiConstants {
   static const addCourse = '$_baseUrl/levels/course';
 
   //*EXAM
-  static const createExam = '$_baseUrl/exam-admin';
-  static const updateExam = '$_baseUrl/exam-admin/{id}';
+  static const exam = '$_baseUrl/exam-admin';
+  static const examWithID = '$_baseUrl/exam-admin/{id}';
+
+  //* Question
+  static const question = '$_baseUrl/question';
+  static const questionWithId = '$_baseUrl/question/{id}';
+
+
 }

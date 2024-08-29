@@ -14,4 +14,11 @@ abstract class UserApiConstants {
   static const getExams = '$_baseUrl/exam';
   static const getExam = '$_baseUrl/exam/{id}';
 
+  //*QUESTION
+  static const question = '$_baseUrl/question';
+
+
+    //* Statistics
+  static const statistics = '$_baseUrl/statistic';
+
 }

@@ -41,3 +41,14 @@ PaginatedDataResponse _$PaginatedDataResponseFromJson(
           ? null
           : _Paginations.fromJson(json['pagination'] as Map<String, dynamic>?),
     );
+
+PaginatedObjectDataResponse _$PaginatedObjectDataResponseFromJson(
+        Map<String, dynamic> json) =>
+    PaginatedObjectDataResponse(
+      success: json['success'] as bool?,
+      statusCode: (json['statusCode'] as num?)?.toInt(),
+      data: json['data'] as Map<String, dynamic>?,
+      pagination: json['pagination'] == null
+          ? null
+          : _Paginations.fromJson(json['pagination'] as Map<String, dynamic>?),
+    );
