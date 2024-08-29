@@ -40,8 +40,17 @@ class QuestionCubit extends Cubit<QuestionState> {
 
   void setExplanation(String value) => _details.setExplanation(value);
 
-  void addAnswer({required String answer, required bool isCorrect}) =>
-      _details.addAnswer(answer: answer, isCorrect: isCorrect);
+  void addAnswer() => _updateDetails(() => _details.addAnswer());
+
+  void updateAnswer(
+    int index, {
+    String? answer,
+    bool? isCorrect,
+  }) =>
+      _updateDetails(() => _details.updateAnswer(index,
+          answer: answer, isCorrect: isCorrect));
+
+  void deleteAnswer(int index) => _updateDetails(() => _details.deleteAnswer(index));
 
   Future<void> createQuestion() async {
     emit(const QuestionState.creatingQuestion());
