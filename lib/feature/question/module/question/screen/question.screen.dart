@@ -1,4 +1,13 @@
+import 'package:admin_app/core/extension/bottomsheet.extension.dart';
+import 'package:admin_app/core/extension/navigator.extension.dart';
+import 'package:admin_app/core/extension/snackbar.extension.dart';
+import 'package:admin_app/core/shared/widget/pagination.widget.dart';
 import 'package:admin_app/core/shared/widget/space.widget.dart';
+import 'package:admin_app/feature/exam/data/models/exam.model.dart';
+import 'package:admin_app/feature/exam/logic/exam.cubit.dart';
+import 'package:admin_app/feature/levels/logic/course.cubit.dart';
+import 'package:admin_app/feature/levels/logic/level.cubit.dart';
+import 'package:admin_app/feature/levels/logic/major.cubit.dart';
 import 'package:admin_app/feature/question/data/models/question.model.dart';
 import 'package:admin_app/feature/question/module/question/logic/question.cubit.dart';
 import 'package:admin_app/feature/question/module/questionlist/logic/question_list.cubit.dart';
@@ -9,13 +18,16 @@ import 'package:admin_app/core/extension/validator.extension.dart';
 
 part 'scaffold.dart';
 part 'question_text.dart';
-// part 'answers.dart';
+part 'answers.dart';
 part 'explanation.dart';
 part 'input_field.widget.dart';
 part 'difficulty.dart';
+part 'source.dart';
+part 'field.dart';
+part 'save_button.dart';
 
 class QuestionScreen extends StatelessWidget {
-  const QuestionScreen({super.key, QuestionModel? question})
+  QuestionScreen({super.key, QuestionModel? question})
       : _question = question;
 
   final QuestionModel? _question;
@@ -28,13 +40,13 @@ class QuestionScreen extends StatelessWidget {
         question: _question,
       ),
       child: _Scaffold(
-        questionText: _QuestionText(),
-        answers: Text('Answers'),
-        explanation: _Explanation(),
-        difficulty: _Difficulty(),
-        source: Text('Source'),
-        field: Text('Field'),
-        saveButton: Text('Save'),
+        questionText: const _QuestionText(),
+        answers: const _Answers(),
+        explanation: const _Explanation(),
+        difficulty: const _Difficulty(),
+        source: _SelectSource(_question?.source),
+        field: _Field(_question?.field),
+        saveButton: _SaveButton(_question ,),
       ),
     );
   }

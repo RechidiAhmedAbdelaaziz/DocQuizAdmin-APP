@@ -28,7 +28,13 @@ class _Scaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<QuestionCubit, QuestionState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        state.whenOrNull(
+          error: (error) => context.showErrorSnackBar(error),
+          creatingQuestion: () => context.back(),
+          updatingQuestion: () => context.back(),
+        );
+      },
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Question'),
