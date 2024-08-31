@@ -9,6 +9,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../feature/home/helper/home.dependency.dart';
+
 final locator = GetIt.instance;
 
 Future<void> setupLocator() async {
@@ -26,5 +28,5 @@ Future<void> setupLocator() async {
   await setupLevelDependency(locator);
   await setupExamDependency(locator);
   await setupQuestionDependency(locator);
-  // await setupHomeDependency(locator);
+  await setupHomeDependency(locator);
 }

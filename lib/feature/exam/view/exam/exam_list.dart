@@ -62,19 +62,21 @@ class _ExamItem extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildTitle(_exam.title!),
-                height(12),
-                Row(
-                  children: [
-                    _buildQuestionCount(_exam.questions!),
-                    width(35),
-                    _buildTime(_exam.time!),
-                  ],
-                ),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildTitle(_exam.title!),
+                  height(12),
+                  Row(
+                    children: [
+                      _buildQuestionCount(_exam.questions!),
+                      width(35),
+                      _buildTime(_exam.time!),
+                    ],
+                  ),
+                ],
+              ),
             ),
             _buildEditButton(
               onPressed: () => _onEdit(_exam),
@@ -93,7 +95,7 @@ class _ExamItem extends StatelessWidget {
         Text(
           questions.toString(),
           style: TextStyle(
-            fontSize: 20.sp,
+            fontSize: 18.sp,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -112,12 +114,12 @@ class _ExamItem extends StatelessWidget {
     );
   }
 
-  IconButton _buildEditButton({
+  InkWell _buildEditButton({
     required void Function() onPressed,
   }) {
-    return IconButton(
-      onPressed: onPressed,
-      icon: const Icon(Icons.edit_rounded),
+    return InkWell(
+      onTap: onPressed,
+      child: const Icon(Icons.edit_rounded),
     );
   }
 
