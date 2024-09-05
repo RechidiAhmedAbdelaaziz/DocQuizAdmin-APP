@@ -112,7 +112,7 @@ class _Question extends StatelessWidget {
 
   Widget _buildIsExplanated() {
     return _buildProperty(
-      _question.explanation != null ? 'With Explanation' : null,
+      _question.explanation.isNotEmptyOrNull ? 'With Explanation' : null,
       color: Colors.purple,
     );
   }
