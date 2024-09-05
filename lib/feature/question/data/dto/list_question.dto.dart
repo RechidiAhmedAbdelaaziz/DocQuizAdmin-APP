@@ -52,7 +52,7 @@ class ListQuestionsFilter {
     }
 
     // Handle 'withExplanation' boolean
-    if (withExplanation != null) {
+    if (withExplanation == true) {
       queryMap['withExplanation'] = withExplanation.toString();
     }
 
