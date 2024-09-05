@@ -9,13 +9,15 @@ class _Scaffold extends StatelessWidget {
     required Widget source,
     required Widget field,
     required Widget saveButton,
+    required VoidCallback onDelete,
   })  : _questionText = questionText,
         _answers = answers,
         _explanation = explanation,
         _difficulty = difficulty,
         _source = source,
         _field = field,
-        _saveButton = saveButton;
+        _saveButton = saveButton,
+        _onDelete = onDelete;
 
   final Widget _questionText;
   final Widget _answers;
@@ -24,6 +26,7 @@ class _Scaffold extends StatelessWidget {
   final Widget _source;
   final Widget _field;
   final Widget _saveButton;
+  final VoidCallback _onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +36,20 @@ class _Scaffold extends StatelessWidget {
           error: (error) => context.showErrorSnackBar(error),
           creatingQuestion: () => context.back(),
           updatingQuestion: () => context.back(),
+          deletingQuestion: () => context.back(),
         );
       },
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Question'),
+          actions: [
+            
+              IconButton(
+                icon: const Icon(Icons.delete),
+                onPressed: _onDelete,
+                    
+              ),
+          ],
         ),
         body: SingleChildScrollView(
           padding:

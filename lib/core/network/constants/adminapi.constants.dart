@@ -1,5 +1,5 @@
 abstract class AdminApiConstants {
-  static const _baseUrl = 'http://192.168.1.12:3001';
+  static const _baseUrl = 'https://admin.api.docquizz.top';
 
   //*LEVEL
   static const createLevel = '$_baseUrl/levels';

@@ -54,6 +54,7 @@ class QuestionListCubit extends Cubit<QuestionListState> {
   }) async {
     emit(const QuestionListState.fetchingQuestions());
 
+    if (!more) _query.copyWith(page: 1);
 
     final result = await _questionRepo.getQuestions(
       queries: _query,
@@ -65,6 +66,8 @@ class QuestionListCubit extends Cubit<QuestionListState> {
         more
             ? _fetchMoreQuestion(newQuestions)
             : _fetchNewQuestion(newQuestions);
+        if (newQuestions.isNotEmpty)
+          _query.copyWith(page: _query.page + 1);
         emit(const QuestionListState.fetchedQuestions());
       },
       failure: (error) =>
@@ -74,12 +77,10 @@ class QuestionListCubit extends Cubit<QuestionListState> {
 
   void _fetchMoreQuestion(List<QuestionModel> questions) {
     _questions.addAllUniq(questions);
-    if (questions.isNotEmpty) _query.copyWith(page: _query.page + 1);
   }
 
   void _fetchNewQuestion(List<QuestionModel> questions) {
     _questions.clear();
     _questions.addAll(questions);
-    _query.copyWith(page: 1);
   }
 }

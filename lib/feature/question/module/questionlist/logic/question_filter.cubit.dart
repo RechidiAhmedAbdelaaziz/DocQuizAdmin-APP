@@ -8,13 +8,13 @@ part 'question_filter.cubit.freezed.dart';
 
 class QuestionFilterCubit extends Cubit<QuestionFilterState> {
   QuestionFilterCubit({
-    ListQuestionsBody? filter,
-  })  : _filter = filter ?? ListQuestionsBody(),
+    ListQuestionsFilter? filter,
+  })  : _filter = filter ?? ListQuestionsFilter(),
         super(const QuestionFilterState.initial());
 
-  final ListQuestionsBody _filter;
+  final ListQuestionsFilter _filter;
 
-  ListQuestionsBody get filter => _filter;
+  ListQuestionsFilter get filter => _filter;
 
   List<String> get types => _filter.types ?? [];
   List<String> get difficulties => _filter.difficulties ?? [];

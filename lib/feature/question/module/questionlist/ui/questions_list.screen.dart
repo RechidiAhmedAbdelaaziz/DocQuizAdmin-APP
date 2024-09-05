@@ -22,10 +22,10 @@ part 'search_bar.dart';
 class QuestionsListScreen extends StatelessWidget {
   const QuestionsListScreen({
     super.key,
-    ListQuestionsBody? initialFilter,
+    ListQuestionsFilter? initialFilter,
   }) : _initialFilter = initialFilter;
 
-  final ListQuestionsBody? _initialFilter;
+  final ListQuestionsFilter? _initialFilter;
 
   @override
   Widget build(BuildContext context) {

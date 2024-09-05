@@ -18,7 +18,7 @@ class ExamQuestionListRoute extends AbstractRoute {
       : super(
           route,
           child: QuestionsListScreen(
-            initialFilter: ListQuestionsBody(source: exam.id),
+            initialFilter: ListQuestionsFilter(source: exam.id),
           ),
         );
 }
@@ -30,7 +30,7 @@ class FieldQuestionListRoute extends AbstractRoute {
       : super(
           route,
           child: QuestionsListScreen(
-            initialFilter: ListQuestionsBody(fields: [
+            initialFilter: ListQuestionsFilter(fields: [
               FieldModel(
                 level: level,
                 major: major,

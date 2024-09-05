@@ -35,7 +35,7 @@ class _QuestionApiService implements QuestionApiService {
     )
         .compose(
           _dio.options,
-          'http://192.168.1.12:3001/question',
+          'https://admin.api.docquizz.top/question',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -72,7 +72,7 @@ class _QuestionApiService implements QuestionApiService {
     )
         .compose(
           _dio.options,
-          'http://192.168.1.12:3001/question/${id}',
+          'https://admin.api.docquizz.top/question/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -105,7 +105,7 @@ class _QuestionApiService implements QuestionApiService {
     )
         .compose(
           _dio.options,
-          'http://192.168.1.12:3001/question/${id}',
+          'https://admin.api.docquizz.top/question/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -126,16 +126,13 @@ class _QuestionApiService implements QuestionApiService {
   }
 
   @override
-  Future<PaginatedDataResponse> getQuestions({
-    required Map<String, dynamic> queries,
-    required Map<String, dynamic> body,
-  }) async {
+  Future<PaginatedDataResponse> getQuestions(
+      {required Map<String, dynamic> queries}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.addAll(queries);
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(body);
+    const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<PaginatedDataResponse>(Options(
       method: 'GET',
       headers: _headers,
@@ -143,7 +140,7 @@ class _QuestionApiService implements QuestionApiService {
     )
         .compose(
           _dio.options,
-          'http://192.168.1.12:3000/question',
+          'https://api.docquizz.top/question',
           queryParameters: queryParameters,
           data: _data,
         )

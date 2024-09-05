@@ -1,11 +1,8 @@
 import 'package:admin_app/feature/question/data/models/question.model.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'list_question.dto.g.dart';
 
-@JsonSerializable(createFactory: false)
-class ListQuestionsBody {
-  ListQuestionsBody({
+class ListQuestionsFilter {
+  ListQuestionsFilter({
     this.types,
     this.difficulties,
     this.source,
@@ -19,7 +16,48 @@ class ListQuestionsBody {
   List<FieldModel>? fields;
   bool? withExplanation;
 
-  Map<String, dynamic> toJson() => _$ListQuestionsBodyToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> queryMap = <String, dynamic>{};
+
+    // Handle 'types' list
+    if (types != null) {
+      for (int i = 0; i < types!.length; i++) {
+        queryMap['types[$i]'] = types![i];
+      }
+    }
+
+    // Handle 'difficulties' list
+    if (difficulties != null) {
+      for (int i = 0; i < difficulties!.length; i++) {
+        queryMap['difficulties[$i]'] = difficulties![i];
+      }
+    }
+
+    // Handle 'source'
+    if (source != null) {
+      queryMap['source'] = source;
+    }
+
+    // Handle 'fields' list of FieldModel
+    if (fields != null) {
+      for (int i = 0; i < fields!.length; i++) {
+        final field = fields![i];
+        if (field.level != null)
+          queryMap['fields[$i][level]'] = field.level;
+        if (field.major != null)
+          queryMap['fields[$i][major]'] = field.major;
+        if (field.course != null)
+          queryMap['fields[$i][course]'] = field.course;
+      }
+    }
+
+    // Handle 'withExplanation' boolean
+    if (withExplanation != null) {
+      queryMap['withExplanation'] = withExplanation.toString();
+    }
+
+    return queryMap;
+  }
 
   set _type(String type) {
     types ??= [];
@@ -49,7 +87,7 @@ class ListQuestionsBody {
     this.withExplanation = withExplanation ?? this.withExplanation;
   }
 
-  void clear () {
+  void clear() {
     types = null;
     difficulties = null;
     withExplanation = null;

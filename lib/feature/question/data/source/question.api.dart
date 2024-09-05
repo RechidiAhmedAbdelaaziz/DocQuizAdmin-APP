@@ -29,6 +29,5 @@ abstract class QuestionApiService {
   @GET(UserApiConstants.question)
   Future<PaginatedDataResponse> getQuestions({
     @Queries() required Map<String, dynamic> queries,
-    @Body() required Map<String, dynamic> body,
   });
 }

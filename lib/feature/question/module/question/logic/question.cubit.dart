@@ -58,8 +58,9 @@ class QuestionCubit extends Cubit<QuestionState> {
 
     result.when(
       success: (question) {
-        emit(const QuestionState.questionCreated());
         _questionListCubit.onAddQuestion(question);
+        emit(const QuestionState.questionCreated());
+        
       },
       failure: (error) => emit(QuestionState.error(error.message)),
     );
@@ -72,8 +73,9 @@ class QuestionCubit extends Cubit<QuestionState> {
 
     result.when(
       success: (question) {
-        emit(const QuestionState.questionUpdated());
         _questionListCubit.onUpdateQuestion(question);
+        emit(const QuestionState.questionUpdated());
+        
       },
       failure: (error) => emit(QuestionState.error(error.message)),
     );
@@ -86,8 +88,8 @@ class QuestionCubit extends Cubit<QuestionState> {
 
     result.when(
       success: (_) {
-        emit(const QuestionState.questionDeleted());
         _questionListCubit.onRemoveQuestion(question);
+        emit(const QuestionState.questionDeleted());
       },
       failure: (error) => emit(QuestionState.error(error.message)),
     );

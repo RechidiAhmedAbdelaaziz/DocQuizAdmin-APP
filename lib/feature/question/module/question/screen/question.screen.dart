@@ -39,15 +39,24 @@ class QuestionScreen extends StatelessWidget {
         questionListCubit: context.read<QuestionListCubit>(),
         question: _question,
       ),
-      child: _Scaffold(
-        questionText: const _QuestionText(),
-        answers: const _Answers(),
-        explanation: const _Explanation(),
-        difficulty: const _Difficulty(),
-        source: _SelectSource(_question?.source),
-        field: _Field(_question?.field),
-        saveButton: _SaveButton(_question ,),
-      ),
+      child: Builder(builder: (context) {
+        return _Scaffold(
+          onDelete: () {
+            if (_question != null) {
+              context.read<QuestionCubit>().deleteQuestion(_question);
+            }
+          },
+          questionText: const _QuestionText(),
+          answers: const _Answers(),
+          explanation: const _Explanation(),
+          difficulty: const _Difficulty(),
+          source: _SelectSource(_question?.source),
+          field: _Field(_question?.field),
+          saveButton: _SaveButton(
+            _question,
+          ),
+        );
+      }),
     );
   }
 }
