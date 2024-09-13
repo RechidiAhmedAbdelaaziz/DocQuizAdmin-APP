@@ -26,4 +26,7 @@ abstract class UserApiConstants {
 
   //* COURSE
   static const courses = '$_baseUrl/courses';
+
+  //* SOURCE
+  static const sources = '$_baseUrl/source';
 }

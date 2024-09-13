@@ -8,6 +8,7 @@ import 'package:admin_app/feature/exam/helper/exam.dependency.dart';
 import 'package:admin_app/feature/level/helper/level.dependency.dart';
 import 'package:admin_app/feature/major/helper/major.dependency.dart';
 import 'package:admin_app/feature/question/helper/question.dependency.dart';
+import 'package:admin_app/feature/source/helper/source.dependency.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -39,4 +40,5 @@ Future<void> setupLocator() async {
   await setupLevelDependency();
   await setupMajorDependency();
   await setupCourseDependency();
+  await setupSourceDependency();
 }

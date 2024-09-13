@@ -26,5 +26,9 @@ abstract class AdminApiConstants {
   static const courseWithMajorId = '$_baseUrl/courses/{majorId}';
   static const courseWithId = '$_baseUrl/courses/{id}';
 
+  //* SOURCE
+  static const source = '$_baseUrl/source';
+  static const sourceWithId = '$_baseUrl/source/{id}';
+
 
 }
