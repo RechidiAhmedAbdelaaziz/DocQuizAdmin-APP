@@ -46,7 +46,19 @@ class _Statistics extends StatelessWidget {
                     icon: Icons.person,
                   ),
                 ],
-              )
+              ),
+              height(16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildStatCard(
+                    title: 'Total Source',
+                    value: 'source',
+                    icon: Icons.category,
+                    onTap: () => context.to(SourceRoute()),
+                  ),
+                ],
+              ),
             ],
           );
   }
