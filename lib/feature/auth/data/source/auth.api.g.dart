@@ -35,7 +35,7 @@ class _AuthApiService implements AuthApiService {
     )
         .compose(
           _dio.options,
-          'https://api.docquizz.top/auth/login',
+          'http://192.168.1.12:3000/auth/login',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -68,7 +68,7 @@ class _AuthApiService implements AuthApiService {
     )
         .compose(
           _dio.options,
-          'https://api.docquizz.top/auth/refresh-token',
+          'http://192.168.1.12:3000/auth/refresh-token',
           queryParameters: queryParameters,
           data: _data,
         )

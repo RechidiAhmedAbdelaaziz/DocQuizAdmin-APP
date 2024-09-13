@@ -34,7 +34,7 @@ class _HomeApiService implements HomeApiService {
     )
         .compose(
           _dio.options,
-          'https://api.docquizz.top/statistic',
+          'http://192.168.1.12:3000/statistic',
           queryParameters: queryParameters,
           data: _data,
         )

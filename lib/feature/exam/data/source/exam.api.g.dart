@@ -35,7 +35,7 @@ class _ExamApiService implements ExamApiService {
     )
         .compose(
           _dio.options,
-          'https://admin.api.docquizz.top/exam-admin',
+          'http://192.168.1.12:3001/exam-admin',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -72,7 +72,7 @@ class _ExamApiService implements ExamApiService {
     )
         .compose(
           _dio.options,
-          'https://admin.api.docquizz.top/exam-admin/${id}',
+          'http://192.168.1.12:3001/exam-admin/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -111,7 +111,7 @@ class _ExamApiService implements ExamApiService {
     )
         .compose(
           _dio.options,
-          'https://api.docquizz.top/exam',
+          'http://192.168.1.12:3000/exam',
           queryParameters: queryParameters,
           data: _data,
         )

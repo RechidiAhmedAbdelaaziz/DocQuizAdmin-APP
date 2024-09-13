@@ -35,7 +35,7 @@ class _LevelApiService implements LevelApiService {
     )
         .compose(
           _dio.options,
-          'https://admin.api.docquizz.top/levels',
+          'http://192.168.1.12:3001/levels',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -69,7 +69,7 @@ class _LevelApiService implements LevelApiService {
     )
         .compose(
           _dio.options,
-          'https://admin.api.docquizz.top/levels/major',
+          'http://192.168.1.12:3001/levels/major',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -103,7 +103,7 @@ class _LevelApiService implements LevelApiService {
     )
         .compose(
           _dio.options,
-          'https://admin.api.docquizz.top/levels/course',
+          'http://192.168.1.12:3001/levels/course',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -136,7 +136,7 @@ class _LevelApiService implements LevelApiService {
     )
         .compose(
           _dio.options,
-          'https://api.docquizz.top/levels',
+          'http://192.168.1.12:3000/levels',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -169,7 +169,7 @@ class _LevelApiService implements LevelApiService {
     )
         .compose(
           _dio.options,
-          'https://api.docquizz.top/levels/majors',
+          'http://192.168.1.12:3000/levels/majors',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -208,7 +208,7 @@ class _LevelApiService implements LevelApiService {
     )
         .compose(
           _dio.options,
-          'https://api.docquizz.top/levels/courses',
+          'http://192.168.1.12:3000/levels/courses',
           queryParameters: queryParameters,
           data: _data,
         )

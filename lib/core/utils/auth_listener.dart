@@ -18,10 +18,10 @@ class AuthListener extends StatelessWidget {
       listener: (context, state) {
         state.whenOrNull(
           unauthenticated: () {
+            context.backToRoot();
             context.to(LoginRoute(), canPop: false);
           },
           sessionExpired: () {
-            context.backToRoot();
             context.showDialogBox(
               title: 'Session Expired',
               cancelText: 'Logout',
