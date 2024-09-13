@@ -50,7 +50,8 @@ class QuestionCubit extends Cubit<QuestionState> {
       _updateDetails(() => _details.updateAnswer(index,
           answer: answer, isCorrect: isCorrect));
 
-  void deleteAnswer(int index) => _updateDetails(() => _details.deleteAnswer(index));
+  void deleteAnswer(int index) =>
+      _updateDetails(() => _details.deleteAnswer(index));
 
   Future<void> createQuestion() async {
     emit(const QuestionState.creatingQuestion());
@@ -60,9 +61,8 @@ class QuestionCubit extends Cubit<QuestionState> {
       success: (question) {
         _questionListCubit.onAddQuestion(question);
         emit(const QuestionState.questionCreated());
-        
       },
-      failure: (error) => emit(QuestionState.error(error.message)),
+      error: (error) => emit(QuestionState.error(error.message)),
     );
   }
 
@@ -75,9 +75,8 @@ class QuestionCubit extends Cubit<QuestionState> {
       success: (question) {
         _questionListCubit.onUpdateQuestion(question);
         emit(const QuestionState.questionUpdated());
-        
       },
-      failure: (error) => emit(QuestionState.error(error.message)),
+      error: (error) => emit(QuestionState.error(error.message)),
     );
   }
 
@@ -91,7 +90,7 @@ class QuestionCubit extends Cubit<QuestionState> {
         _questionListCubit.onRemoveQuestion(question);
         emit(const QuestionState.questionDeleted());
       },
-      failure: (error) => emit(QuestionState.error(error.message)),
+      error: (error) => emit(QuestionState.error(error.message)),
     );
   }
 

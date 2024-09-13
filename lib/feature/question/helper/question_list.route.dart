@@ -4,14 +4,14 @@ import 'package:admin_app/feature/question/data/dto/list_question.dto.dart';
 import 'package:admin_app/feature/question/data/models/question.model.dart';
 import 'package:admin_app/feature/question/module/questionlist/ui/questions_list.screen.dart';
 
-class QuestionListRoute extends AbstractRoute {
+class QuestionListRoute extends NavigatorRouteBase {
   static const route = '/question-list';
 
   QuestionListRoute()
       : super(route, child: const QuestionsListScreen());
 }
 
-class ExamQuestionListRoute extends AbstractRoute {
+class ExamQuestionListRoute extends NavigatorRouteBase {
   static const route = '/exam-question-list';
 
   ExamQuestionListRoute(ExamModel exam)
@@ -23,7 +23,7 @@ class ExamQuestionListRoute extends AbstractRoute {
         );
 }
 
-class FieldQuestionListRoute extends AbstractRoute {
+class FieldQuestionListRoute extends NavigatorRouteBase {
   static const route = '/field-question-list';
 
   FieldQuestionListRoute(String level, String major, String course)

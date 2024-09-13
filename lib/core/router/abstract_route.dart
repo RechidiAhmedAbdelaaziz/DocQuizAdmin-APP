@@ -2,8 +2,9 @@ import 'package:admin_app/core/router/navigator.dart';
 import 'package:flutter/material.dart';
 
 /// [T] return type of the route
-abstract class AbstractRoute<T> {
-  AbstractRoute(this._path, {required Widget child}) : _child = child;
+abstract class NavigatorRouteBase<T> {
+  NavigatorRouteBase(this._path, {required Widget child})
+      : _child = child;
 
   final String _path;
   final Widget _child;

@@ -37,7 +37,7 @@ class CourseCubit extends Cubit<CourseState> {
         _courses.add(data);
         emit(const CourseState.courseAdded());
       },
-      failure: (error) => emit(CourseState.apiError(error.message)),
+      error: (error) => emit(CourseState.apiError(error.message)),
     );
   }
 
@@ -50,7 +50,7 @@ class CourseCubit extends Cubit<CourseState> {
         _courses.addAll(data);
         emit(const CourseState.coursesFetched());
       },
-      failure: (error) => emit(CourseState.apiError(error.message)),
+      error: (error) => emit(CourseState.apiError(error.message)),
     );
   }
 }

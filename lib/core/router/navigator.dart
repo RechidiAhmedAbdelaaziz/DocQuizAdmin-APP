@@ -2,7 +2,7 @@ import 'package:admin_app/core/router/abstract_route.dart';
 import 'package:flutter/material.dart';
 
 abstract class AppNavigator<D> {
-  set generateRoute(AbstractRoute settings) {
+  set generateRoute(NavigatorRouteBase settings) {
     settings.navigator = this;
   }
 

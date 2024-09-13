@@ -32,7 +32,7 @@ class ExamCubit extends Cubit<ExamState> {
         }
         emit(const ExamState.fetchedExams());
       },
-      failure: (error) {
+      error: (error) {
         emit(ExamState.error(error.message));
       },
     );
@@ -50,7 +50,7 @@ class ExamCubit extends Cubit<ExamState> {
         _exams.addUniq(exam);
         emit(const ExamState.examCreated());
       },
-      failure: (error) {
+      error: (error) {
         emit(ExamState.error(error.message));
       },
     );
@@ -78,7 +78,7 @@ class ExamCubit extends Cubit<ExamState> {
         _exams[_exams.indexOf(exam)] = newExam;
         emit(const ExamState.examUpdated());
       },
-      failure: (error) {
+      error: (error) {
         emit(ExamState.error(error.message));
       },
     );
