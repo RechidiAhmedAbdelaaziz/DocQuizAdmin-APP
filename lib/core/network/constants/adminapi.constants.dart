@@ -18,4 +18,9 @@ abstract class AdminApiConstants {
   static const levelWithDomainId = '$_baseUrl/levels/{domainId}';
   static const levelWithId = '$_baseUrl/levels/{id}';
 
+  //* MAJOR
+  static const majorWithLevelId = '$_baseUrl/majors/{levelId}';
+  static const majorWithId = '$_baseUrl/majors/{id}';
+
+
 }
