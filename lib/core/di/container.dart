@@ -2,6 +2,7 @@ import 'package:admin_app/core/helpers/cache.helper.dart';
 import 'package:admin_app/core/helpers/dio.helper.dart';
 import 'package:admin_app/core/helpers/picker.helper.dart';
 import 'package:admin_app/feature/auth/helpers/auth.dependency.dart';
+import 'package:admin_app/feature/course/helper/course.dependency.dart';
 import 'package:admin_app/feature/domain/helper/domain.dependency.dart';
 import 'package:admin_app/feature/exam/helper/exam.dependency.dart';
 import 'package:admin_app/feature/level/helper/level.dependency.dart';
@@ -29,7 +30,7 @@ Future<void> setupLocator() async {
   await setupAuthDependency(locator);
 
   await setupExamDependency(locator);
-  
+
   await setupQuestionDependency(locator);
 
   await setupHomeDependency(locator);
@@ -37,4 +38,5 @@ Future<void> setupLocator() async {
   await setupDomainDependency();
   await setupLevelDependency();
   await setupMajorDependency();
+  await setupCourseDependency();
 }

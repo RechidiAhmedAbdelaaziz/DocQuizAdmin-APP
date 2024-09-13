@@ -1,4 +1,6 @@
+import 'package:admin_app/core/extension/navigator.extension.dart';
 import 'package:admin_app/core/shared/widget/names_list.dart';
+import 'package:admin_app/feature/course/helper/course.route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,6 +18,7 @@ class MajorsScreen extends StatelessWidget {
       onAdd: cubit.addMajor,
       onEdit: cubit.updateMajor,
       onDelete: cubit.deleteMajor,
+      onTap: (major) => context.to(CourseRoute.major(major)),
     );
   }
 }
