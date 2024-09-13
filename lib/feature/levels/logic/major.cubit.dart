@@ -36,7 +36,7 @@ class MajorCubit extends Cubit<MajorState> {
         _majors.add(data);
         emit(const MajorState.majorAdded());
       },
-      failure: (error) => emit(MajorState.apiError(error.message)),
+      error: (error) => emit(MajorState.apiError(error.message)),
     );
   }
 
@@ -48,7 +48,7 @@ class MajorCubit extends Cubit<MajorState> {
         _majors.addAll(data);
         emit(const MajorState.majorsFetched());
       },
-      failure: (error) => emit(MajorState.apiError(error.message)),
+      error: (error) => emit(MajorState.apiError(error.message)),
     );
   }
 }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class AppRouter {
   const AppRouter();
   Route<T> generateRoute<T>(RouteSettings settings) {
-    final route = settings.arguments as AbstractRoute<T>;
+    final route = settings.arguments as NavigatorRouteBase<T>;
     return route.buildRoute();
   }
 }

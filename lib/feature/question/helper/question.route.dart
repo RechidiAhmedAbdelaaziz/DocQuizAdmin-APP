@@ -4,7 +4,7 @@ import 'package:admin_app/feature/question/module/question/screen/question.scree
 import 'package:admin_app/feature/question/module/questionlist/logic/question_list.cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CreateQuestionRoute extends AbstractRoute {
+class CreateQuestionRoute extends NavigatorRouteBase {
   static const route = '/create-question';
 
   CreateQuestionRoute({
@@ -18,7 +18,7 @@ class CreateQuestionRoute extends AbstractRoute {
         );
 }
 
-class UpdateQuestionRoute extends AbstractRoute {
+class UpdateQuestionRoute extends NavigatorRouteBase {
   static const route = '/update-question';
 
   UpdateQuestionRoute(

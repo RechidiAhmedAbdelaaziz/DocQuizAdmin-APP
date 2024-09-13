@@ -19,7 +19,7 @@ mixin _$ApiResult<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T data) success,
-    required TResult Function(ApiErrorModel errorHandler) failure,
+    required TResult Function(ApiErrorModel errorHandler) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -79,8 +79,8 @@ class _$ApiResultCopyWithImpl<T, $Res, $Val extends ApiResult<T>>
 
 /// @nodoc
 abstract class _$$SuccessImplCopyWith<T, $Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl<T> value, $Res Function(_$SuccessImpl<T>) then) =
+  factory _$$SuccessImplCopyWith(_$SuccessImpl<T> value,
+          $Res Function(_$SuccessImpl<T>) then) =
       __$$SuccessImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({T data});
@@ -132,8 +132,8 @@ class _$SuccessImpl<T> implements _Success<T> {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(data));
 
   /// Create a copy of ApiResult
   /// with the given fields replaced by the non-null parameter values.
@@ -141,13 +141,14 @@ class _$SuccessImpl<T> implements _Success<T> {
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessImplCopyWith<T, _$SuccessImpl<T>> get copyWith =>
-      __$$SuccessImplCopyWithImpl<T, _$SuccessImpl<T>>(this, _$identity);
+      __$$SuccessImplCopyWithImpl<T, _$SuccessImpl<T>>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T data) success,
-    required TResult Function(ApiErrorModel errorHandler) failure,
+    required TResult Function(ApiErrorModel errorHandler) error,
   }) {
     return success(data);
   }
@@ -220,8 +221,8 @@ abstract class _Success<T> implements ApiResult<T> {
 
 /// @nodoc
 abstract class _$$FailureImplCopyWith<T, $Res> {
-  factory _$$FailureImplCopyWith(
-          _$FailureImpl<T> value, $Res Function(_$FailureImpl<T>) then) =
+  factory _$$FailureImplCopyWith(_$FailureImpl<T> value,
+          $Res Function(_$FailureImpl<T>) then) =
       __$$FailureImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({ApiErrorModel errorHandler});
@@ -282,15 +283,16 @@ class _$FailureImpl<T> implements _Failure<T> {
   @override
   @pragma('vm:prefer-inline')
   _$$FailureImplCopyWith<T, _$FailureImpl<T>> get copyWith =>
-      __$$FailureImplCopyWithImpl<T, _$FailureImpl<T>>(this, _$identity);
+      __$$FailureImplCopyWithImpl<T, _$FailureImpl<T>>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T data) success,
-    required TResult Function(ApiErrorModel errorHandler) failure,
+    required TResult Function(ApiErrorModel errorHandler) error,
   }) {
-    return failure(errorHandler);
+    return error(errorHandler);
   }
 
   @override
@@ -348,7 +350,8 @@ class _$FailureImpl<T> implements _Failure<T> {
 }
 
 abstract class _Failure<T> implements ApiResult<T> {
-  const factory _Failure(final ApiErrorModel errorHandler) = _$FailureImpl<T>;
+  const factory _Failure(final ApiErrorModel errorHandler) =
+      _$FailureImpl<T>;
 
   ApiErrorModel get errorHandler;
 

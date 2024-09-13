@@ -30,7 +30,7 @@ class LoginCubit extends Cubit<LoginState> {
       success: (data) {
         emit(const LoginState.loginSuccess());
       },
-      failure: (error) {
+      error: (error) {
         emit(LoginState.loginFailure(error));
       },
     );

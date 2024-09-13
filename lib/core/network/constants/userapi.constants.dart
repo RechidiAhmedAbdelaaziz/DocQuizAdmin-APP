@@ -19,4 +19,7 @@ abstract class UserApiConstants {
 
   //* Statistics
   static const statistics = '$_baseUrl/statistic';
+
+  //* Domain
+  static const domains = '$_baseUrl/domains';
 }

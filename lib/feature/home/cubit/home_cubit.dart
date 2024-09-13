@@ -24,7 +24,7 @@ class HomeCubit extends Cubit<HomeState> {
         _statistics.copyWith(statistic);
         emit(const HomeState.loaded());
       },
-      failure: (error) => emit(HomeState.error(error.message)),
+      error: (error) => emit(HomeState.error(error.message)),
     );
   }
 }

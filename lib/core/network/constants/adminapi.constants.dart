@@ -13,4 +13,8 @@ abstract class AdminApiConstants {
   //* Question
   static const question = '$_baseUrl/question';
   static const questionWithId = '$_baseUrl/question/{id}';
+
+  //* Domain 
+  static const domain = '$_baseUrl/domains';
+  static const domainWithId = '$_baseUrl/domains/{id}';
 }

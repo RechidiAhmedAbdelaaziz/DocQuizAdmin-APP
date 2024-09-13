@@ -20,7 +20,7 @@ class _Statistics extends StatelessWidget {
                     title: 'Total Modules',
                     value: statistics.totalMajor.toString(),
                     icon: Icons.star,
-                    onTap: () => context.to(LevelRoute()),
+                    onTap: () => context.to(DomainRoute()),
                   ),
                   _buildStatCard(
                     title: 'Total Exams',

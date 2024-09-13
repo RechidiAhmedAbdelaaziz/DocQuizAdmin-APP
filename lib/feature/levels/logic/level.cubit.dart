@@ -25,7 +25,7 @@ class LevelCubit extends Cubit<LevelState> {
         _levels.addAll(data);
         emit(const LevelState.levelsFetched());
       },
-      failure: (error) => emit(LevelState.apiError(error.message)),
+      error: (error) => emit(LevelState.apiError(error.message)),
     );
   }
 
@@ -37,7 +37,7 @@ class LevelCubit extends Cubit<LevelState> {
         _levels.add(data);
         emit(const LevelState.levelCreated());
       },
-      failure: (error) => emit(LevelState.apiError(error.message)),
+      error: (error) => emit(LevelState.apiError(error.message)),
     );
   }
 }

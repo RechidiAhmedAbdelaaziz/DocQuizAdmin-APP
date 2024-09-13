@@ -70,8 +70,7 @@ class QuestionListCubit extends Cubit<QuestionListState> {
           _query.copyWith(page: _query.page + 1);
         emit(const QuestionListState.fetchedQuestions());
       },
-      failure: (error) =>
-          emit(QuestionListState.error(error.message)),
+      error: (error) => emit(QuestionListState.error(error.message)),
     );
   }
 

@@ -4,7 +4,8 @@ import 'package:admin_app/core/router/abstract_route.dart';
 
 extension NavigatorExtension on BuildContext {
   /// Navigate to a named route with the provided AbstractRoute
-  Future<T?> to<T>(AbstractRoute route, {bool canPop = true}) async {
+  Future<T?> to<T>(NavigatorRouteBase route,
+      {bool canPop = true}) async {
     if (!canPop) route.navigator = NoPopNavigator<T>();
 
     return await _tryNavigate<T>(() => Navigator.of(this)
@@ -12,7 +13,7 @@ extension NavigatorExtension on BuildContext {
   }
 
   /// Navigate to a named route and replace the current route
-  Future<T?> off<T, TO>(AbstractRoute route, {TO? result}) {
+  Future<T?> off<T, TO>(NavigatorRouteBase route, {TO? result}) {
     return _tryNavigate(() {
       return Navigator.of(this).pushReplacementNamed<T, TO>(
         route.path,
@@ -23,7 +24,7 @@ extension NavigatorExtension on BuildContext {
   }
 
   /// Navigate to a named route and remove all previous routes until a condition is met
-  Future<T?> offAll<T>(AbstractRoute route,
+  Future<T?> offAll<T>(NavigatorRouteBase route,
       {bool Function(Route<dynamic>)? predicate}) {
     return _tryNavigate(() {
       return Navigator.of(this).pushNamedAndRemoveUntil<T>(
