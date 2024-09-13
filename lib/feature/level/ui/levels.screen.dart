@@ -1,4 +1,6 @@
+import 'package:admin_app/core/extension/navigator.extension.dart';
 import 'package:admin_app/core/shared/widget/names_list.dart';
+import 'package:admin_app/feature/major/helper/major.route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,6 +18,7 @@ class LevelsScreen extends StatelessWidget {
       onAdd: cubit.addLevel,
       onEdit: cubit.updateLevel,
       onDelete: cubit.deleteLevel,
+      onTap: (level) => context.to(MajorRoute.level(level)),
     );
   }
 }
