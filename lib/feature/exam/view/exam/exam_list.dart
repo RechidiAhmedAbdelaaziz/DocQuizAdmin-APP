@@ -94,12 +94,12 @@ class _ExamItem extends StatelessWidget {
     );
   }
 
-  InkWell _buildDeleteButton({
+  IconButton _buildDeleteButton({
     required void Function() onPressed,
   }) {
-    return InkWell(
-      onTap: onPressed,
-      child: const Icon(Icons.delete_rounded),
+    return IconButton(
+      onPressed: onPressed,
+      icon: const Icon(Icons.delete_rounded),
     );
   }
 
@@ -122,7 +122,8 @@ class _ExamItem extends StatelessWidget {
   Text _buildTitle(String title) {
     return Text(
       title,
-      maxLines: 2,
+      maxLines: 3,
+      overflow: TextOverflow.ellipsis,
       style: TextStyle(
         fontSize: 20.sp,
         fontWeight: FontWeight.bold,
@@ -130,12 +131,12 @@ class _ExamItem extends StatelessWidget {
     );
   }
 
-  InkWell _buildEditButton({
+  IconButton _buildEditButton({
     required void Function() onPressed,
   }) {
-    return InkWell(
-      onTap: onPressed,
-      child: const Icon(Icons.edit_rounded),
+    return IconButton(
+      onPressed: onPressed,
+      icon: const Icon(Icons.edit_rounded),
     );
   }
 
