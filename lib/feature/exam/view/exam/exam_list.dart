@@ -12,6 +12,7 @@ class _ExamList extends StatelessWidget {
         height(20),
         ...exams.map((exam) => _ExamItem(
               exam,
+              onDelete: (exam) => cubit.deleteExam(exam),
               onEdit: (exam) async {
                 final updatedExam = await context
                     .to<CreateExamParam>(CreateExamRoute(exam: exam));
@@ -33,11 +34,14 @@ class _ExamList extends StatelessWidget {
 
 class _ExamItem extends StatelessWidget {
   const _ExamItem(this._exam,
-      {required void Function(ExamModel) onEdit})
-      : _onEdit = onEdit;
+      {required void Function(ExamModel) onEdit,
+      required void Function(ExamModel) onDelete})
+      : _onEdit = onEdit,
+        _onDelete = onDelete;
 
   final ExamModel _exam;
   final void Function(ExamModel) _onEdit;
+  final void Function(ExamModel) _onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +85,21 @@ class _ExamItem extends StatelessWidget {
             _buildEditButton(
               onPressed: () => _onEdit(_exam),
             ),
+            _buildDeleteButton(
+              onPressed: () => _onDelete(_exam),
+            ),
           ],
         ),
       ),
+    );
+  }
+
+  InkWell _buildDeleteButton({
+    required void Function() onPressed,
+  }) {
+    return InkWell(
+      onTap: onPressed,
+      child: const Icon(Icons.delete_rounded),
     );
   }
 

@@ -8,8 +8,7 @@ part 'exam.api.g.dart';
 
 @RestApi()
 abstract class ExamApiService {
-  factory ExamApiService(Dio dio, {String baseUrl}) =
-      _ExamApiService;
+  factory ExamApiService(Dio dio, {String baseUrl}) = _ExamApiService;
 
   @POST(AdminApiConstants.exam)
   Future<DataResponse> createExam(@Body() Map<String, dynamic> body);
@@ -26,4 +25,6 @@ abstract class ExamApiService {
     @Query('limit') required int limit,
   });
 
+  @DELETE(AdminApiConstants.examWithID)
+  Future<MessageResponse> deleteExam(@Path('id') String id);
 }

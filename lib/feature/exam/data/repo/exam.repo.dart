@@ -55,4 +55,12 @@ class ExamRepo {
 
     return await TryCallApi.call(apiCall);
   }
+
+  RepoResult<void> deleteExam(String id) async {
+    apiCall() async {
+      await _examApi.deleteExam(id);
+    }
+
+    return await TryCallApi.call(apiCall);
+  }
 }

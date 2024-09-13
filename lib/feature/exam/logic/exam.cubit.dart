@@ -83,4 +83,21 @@ class ExamCubit extends Cubit<ExamState> {
       },
     );
   }
+
+  Future<void> deleteExam(ExamModel exam) async {
+    emit(const ExamState.examUpdating());
+
+    final result = await _examRepo.deleteExam(exam.id!);
+
+    result.when(
+      success: (_) {
+        _exams.remove(exam);
+        emit(const ExamState.examUpdated());
+      },
+      error: (error) {
+        emit(ExamState.error(error.message));
+      },
+    );
+  }
+
 }
