@@ -5,10 +5,7 @@ abstract class UserApiConstants {
   static const login = '$_baseUrl/auth/login';
   static const refreshToken = '$_baseUrl/auth/refresh-token';
 
-  //*LEVEL
-  static const getLevels = '$_baseUrl/levels';
-  static const getMajors = '$_baseUrl/levels/majors';
-  static const getCourses = '$_baseUrl/levels/courses';
+
 
   //*EXAM
   static const getExams = '$_baseUrl/exam';
@@ -22,4 +19,7 @@ abstract class UserApiConstants {
 
   //* Domain
   static const domains = '$_baseUrl/domains';
+
+  //*LEVEL
+  static const levels = '$_baseUrl/levels';
 }
