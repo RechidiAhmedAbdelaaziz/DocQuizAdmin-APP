@@ -6,113 +6,115 @@ class _Statistics extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final statistics = context.watch<HomeCubit>().statistics;
-    final isLoading = context.select((HomeCubit cubit) => cubit.state
-        .maybeWhen(orElse: () => false, loading: () => true));
-    return isLoading
-        ? const Center(child: CircularProgressIndicator())
-        : Column(
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Row(
             children: [
-              height(16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _buildStatCard(
-                    title: 'Total Modules',
-                    value: statistics.totalMajor.toString(),
-                    icon: Icons.star,
-                    onTap: () => context.to(DomainRoute()),
-                  ),
-                  _buildStatCard(
-                    title: 'Total Exams',
-                    value: statistics.totalExam.toString(),
-                    icon: Icons.book,
-                    onTap: () => context.to(ExamRoute()),
-                  ),
-                ],
+              _Item(
+                title: 'Les sources',
+                value: statistics.totalSources,
+                color: Colors.blue,
+                onTap: () => context.to(SourceRoute()),
               ),
-              height(16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _buildStatCard(
-                    title: 'Total Questions',
-                    value: statistics.totalQuestion.toString(),
-                    icon: Icons.question_answer,
-                    onTap: () => context.to(QuestionListRoute()),
-                  ),
-                  _buildStatCard(
-                    title: 'Total Users',
-                    value: statistics.totalUser.toString(),
-                    icon: Icons.person,
-                  ),
-                ],
-              ),
-              height(16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _buildStatCard(
-                    title: 'Total Source',
-                    value: 'source',
-                    icon: Icons.category,
-                    onTap: () => context.to(SourceRoute()),
-                  ),
-                ],
+              _Item(
+                title: 'Les domaines',
+                value: statistics.totalDomain,
+                color: Colors.pink,
+                onTap: () => context.to(DomainRoute()),
               ),
             ],
-          );
+          ),
+          height(15),
+          Row(
+            children: [
+              _Item(
+                title: 'Les examens',
+                value: statistics.totalExam,
+                color: Colors.green,
+                onTap: () => context.to(ExamRoute()),
+              ),
+              _Item(
+                title: 'Les questions',
+                value: statistics.totalQuestion,
+                color: Colors.orange,
+                onTap: () => context.to(QuestionListRoute()),
+              ),
+            ],
+          ),
+          height(15),
+          Row(
+            children: [
+              _Item(
+                title: 'Utilisateurs',
+                value: statistics.totalUser,
+                color: Colors.purple,
+                onTap: () {},
+              ),
+              _Item(
+                title: 'Utilisateurs abonnés',
+                value: statistics.totalSubscribedUser,
+                color: Colors.red,
+                onTap: () {},
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
+}
 
-  Widget _buildStatCard({
-    required String title,
-    required String value,
-    required IconData icon,
-    void Function()? onTap,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        width: 180.w,
-        padding: EdgeInsets.symmetric(vertical: 16.h),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 7,
-              offset: const Offset(0, 3),
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            CircleAvatar(
-              radius: 30,
-              backgroundColor: Colors.grey[200],
-              child: Icon(
-                icon,
-                size: 30,
-                color: Colors.blueAccent,
+class _Item extends StatelessWidget {
+  const _Item(
+      {required this.title,
+      required this.value,
+      required this.onTap,
+      required this.color});
+
+  final String title;
+  final num? value;
+  final VoidCallback onTap;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          // width: double.infinity,
+          height: 180.h,
+          margin:
+              EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
+          padding: EdgeInsets.all(10.w),
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(20.r),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22.sp,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            height(16),
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.bold,
+              const Spacer(),
+              Text(
+                value.toString(),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 30.sp,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            Text(
-              value,
-              style: TextStyle(
-                fontSize: 30.sp,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
+              height(12),
+            ],
+          ),
         ),
       ),
     );
