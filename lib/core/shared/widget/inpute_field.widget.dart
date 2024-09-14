@@ -40,6 +40,7 @@ class _AppInputeFieldState extends State<AppInputeField> {
       obscureText: widget._obscureText && !_showPassword,
       onChanged: widget._onChanged,
       validator: widget._validator,
+      maxLines: null,
       decoration: InputDecoration(
         hintText: widget._hint,
         hintStyle: TextStyle(

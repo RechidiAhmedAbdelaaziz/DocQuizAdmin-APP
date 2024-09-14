@@ -1,6 +1,6 @@
 // ignore_for_file: curly_braces_in_flow_control_structures
 
-extension Validator on String? {
+extension ValidationExtensions on String? {
   /// Email validation
   String? get isValidEmail {
     if (this == null) return 'Email is required';

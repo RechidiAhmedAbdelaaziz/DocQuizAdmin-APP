@@ -4,6 +4,7 @@ import 'package:admin_app/core/extension/navigator.extension.dart';
 import 'package:admin_app/feature/auth/helpers/login.router.dart';
 import 'package:admin_app/feature/auth/logic/auth.cubit.dart';
 import 'package:admin_app/feature/home/helper/home.route.dart';
+import 'package:admin_app/feature/question/helper/question.route.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +31,7 @@ class AuthListener extends StatelessWidget {
             );
           },
           authenticated: () {
-            context.to(HomeRoute(), canPop: false);
+            context.to(QuestionRoute.create(), canPop: false);
           },
         );
       },

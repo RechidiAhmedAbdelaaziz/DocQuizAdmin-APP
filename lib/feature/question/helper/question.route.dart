@@ -1,34 +1,27 @@
 import 'package:admin_app/core/router/abstract_route.dart';
 import 'package:admin_app/feature/question/data/models/question.model.dart';
-import 'package:admin_app/feature/question/module/question/screen/question.screen.dart';
-import 'package:admin_app/feature/question/module/questionlist/logic/question_list.cubit.dart';
+import 'package:admin_app/feature/question/module/question/logic/question.cubit.dart';
+import 'package:admin_app/feature/question/module/question/ui/question.screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CreateQuestionRoute extends NavigatorRouteBase {
-  static const route = '/create-question';
+class QuestionRoute extends NavigatorRouteBase {
+  static const route = '/question';
 
-  CreateQuestionRoute({
-    required QuestionListCubit questionListCubit,
-  }) : super(
+  QuestionRoute.create()
+      : super(
           route,
-          child: BlocProvider.value(
-            value: questionListCubit,
-            child: QuestionScreen(),
+          child: BlocProvider(
+            create: (_) => QuestionCubit(),
+            child: const QuestionScreen(),
           ),
         );
-}
 
-class UpdateQuestionRoute extends NavigatorRouteBase {
-  static const route = '/update-question';
-
-  UpdateQuestionRoute(
-    QuestionModel question, {
-    required QuestionListCubit questionListCubit,
-  }) : super(
+  QuestionRoute.update(QuestionModel question)
+      : super(
           route,
-          child: BlocProvider.value(
-            value: questionListCubit,
-            child: QuestionScreen(question: question),
+          child: BlocProvider(
+            create: (_) => QuestionCubit(question: question),
+            child: const QuestionScreen(),
           ),
         );
 }

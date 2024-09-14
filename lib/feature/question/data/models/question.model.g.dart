@@ -18,30 +18,13 @@ QuestionModel _$QuestionModelFromJson(Map<String, dynamic> json) =>
       questionText: json['questionText'] as String?,
       difficulty: json['difficulty'] as String?,
       type: json['type'] as String?,
+      course: json['course'] == null
+          ? null
+          : CourseModel.fromJson(json['course'] as Map<String, dynamic>),
+      explanation: json['explanation'] as String?,
       source: json['source'] == null
           ? null
-          : ExamModel.fromJson(json['source'] as Map<String, dynamic>),
-      field: json['field'] == null
-          ? null
-          : FieldModel.fromJson(json['field'] as Map<String, dynamic>),
-      explanation: json['explanation'] as String?,
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
-      updatedAt: json['updatedAt'] == null
-          ? null
-          : DateTime.parse(json['updatedAt'] as String),
+          : SourceModel.fromJson(json['source'] as Map<String, dynamic>),
+      year: json['year'] as num?,
+      exam: ExamModel.fromJson(json['exam'] as Map<String, dynamic>),
     );
-
-FieldModel _$FieldModelFromJson(Map<String, dynamic> json) => FieldModel(
-      level: json['level'] as String?,
-      major: json['major'] as String?,
-      course: json['course'] as String?,
-    );
-
-Map<String, dynamic> _$FieldModelToJson(FieldModel instance) =>
-    <String, dynamic>{
-      'level': instance.level,
-      'major': instance.major,
-      'course': instance.course,
-    };
