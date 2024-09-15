@@ -1,4 +1,6 @@
+import 'package:admin_app/core/extension/navigator.extension.dart';
 import 'package:admin_app/core/shared/widget/names_list.dart';
+import 'package:admin_app/feature/question/helper/question.route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,6 +18,8 @@ class CoursesScreen extends StatelessWidget {
       onAdd: cubit.addCourse,
       onEdit: cubit.updateCourse,
       onDelete: cubit.deleteCourse,
+      onTap: (course) =>
+          context.to(QuestionListRoute.ofCourse(course)),
     );
   }
 }

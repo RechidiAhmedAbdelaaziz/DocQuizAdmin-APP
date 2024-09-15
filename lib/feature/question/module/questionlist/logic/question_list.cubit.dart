@@ -15,7 +15,9 @@ class QuestionListCubit extends Cubit<QuestionListState> {
   ListQuestionsFilter filters = ListQuestionsFilter();
 
   set setFilters(ListQuestionsFilter filters) {
-    this.filters = filters;
+    this.filters = filters.copyWith(page: 1);
+    emit(QuestionListState.initial());
+
     fetchQuestions();
   }
 
@@ -33,7 +35,7 @@ class QuestionListCubit extends Cubit<QuestionListState> {
         result: await _questionRepo.getQuestions(filters: filters),
         onSuccess: (questions) {
           if (questions.isNotEmpty) {
-            filters.copyWith(page: filters.page + 1);
+            filters = filters.copyWith(page: filters.page + 1);
             emit(state.fetchQuestions(questions));
           }
         });

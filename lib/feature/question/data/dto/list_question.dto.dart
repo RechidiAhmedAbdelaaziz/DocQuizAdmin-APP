@@ -1,3 +1,4 @@
+import 'package:admin_app/core/extension/list.extension.dart';
 import 'package:admin_app/core/shared/dto/pagination.dto.dart';
 import 'package:admin_app/feature/course/data/models/course.model.dart';
 import 'package:admin_app/feature/exam/data/models/exam.model.dart';
@@ -8,14 +9,18 @@ class ListQuestionsFilter extends KeywordQuery {
     super.keywords,
     super.page,
     super.limit = 10,
-    this.types = const [],
-    this.difficulties = const [],
-    this.sources = const [],
-    this.courses = const [],
+    List<String>? types,
+    List<String>? difficulties,
+    List<SourceModel>? sources,
+    List<CourseModel>? courses,
+    List<String>? years,
     this.exam,
-    this.years = const [],
     this.withExplanation = false,
-  });
+  })  : types = types ?? [],
+        difficulties = difficulties ?? [],
+        sources = sources ?? [],
+        courses = courses ?? [],
+        years = years ?? [];
 
   final List<String> types;
   final List<String> difficulties;
@@ -30,7 +35,8 @@ class ListQuestionsFilter extends KeywordQuery {
 
     if (types.isNotEmpty) query['types[]'] = types;
     if (difficulties.isNotEmpty) {
-      query['difficulties[]'] = difficulties;
+      query['difficulties[]'] =
+          difficulties.map((e) => e.toLowerCase()).toList();
     }
     if (sources.isNotEmpty) {
       query['sources[]'] = sources.map((e) => e.id).toList();
@@ -50,20 +56,23 @@ class ListQuestionsFilter extends KeywordQuery {
     String? keywords,
     int? page,
     int? limit,
-    List<String>? types,
-    List<String>? difficulties,
+    String? type,
+    String? difficultie,
     List<SourceModel>? sources,
     List<CourseModel>? courses,
     ExamModel? exam,
     List<String>? years,
     bool? withExplanation,
   }) {
+    if (type != null) types.addOrRemove(type);
+    if (difficultie != null) difficulties.addOrRemove(difficultie);
+
     return ListQuestionsFilter(
       keywords: keywords ?? this.keywords,
       page: page ?? this.page,
       limit: limit ?? this.limit,
-      types: types ?? this.types,
-      difficulties: difficulties ?? this.difficulties,
+      types: types,
+      difficulties: difficulties,
       sources: sources ?? this.sources,
       courses: courses ?? this.courses,
       exam: exam ?? this.exam,

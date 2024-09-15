@@ -1,8 +1,12 @@
+import 'package:admin_app/core/extension/bottomsheet.extension.dart';
 import 'package:admin_app/core/extension/navigator.extension.dart';
 import 'package:admin_app/core/shared/widget/pagination.widget.dart';
 import 'package:admin_app/core/shared/widget/space.widget.dart';
+import 'package:admin_app/feature/question/data/dto/list_question.dto.dart';
 import 'package:admin_app/feature/question/data/models/question.model.dart';
 import 'package:admin_app/feature/question/helper/question.route.dart';
+import 'package:admin_app/feature/question/module/questionfilter/logic/question_filter.cubit.dart';
+import 'package:admin_app/feature/question/module/questionfilter/ui/question_filter.dart';
 import 'package:admin_app/feature/question/module/questionlist/logic/question_list.cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +21,24 @@ class QuestionsListScreen extends StatelessWidget {
         context.watch<QuestionListCubit>().state.questions;
     final cubit = context.read<QuestionListCubit>();
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('Questions'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.filter_alt),
+            onPressed: () async {
+              final filters =
+                  await context.showBottomSheet<ListQuestionsFilter>(
+                      child: BlocProvider.value(
+                value: context.read<QuestionFilterCubit>(),
+                child: const QuestionFilter(),
+              ));
+
+              if (filters != null) cubit.setFilters = filters;
+            },
+          ),
+        ],
+      ),
       body: PaginationBuilder(
         onFetch: context.read<QuestionListCubit>().fetchQuestions,
         builder: (loadingWidget) => Column(
