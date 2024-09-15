@@ -15,4 +15,5 @@ class CourseRoute extends NavigatorRouteBase {
             child: const CoursesScreen(),
           ),
         );
+
 }

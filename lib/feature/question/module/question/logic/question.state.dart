@@ -27,11 +27,23 @@ class QuestionState {
     return QuestionState(details);
   }
 
+  QuestionState update({
+    SourceModel? source,
+    CourseModel? course,
+    ExamModel? exam,
+    bool removeExam = false,
+  }) {
+    if (source != null) details.updateSource = source;
+    if (course != null) details.updateCourse = course;
+    if (exam != null) details.updateExam = exam;
+    if (removeExam) details.updateExam = null;
+
+    return QuestionState(details);
+  }
+
   QuestionState saving() => _Saving(details);
 
   QuestionState saved(QuestionModel question) => _Saved(question);
-
-  QuestionState deleted(QuestionModel question) => _Saved(question);
 
   QuestionState errorOccured(String error) =>
       QuestionState(details, error: error);
@@ -44,11 +56,11 @@ class QuestionState {
     if (this is _Saved) onSaved((this as _Saved).question);
   }
 
-  bool get isSaving => this is _Saving;
+  bool get isSaving => this is _Saving || this is _Saved;
 }
 
 class _Saving extends QuestionState {
-  _Saving(QuestionDetails details) : super(details);
+  _Saving(super.details);
 }
 
 class _Saved extends QuestionState {
@@ -56,5 +68,3 @@ class _Saved extends QuestionState {
 
   _Saved(this.question) : super(null);
 }
-
-

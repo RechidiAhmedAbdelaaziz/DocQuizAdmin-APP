@@ -1,9 +1,16 @@
 import 'package:admin_app/core/extension/alertdialog.extenstion.dart';
+import 'package:admin_app/core/extension/bottomsheet.extension.dart';
 import 'package:admin_app/core/extension/dropdown.extension.dart';
+import 'package:admin_app/core/extension/navigator.extension.dart';
 import 'package:admin_app/core/extension/validator.extension.dart';
 import 'package:admin_app/core/shared/widget/inpute_field.widget.dart';
-import 'package:admin_app/feature/exam/view/createexam/create_exam.screen.dart';
+import 'package:admin_app/feature/course/data/models/course.model.dart';
+import 'package:admin_app/feature/domain/ui/domain_selector.dart';
+import 'package:admin_app/feature/exam/data/models/exam.model.dart';
+import 'package:admin_app/feature/exam/view/exam_selector.dart';
 import 'package:admin_app/feature/question/module/question/logic/question.cubit.dart';
+import 'package:admin_app/feature/source/data/model/source.model.dart';
+import 'package:admin_app/feature/source/ui/source_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,7 +22,6 @@ class QuestionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final isLoading =
         context.select((QuestionCubit cubit) => cubit.state.isSaving);
-    final cubit = context.read<QuestionCubit>();
     return BlocListener<QuestionCubit, QuestionState>(
       listener: (context, state) {
         state.onError((error) {
@@ -27,18 +33,11 @@ class QuestionScreen extends StatelessWidget {
           );
         });
 
-        state.onSaved((question) {});
+        state.onSaved((question) => context.back(question));
       },
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Question'),
-          actions: [
-            if (cubit.isEditing)
-              IconButton(
-                icon: const Icon(Icons.delete),
-                onPressed: context.read<QuestionCubit>().delete,
-              ),
-          ],
         ),
         body: Padding(
           padding:
@@ -169,7 +168,9 @@ class _CourseField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final course = context.read<QuestionCubit>().state.details.course;
+    final course =
+        context.watch<QuestionCubit>().state.details.course;
+    final cubit = context.read<QuestionCubit>();
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
       decoration: BoxDecoration(
@@ -191,7 +192,13 @@ class _CourseField extends StatelessWidget {
               course == null ? Icons.add : Icons.edit,
               color: course != null ? Colors.grey : Colors.black,
             ),
-            onPressed: () {},
+            onPressed: () async {
+              final course =
+                  await context.showBottomSheet<CourseModel>(
+                      child: const DomainSelector());
+
+              if (course != null) cubit.updateCourse(course);
+            },
           ),
         ],
       ),
@@ -242,8 +249,8 @@ class _DifficultyFieldState extends State<_DifficultyField> {
         ),
         _buildDifficultyButton(
           title: 'Moyen',
-          isSelected: difficulty.text == 'meduim',
-          onPressed: () => onChange('meduim'),
+          isSelected: difficulty.text == 'medium',
+          onPressed: () => onChange('medium'),
           color: Colors.orange,
         ),
         _buildDifficultyButton(
@@ -294,6 +301,7 @@ class _SourceField extends StatelessWidget {
   Widget build(BuildContext context) {
     final source =
         context.watch<QuestionCubit>().state.details.source;
+    final cubit = context.read<QuestionCubit>();
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
       decoration: BoxDecoration(
@@ -315,7 +323,14 @@ class _SourceField extends StatelessWidget {
               source == null ? Icons.add : Icons.edit,
               color: source != null ? Colors.grey : Colors.black,
             ),
-            onPressed: () {},
+            onPressed: () async {
+              final source =
+                  await context.showBottomSheet<SourceModel>(
+                child: const SourceSelector(),
+              );
+
+              if (source != null) cubit.updateSource(source);
+            },
           ),
         ],
       ),
@@ -346,37 +361,54 @@ class _ExamField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final exam = context.watch<QuestionCubit>().state.details.exam;
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(12.r),
-      ),
-      child: Row(
-        children: [
-          Text(
-            exam?.title ?? 'Choisir un examen...',
-            style: TextStyle(
-              fontSize: 18.sp,
-              color: exam == null ? Colors.grey : Colors.black,
+    final cubit = context.read<QuestionCubit>();
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            padding:
+                EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey),
+              borderRadius: BorderRadius.circular(12.r),
+            ),
+            child: Row(
+              children: [
+                Text(
+                  exam?.title ?? 'Choisir un examen...',
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    color: exam == null ? Colors.grey : Colors.black,
+                  ),
+                ),
+                const Spacer(),
+                IconButton(
+                  icon: Icon(
+                    exam == null ? Icons.add : Icons.edit,
+                    color: exam != null ? Colors.grey : Colors.black,
+                  ),
+                  onPressed: () {
+                    context
+                        .showBottomSheet<ExamModel>(
+                      child: const ExamSelector(),
+                    )
+                        .then((exam) {
+                      if (exam != null) cubit.updateExam(exam);
+                    });
+                  },
+                ),
+              ],
             ),
           ),
-          const Spacer(),
+        ),
+        if (exam != null)
           IconButton(
-            icon: Icon(
-              exam == null ? Icons.add : Icons.edit,
-              color: exam != null ? Colors.grey : Colors.black,
-            ),
+            icon: const Icon(Icons.cancel),
             onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => CreateExamScreen(),
-                ),
-              );
+              cubit.removeExam();
             },
           ),
-        ],
-      ),
+      ],
     );
   }
 }

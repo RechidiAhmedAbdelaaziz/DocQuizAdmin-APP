@@ -20,11 +20,15 @@ QuestionModel _$QuestionModelFromJson(Map<String, dynamic> json) =>
       type: json['type'] as String?,
       course: json['course'] == null
           ? null
-          : CourseModel.fromJson(json['course'] as Map<String, dynamic>),
+          : CourseModel.fromJson(
+              json['course'] as Map<String, dynamic>),
       explanation: json['explanation'] as String?,
       source: json['source'] == null
           ? null
-          : SourceModel.fromJson(json['source'] as Map<String, dynamic>),
+          : SourceModel.fromJson(
+              json['source'] as Map<String, dynamic>),
       year: json['year'] as num?,
-      exam: ExamModel.fromJson(json['exam'] as Map<String, dynamic>),
+      exam: json['exam'] == null
+          ? null
+          : ExamModel.fromJson(json['exam'] as Map<String, dynamic>),
     );

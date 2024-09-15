@@ -4,7 +4,6 @@ import 'package:admin_app/core/extension/navigator.extension.dart';
 import 'package:admin_app/feature/auth/helpers/login.router.dart';
 import 'package:admin_app/feature/auth/logic/auth.cubit.dart';
 import 'package:admin_app/feature/home/helper/home.route.dart';
-import 'package:admin_app/feature/question/helper/question.route.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,15 +22,15 @@ class AuthListener extends StatelessWidget {
             context.to(LoginRoute(), canPop: false);
           },
           sessionExpired: () {
+            context.to(LoginRoute(), canPop: false);
             context.showDialogBox(
               title: 'Session Expired',
-              cancelText: 'Logout',
-              onCancel: (_) => locator<AuthCubit>().onLogout(),
-              canPop: false,
+              confirmText: 'Login Again',
+              onConfirm: (back) => back(),
             );
           },
           authenticated: () {
-            context.to(QuestionRoute.create(), canPop: false);
+            context.to(HomeRoute(), canPop: false);
           },
         );
       },

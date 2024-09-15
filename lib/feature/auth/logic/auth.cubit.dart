@@ -20,11 +20,9 @@ class AuthCubit extends Cubit<AuthState> {
     emit(const AuthState.checkingAuth());
     final accessToken = await _authCacheHelper.accessToken;
 
-
     accessToken.isNotEmptyOrNull
         ? _emitAuthenticated()
         : _emitUnauthenticated();
-   
   }
 
   Future<void> onLogin(ApiResponseModelTMP data) async {
@@ -53,16 +51,16 @@ class AuthCubit extends Cubit<AuthState> {
 
         emit(const AuthState.sessionRefreshed());
       },
-      failure: (error) {
+      failure: (error) async {
+        await onLogout();
         emit(const AuthState.sessionExpired());
       },
     );
   }
 
   Future<void> onLogout() async {
-    emit(const AuthState.loggingOut());
+    DioHelper.removeTokenInterceptor();
     await _authCacheHelper.clearTokens();
-    _emitUnauthenticated();
   }
 
   void _emitAuthenticated() {

@@ -4,7 +4,7 @@ class PaginationBuilder extends StatefulWidget {
   PaginationBuilder({
     super.key,
     required Future<void> Function() onFetch,
-    required Widget Function(Widget) builder,
+    required Widget Function(Widget loadingWidget) builder,
     ScrollController? scrollController,
     Widget loadingWidget = const LinearProgressIndicator(),
     Axis scrollDirection = Axis.vertical,

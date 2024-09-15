@@ -34,7 +34,7 @@ class QuestionModel extends Equatable {
   final String? explanation;
   final SourceModel? source;
   final num? year;
-  final ExamModel exam;
+  final ExamModel? exam;
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) =>
       _$QuestionModelFromJson(json);

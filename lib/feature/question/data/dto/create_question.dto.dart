@@ -34,9 +34,9 @@ class QuestionDetails {
   final List<QuestionAnswer> answers;
   final TextEditingController explanation;
   final TextEditingController difficulty;
-  final SourceModel? source;
-  final CourseModel? course;
-  final ExamModel? exam;
+  SourceModel? source;
+  CourseModel? course;
+  ExamModel? exam;
   final TextEditingController year;
 
   set newAnswer(String value) =>
@@ -46,6 +46,10 @@ class QuestionDetails {
       answer.isCorrect = !answer.isCorrect;
 
   set removeAnswer(QuestionAnswer answer) => answers.remove(answer);
+
+  set updateSource(SourceModel? value) => source = value;
+  set updateCourse(CourseModel? value) => course = value;
+  set updateExam(ExamModel? value) => exam = value;
 
   Map<String, dynamic> toJson() => {
         'questionText': question.text,

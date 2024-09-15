@@ -38,8 +38,8 @@ class _Statistics extends StatelessWidget {
                 title: 'Les questions',
                 value: statistics.totalQuestion,
                 color: Colors.orange,
-                onTap: () {},
-                // onTap: () => context.to(QuestionListRoute()), //TODO add route
+                onTap: () =>
+                    context.to(QuestionListRoute()), 
               ),
             ],
           ),
