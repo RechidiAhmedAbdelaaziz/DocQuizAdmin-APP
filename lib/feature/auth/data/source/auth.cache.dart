@@ -20,7 +20,7 @@ class AuthCacheHelper {
       await _cacheHelper.getSecuredString('REFRESH_TOKEN');
 
   Future<void> clearTokens() async {
-    await _cacheHelper.removeSecuredData('TOKEN');
+    await _cacheHelper.removeSecuredData('ACCESS_TOKEN');
     await _cacheHelper.removeSecuredData('REFRESH_TOKEN');
   }
 }

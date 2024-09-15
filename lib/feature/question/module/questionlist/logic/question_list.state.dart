@@ -1,17 +1,38 @@
 part of 'question_list.cubit.dart';
 
-@freezed
-class QuestionListState with _$QuestionListState {
-  const factory QuestionListState.initial() = _Initial;
+class QuestionListState {
+  final List<QuestionModel> questions;
+  final String? error;
 
-  const factory QuestionListState.fetchingQuestions() =
-      _FetchingQuestions;
-  const factory QuestionListState.fetchedQuestions() =
-      _FetchedQuestions;
+  QuestionListState(this.questions, {this.error});
 
-  const factory QuestionListState.addedQuestions() = _AddedQuestions;
-  const factory QuestionListState.updatedQuestions() = _UpdatedQuestions;
-  const factory QuestionListState.deletedQuestions() = _DeletedQuestions;
+  factory QuestionListState.initial() => QuestionListState([]);
 
-  const factory QuestionListState.error(String message) = _Error;
+  QuestionListState fetchQuestions(List<QuestionModel> newQuestions) {
+    questions.addAllUniq(newQuestions);
+    return QuestionListState(questions);
+  }
+
+  QuestionListState addQuestion(QuestionModel question) {
+    questions.addUniq(question);
+    return QuestionListState(questions);
+  }
+
+  QuestionListState updateQuestion(QuestionModel question) {
+    questions[questions.indexOf(question)] = question;
+    return QuestionListState(questions);
+  }
+
+  QuestionListState deleteQuestion(QuestionModel question) {
+    questions.remove(question);
+    return QuestionListState(questions);
+  }
+
+  QuestionListState setError(String error) {
+    return QuestionListState(questions, error: error);
+  }
+
+  void onError(Function(String) onError) {
+    if (error != null) onError(error!);
+  }
 }

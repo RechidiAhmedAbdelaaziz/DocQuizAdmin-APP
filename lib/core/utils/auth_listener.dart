@@ -22,11 +22,11 @@ class AuthListener extends StatelessWidget {
             context.to(LoginRoute(), canPop: false);
           },
           sessionExpired: () {
+            context.to(LoginRoute(), canPop: false);
             context.showDialogBox(
               title: 'Session Expired',
-              cancelText: 'Logout',
-              onCancel: (_) => locator<AuthCubit>().onLogout(),
-              canPop: false,
+              confirmText: 'Login Again',
+              onConfirm: (back) => back(),
             );
           },
           authenticated: () {

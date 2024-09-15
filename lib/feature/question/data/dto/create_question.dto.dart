@@ -1,129 +1,83 @@
+import 'package:admin_app/feature/course/data/models/course.model.dart';
+import 'package:admin_app/feature/exam/data/models/exam.model.dart';
+import 'package:admin_app/feature/source/data/model/source.model.dart';
 import 'package:flutter/material.dart';
 
 import '../models/question.model.dart';
 
-class CreateQuestionBody {
-  CreateQuestionBody({
-    this.questionText,
-    List<String> correctAnswers = const [],
-    List<String> wrongAnswers = const [],
-    this.difficulty = 'medium',
-    this.field,
-    this.source,
-    this.explanation,
-  })  : _wrongAnswers = wrongAnswers,
-        _correctAnswers = correctAnswers {
-    answers = _answers();
-  }
+class QuestionDetails {
+  QuestionDetails({
+    QuestionModel? question,
+  })  : answers = question != null
+            ? [
+                if (question.correctAnswers != null)
+                  ...question.correctAnswers!.map((e) =>
+                      QuestionAnswer(value: e, isCorrect: true)),
+                if (question.wrongAnswers != null)
+                  ...question.wrongAnswers!.map((e) =>
+                      QuestionAnswer(value: e, isCorrect: false)),
+              ]
+            : [],
+        source = question?.source,
+        course = question?.course,
+        exam = question?.exam,
+        question =
+            TextEditingController(text: question?.questionText),
+        explanation =
+            TextEditingController(text: question?.explanation),
+        difficulty =
+            TextEditingController(text: question?.difficulty),
+        year =
+            TextEditingController(text: question?.year?.toString());
 
-  String? questionText;
-  final List<String> _correctAnswers;
-  final List<String> _wrongAnswers;
-  String? difficulty;
-  FieldModel? field;
-  String? source;
-  String? explanation;
+  final TextEditingController question;
+  final List<QuestionAnswer> answers;
+  final TextEditingController explanation;
+  final TextEditingController difficulty;
+  SourceModel? source;
+  CourseModel? course;
+  ExamModel? exam;
+  final TextEditingController year;
 
-  List<Answer> answers = [];
+  set newAnswer(String value) =>
+      answers.add(QuestionAnswer(value: value, isCorrect: false));
 
-  List<Answer> _answers() => [
-        ..._correctAnswers.map((answer) => Answer(
-              index: _correctAnswers.indexOf(answer),
-              answer: answer,
-              isCorrect: true,
-            )),
-        ..._wrongAnswers.map((answer) => Answer(
-              index: _wrongAnswers.indexOf(answer) +
-                  _correctAnswers.length,
-              answer: answer,
-              isCorrect: false,
-            )),
-      ];
+  set updateAnswer(QuestionAnswer answer) =>
+      answer.isCorrect = !answer.isCorrect;
 
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        'questionText': questionText,
-        'difficulty': difficulty,
-        'field': field,
-        'source': source,
-        'explanation': explanation,
-        'correctAnswers': answers
-            .where((answer) => answer.isCorrect)
-            .map((answer) => answer.answer)
-            .toList(),
-        'wrongAnswers': answers
-            .where((answer) => !answer.isCorrect)
-            .map((answer) => answer.answer)
-            .toList(),
-      };
+  set removeAnswer(QuestionAnswer answer) => answers.remove(answer);
 
-  void setQuestionText(String text) => questionText = text;
-
-  void setDifficulty(String value) => difficulty = value;
-
-  void setField(FieldModel value) => field = value;
-
-  void setSource(String value) => source = value;
-
-  void setExplanation(String value) => explanation = value;
-
-  void addAnswer() => {
-        answers.add(
-          Answer(
-            index: answers.length,
-            answer: '',
-            isCorrect: false,
-          ),
-        )
-      };
-
-  void updateAnswer(
-    int index, {
-    String? answer,
-    bool? isCorrect,
-  }) {
-    if (answer != null) answers[index].answer = answer;
-    if (isCorrect != null) answers[index].isCorrect = isCorrect;
-  }
-
-  void deleteAnswer(int index) {
-    answers.removeAt(index);
-    answers = answers
-        .map((answer) => answer.index > index
-            ? Answer(
-                index: answer.index - 1,
-                answer: answer.answer,
-                isCorrect: answer.isCorrect,
-              )
-            : answer)
-        .toList();
-  }
-
-  factory CreateQuestionBody.fromQuestion(QuestionModel question) =>
-      CreateQuestionBody(
-        questionText: question.questionText,
-        correctAnswers: question.correctAnswers ?? [],
-        wrongAnswers: question.wrongAnswers ?? [],
-        difficulty: question.difficulty,
-        field: question.field,
-        source: question.source?.id,
-        explanation: question.explanation,
-      );
-}
-
-class Answer {
-  Answer({
-    required this.index,
-    required this.answer,
-    required this.isCorrect,
-  }) : controller = TextEditingController(text: answer);
-
-  final int index;
-  final TextEditingController controller;
-  String answer;
-  bool isCorrect;
+  set updateSource(SourceModel? value) => source = value;
+  set updateCourse(CourseModel? value) => course = value;
+  set updateExam(ExamModel? value) => exam = value;
 
   Map<String, dynamic> toJson() => {
-        'answer': answer,
-        'isCorrect': isCorrect,
+        'questionText': question.text,
+        'correctAnswers': answers
+            .where((e) => e.isCorrect)
+            .map((e) => e.controller.text)
+            .toList(),
+        'wrongAnswers': answers
+            .where((e) => !e.isCorrect)
+            .map((e) => e.controller.text)
+            .toList(),
+        'explanation': explanation.text,
+        'difficulty': difficulty.text,
+        'sourceId': source?.id,
+        'courseId': course?.id,
+        'examId': exam?.id,
+        'year': year.text,
       };
+}
+
+class QuestionAnswer {
+  final controller = TextEditingController();
+  bool isCorrect;
+
+  QuestionAnswer({
+    String? value,
+    required this.isCorrect,
+  }) {
+    if (value != null) controller.text = value;
+  }
 }

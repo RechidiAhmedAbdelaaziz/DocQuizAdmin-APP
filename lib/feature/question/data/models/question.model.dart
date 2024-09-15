@@ -1,8 +1,9 @@
+import 'package:admin_app/feature/course/data/models/course.model.dart';
 import 'package:admin_app/feature/exam/data/models/exam.model.dart';
+import 'package:admin_app/feature/source/data/model/source.model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'field.model.dart';
 part 'question.model.g.dart';
 
 @JsonSerializable(createToJson: false)
@@ -14,11 +15,11 @@ class QuestionModel extends Equatable {
     required this.questionText,
     required this.difficulty,
     required this.type,
-    required this.source,
-    required this.field,
+    required this.course,
     required this.explanation,
-    required this.createdAt,
-    required this.updatedAt,
+    required this.source,
+    required this.year,
+    required this.exam,
   });
 
   final List<String>? correctAnswers;
@@ -29,11 +30,11 @@ class QuestionModel extends Equatable {
   final String? questionText;
   final String? difficulty;
   final String? type;
-  final ExamModel? source;
-  final FieldModel? field;
+  final CourseModel? course;
   final String? explanation;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
+  final SourceModel? source;
+  final num? year;
+  final ExamModel? exam;
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) =>
       _$QuestionModelFromJson(json);

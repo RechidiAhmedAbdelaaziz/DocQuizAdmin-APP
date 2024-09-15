@@ -1,102 +1,71 @@
-import 'dart:ui';
-
 import 'package:admin_app/core/di/container.dart';
+import 'package:admin_app/feature/course/data/models/course.model.dart';
+import 'package:admin_app/feature/exam/data/models/exam.model.dart';
 import 'package:admin_app/feature/question/data/dto/create_question.dto.dart';
 import 'package:admin_app/feature/question/data/models/question.model.dart';
-import 'package:admin_app/feature/question/module/questionlist/logic/question_list.cubit.dart';
+import 'package:admin_app/feature/question/data/repo/question.repo.dart';
+import 'package:admin_app/feature/source/data/model/source.model.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../data/repo/question.repo.dart';
 
 part 'question.state.dart';
-part 'question.cubit.freezed.dart';
 
 class QuestionCubit extends Cubit<QuestionState> {
   final _questionRepo = locator<QuestionRepo>();
-  final QuestionListCubit _questionListCubit;
+  final String? _questionId;
 
-  QuestionCubit({
-    required QuestionListCubit questionListCubit,
-    QuestionModel? question,
-  })  : _questionListCubit = questionListCubit,
-        _details = question != null
-            ? CreateQuestionBody.fromQuestion(question)
-            : CreateQuestionBody(),
-        super(const QuestionState.initial());
+  QuestionCubit({QuestionModel? question})
+      : _questionId = question?.id,
+        super(QuestionState.initial(question));
 
-  final CreateQuestionBody _details;
+  bool get isEditing => _questionId != null;
 
-  CreateQuestionBody get details => _details;
+  final formKey = GlobalKey<FormState>();
 
-  void setQuestionText(String text) => _details.setQuestionText(text);
+  void addAnswer() => emit(state.addAnswer());
 
-  void setDifficulty(String value) =>
-      _updateDetails(() => _details.setDifficulty(value));
+  void updateAnswer(QuestionAnswer answer) =>
+      emit(state.updateAnswer(answer));
 
-  void setField(FieldModel value) => _details.setField(value);
+  void removeAnswer(QuestionAnswer answer) =>
+      emit(state.removeAnswer(answer));
 
-  void setSource(String value) => _details.setSource(value);
+  void updateSource(SourceModel? value) =>
+      emit(state.update(source: value));
+  void updateCourse(CourseModel? value) =>
+      emit(state.update(course: value));
+  void updateExam(ExamModel? value) =>
+      emit(state.update(exam: value));
+  void removeExam() => emit(state.update(removeExam: true));
 
-  void setExplanation(String value) => _details.setExplanation(value);
+  Future<void> save() async {
+    if (!formKey.currentState!.validate()) return;
+    emit(state.saving());
 
-  void addAnswer() => _updateDetails(() => _details.addAnswer());
-
-  void updateAnswer(
-    int index, {
-    String? answer,
-    bool? isCorrect,
-  }) =>
-      _updateDetails(() => _details.updateAnswer(index,
-          answer: answer, isCorrect: isCorrect));
-
-  void deleteAnswer(int index) =>
-      _updateDetails(() => _details.deleteAnswer(index));
-
-  Future<void> createQuestion() async {
-    emit(const QuestionState.creatingQuestion());
-    final result = await _questionRepo.createQuestion(body: _details);
-
-    result.when(
-      success: (question) {
-        _questionListCubit.onAddQuestion(question);
-        emit(const QuestionState.questionCreated());
-      },
-      error: (error) => emit(QuestionState.error(error.message)),
-    );
+    _questionId == null
+        ? await _createQuestion()
+        : await _updateQuestion();
   }
 
-  Future<void> updateQuestion(QuestionModel question) async {
-    emit(const QuestionState.updatingQuestion());
-    final result = await _questionRepo.updateQuestion(
-        id: question.id!, body: _details);
-
-    result.when(
-      success: (question) {
-        _questionListCubit.onUpdateQuestion(question);
-        emit(const QuestionState.questionUpdated());
-      },
-      error: (error) => emit(QuestionState.error(error.message)),
-    );
-  }
-
-  Future<void> deleteQuestion(QuestionModel question) async {
-    emit(const QuestionState.deletingQuestion());
+  Future<void> _createQuestion() async {
     final result =
-        await _questionRepo.deleteQuestion(id: question.id!);
+        await _questionRepo.createQuestion(details: state.details);
 
     result.when(
-      success: (_) {
-        _questionListCubit.onRemoveQuestion(question);
-        emit(const QuestionState.questionDeleted());
-      },
-      error: (error) => emit(QuestionState.error(error.message)),
+      success: (question) => emit(state.saved(question)),
+      error: (error) => emit(state.errorOccured(error.message)),
     );
   }
 
-  void _updateDetails(VoidCallback updateCallBack) {
-    emit(const QuestionState.loading());
-    updateCallBack();
-    emit(const QuestionState.loaded());
+  Future<void> _updateQuestion() async {
+    final result = await _questionRepo.updateQuestion(
+      _questionId!,
+      body: state.details,
+    );
+
+    result.when(
+      success: (question) => emit(state.saved(question)),
+      error: (error) => emit(state.errorOccured(error.message)),
+    );
   }
 }

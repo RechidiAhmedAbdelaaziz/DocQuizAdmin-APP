@@ -1,95 +1,83 @@
-import 'package:admin_app/feature/question/data/models/question.model.dart';
+import 'package:admin_app/core/extension/list.extension.dart';
+import 'package:admin_app/core/shared/dto/pagination.dto.dart';
+import 'package:admin_app/feature/course/data/models/course.model.dart';
+import 'package:admin_app/feature/exam/data/models/exam.model.dart';
+import 'package:admin_app/feature/source/data/model/source.model.dart';
 
-
-class ListQuestionsFilter {
+class ListQuestionsFilter extends KeywordQuery {
   ListQuestionsFilter({
-    this.types,
-    this.difficulties,
-    this.source,
-    this.fields,
-    this.withExplanation,
-  });
+    super.keywords,
+    super.page,
+    super.limit = 10,
+    List<String>? types,
+    List<String>? difficulties,
+    List<SourceModel>? sources,
+    List<CourseModel>? courses,
+    List<String>? years,
+    this.exam,
+    this.withExplanation = false,
+  })  : types = types ?? [],
+        difficulties = difficulties ?? [],
+        sources = sources ?? [],
+        courses = courses ?? [],
+        years = years ?? [];
 
-  List<String>? types;
-  List<String>? difficulties;
-  String? source;
-  List<FieldModel>? fields;
-  bool? withExplanation;
+  final List<String> types;
+  final List<String> difficulties;
+  final List<SourceModel> sources;
+  final List<CourseModel> courses;
+  final ExamModel? exam;
+  final List<String> years;
+  final bool withExplanation;
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> queryMap = <String, dynamic>{};
+  Map<String, dynamic> toQueryMap() {
+    final query = super.toJson();
 
-    // Handle 'types' list
-    if (types != null) {
-      for (int i = 0; i < types!.length; i++) {
-        queryMap['types[$i]'] = types![i];
-      }
+    if (types.isNotEmpty) query['types[]'] = types;
+    if (difficulties.isNotEmpty) {
+      query['difficulties[]'] =
+          difficulties.map((e) => e.toLowerCase()).toList();
     }
-
-    // Handle 'difficulties' list
-    if (difficulties != null) {
-      for (int i = 0; i < difficulties!.length; i++) {
-        queryMap['difficulties[$i]'] = difficulties![i];
-      }
+    if (sources.isNotEmpty) {
+      query['sources[]'] = sources.map((e) => e.id).toList();
     }
-
-    // Handle 'source'
-    if (source != null) {
-      queryMap['source'] = source;
+    if (courses.isNotEmpty) {
+      query['courses[]'] = courses.map((e) => e.id).toList();
     }
+    if (exam != null) query['examId'] = exam!.id;
+    if (years.isNotEmpty) query['years[]'] = years;
+    if (withExplanation) query['withExplanation'] = 'true';
 
-    // Handle 'fields' list of FieldModel
-    if (fields != null) {
-      for (int i = 0; i < fields!.length; i++) {
-        final field = fields![i];
-        if (field.level != null)
-          queryMap['fields[$i][level]'] = field.level;
-        if (field.major != null)
-          queryMap['fields[$i][major]'] = field.major;
-        if (field.course != null)
-          queryMap['fields[$i][course]'] = field.course;
-      }
-    }
-
-    // Handle 'withExplanation' boolean
-    if (withExplanation == true) {
-      queryMap['withExplanation'] = withExplanation.toString();
-    }
-
-    return queryMap;
+    return query;
   }
 
-  set _type(String type) {
-    types ??= [];
-    types!.contains(type) ? types!.remove(type) : types!.add(type);
-    if (types!.isEmpty) types = null;
-  }
-
-  set _difficulty(String difficulty) {
-    difficulties ??= [];
-    difficulties!.contains(difficulty)
-        ? difficulties!.remove(difficulty)
-        : difficulties!.add(difficulty);
-    if (difficulties!.isEmpty) difficulties = null;
-  }
-
-  void copyWith({
+  @override
+  ListQuestionsFilter copyWith({
+    String? keywords,
+    int? page,
+    int? limit,
     String? type,
-    String? difficulty,
-    String? source,
-    List<FieldModel>? fields,
+    String? difficultie,
+    List<SourceModel>? sources,
+    List<CourseModel>? courses,
+    ExamModel? exam,
+    List<String>? years,
     bool? withExplanation,
   }) {
-    if (type != null) _type = type;
-    if (difficulty != null) _difficulty = difficulty;
-    this.source = source ?? this.source;
-    this.fields = fields ?? this.fields;
-    this.withExplanation = withExplanation ?? this.withExplanation;
-  }
+    if (type != null) types.addOrRemove(type);
+    if (difficultie != null) difficulties.addOrRemove(difficultie);
 
-  void clear() {
-    types = null;
-    difficulties = null;
-    withExplanation = null;
+    return ListQuestionsFilter(
+      keywords: keywords ?? this.keywords,
+      page: page ?? this.page,
+      limit: limit ?? this.limit,
+      types: types,
+      difficulties: difficulties,
+      sources: sources ?? this.sources,
+      courses: courses ?? this.courses,
+      exam: exam ?? this.exam,
+      years: years ?? this.years,
+      withExplanation: withExplanation ?? this.withExplanation,
+    );
   }
 }

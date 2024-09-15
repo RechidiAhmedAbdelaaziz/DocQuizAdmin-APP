@@ -31,6 +31,7 @@ class _Form extends StatelessWidget {
                 controller: passwordController,
                 hint: 'Password',
                 obscureText: true,
+                keyboardType: TextInputType.visiblePassword,
                 validator: (value) => value.isStrongPassword,
               ),
             ],

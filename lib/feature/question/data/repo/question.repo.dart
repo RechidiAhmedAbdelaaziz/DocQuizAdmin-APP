@@ -1,6 +1,5 @@
 import 'package:admin_app/core/di/container.dart';
 import 'package:admin_app/core/network/try_call_api.dart';
-import 'package:admin_app/core/shared/dto/pagination.dto.dart';
 import 'package:admin_app/core/types/repo_functions.type.dart';
 import 'package:admin_app/feature/question/data/dto/create_question.dto.dart';
 import 'package:admin_app/feature/question/data/models/question.model.dart';
@@ -12,20 +11,19 @@ class QuestionRepo {
   final _questionApi = locator<QuestionApiService>();
 
   RepoResult<QuestionModel> createQuestion({
-    required CreateQuestionBody body,
+    required QuestionDetails details,
   }) async {
     apiCall() async {
-      final result = await _questionApi.createQuestion(body.toJson());
+      final result =
+          await _questionApi.createQuestion(details.toJson());
       return QuestionModel.fromJson(result.data!);
     }
 
     return await TryCallApi.call(apiCall);
   }
 
-  RepoResult<QuestionModel> updateQuestion({
-    required String id,
-    required CreateQuestionBody body,
-  }) async {
+  RepoResult<QuestionModel> updateQuestion(String id,
+      {required QuestionDetails body}) async {
     apiCall() async {
       final result =
           await _questionApi.updateQuestion(id, body.toJson());
@@ -35,9 +33,7 @@ class QuestionRepo {
     return await TryCallApi.call(apiCall);
   }
 
-  RepoResult<void> deleteQuestion({
-    required String id,
-  }) async {
+  RepoResult<void> deleteQuestion(String id) async {
     apiCall() async {
       await _questionApi.deleteQuestion(id);
     }
@@ -46,12 +42,11 @@ class QuestionRepo {
   }
 
   RepoListResult<QuestionModel> getQuestions({
-    required PaginationQuery queries,
-    ListQuestionsFilter? body,
+    required ListQuestionsFilter filters,
   }) async {
     apiCall() async {
       final result = await _questionApi.getQuestions(
-        queries: {...queries.toJson(), ...?body?.toJson()},
+        queries: filters.toQueryMap(),
       );
       return result.data!
           .map((e) => QuestionModel.fromJson(e))

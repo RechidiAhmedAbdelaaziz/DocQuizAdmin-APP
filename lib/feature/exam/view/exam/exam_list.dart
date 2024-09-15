@@ -46,7 +46,7 @@ class _ExamItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.to(ExamQuestionListRoute(_exam)),
+      onTap: () => context.to(QuestionListRoute.ofExam(_exam)),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 5.h, horizontal: 16.w),
         padding:

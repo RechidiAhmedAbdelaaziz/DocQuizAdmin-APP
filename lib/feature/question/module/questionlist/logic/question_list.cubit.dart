@@ -1,85 +1,59 @@
 import 'package:admin_app/core/di/container.dart';
 import 'package:admin_app/core/extension/list.extension.dart';
-import 'package:admin_app/core/shared/dto/pagination.dto.dart';
+import 'package:admin_app/core/types/api_result.type.dart';
+import 'package:admin_app/feature/question/data/dto/list_question.dto.dart';
 import 'package:admin_app/feature/question/data/models/question.model.dart';
-import 'package:admin_app/feature/question/module/questionlist/logic/question_filter.cubit.dart';
+import 'package:admin_app/feature/question/data/repo/question.repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../data/repo/question.repo.dart';
 
 part 'question_list.state.dart';
-part 'question_list.cubit.freezed.dart';
 
 class QuestionListCubit extends Cubit<QuestionListState> {
   final _questionRepo = locator<QuestionRepo>();
-  final QuestionFilterCubit _filterCubit;
+  QuestionListCubit() : super(QuestionListState.initial());
 
-  QuestionListCubit({
-    required QuestionFilterCubit filterCubit,
-  })  : _filterCubit = filterCubit,
-        super(const QuestionListState.initial());
+  ListQuestionsFilter filters = ListQuestionsFilter();
 
-  final List<QuestionModel> _questions = [];
+  set setFilters(ListQuestionsFilter filters) {
+    this.filters = filters.copyWith(page: 1);
+    emit(QuestionListState.initial());
 
-  final _query = KeywordQuery();
-
-  List<QuestionModel> get questions => _questions;
-
-  void setKeyword(String keyword) {
-    _query.copyWith(keywords: keyword);
-    fetchQuestions(more: false);
+    fetchQuestions();
   }
 
-  void onAddQuestion(QuestionModel question) {
-    emit(const QuestionListState.fetchingQuestions());
-    questions.addUniq(question);
-    emit(const QuestionListState.addedQuestions());
+  void onAddQuestion(QuestionModel question) =>
+      emit(state.addQuestion(question));
+
+  void onUpdateQuestion(QuestionModel question) =>
+      emit(state.updateQuestion(question));
+
+  void onDeleteQuestion(QuestionModel question) =>
+      emit(state.deleteQuestion(question));
+
+  Future<void> fetchQuestions() async {
+    await _callRepo(
+        result: await _questionRepo.getQuestions(filters: filters),
+        onSuccess: (questions) {
+          if (questions.isNotEmpty) {
+            filters = filters.copyWith(page: filters.page + 1);
+            emit(state.fetchQuestions(questions));
+          }
+        });
   }
 
-  void onUpdateQuestion(QuestionModel question) {
-    emit(const QuestionListState.fetchingQuestions());
-    questions.update(question);
-    emit(const QuestionListState.updatedQuestions());
+  Future<void> delete(QuestionModel question) async {
+    await _callRepo(
+        result: await _questionRepo.deleteQuestion(question.id!),
+        onSuccess: (_) => onDeleteQuestion(question));
   }
 
-  void onRemoveQuestion(QuestionModel question) {
-    emit(const QuestionListState.fetchingQuestions());
-    questions.remove(question);
-    emit(const QuestionListState.fetchedQuestions());
-  }
-
-  Future<void> fetchQuestions({
-    bool more = true,
+  Future<void> _callRepo<T>({
+    required ApiResult<T> result,
+    required void Function(T) onSuccess,
   }) async {
-    emit(const QuestionListState.fetchingQuestions());
-
-    if (!more) _query.copyWith(page: 1);
-
-    final result = await _questionRepo.getQuestions(
-      queries: _query,
-      body: _filterCubit.filter,
-    );
-
     result.when(
-      success: (newQuestions) {
-        more
-            ? _fetchMoreQuestion(newQuestions)
-            : _fetchNewQuestion(newQuestions);
-        if (newQuestions.isNotEmpty)
-          _query.copyWith(page: _query.page + 1);
-        emit(const QuestionListState.fetchedQuestions());
-      },
-      error: (error) => emit(QuestionListState.error(error.message)),
+      success: onSuccess,
+      error: (error) => emit(state.setError(error.message)),
     );
-  }
-
-  void _fetchMoreQuestion(List<QuestionModel> questions) {
-    _questions.addAllUniq(questions);
-  }
-
-  void _fetchNewQuestion(List<QuestionModel> questions) {
-    _questions.clear();
-    _questions.addAll(questions);
   }
 }
