@@ -12,18 +12,30 @@ class QuestionState {
     return QuestionState(QuestionDetails(question: question));
   }
 
-  QuestionState addAnswer() {
-    details.newAnswer = '';
+  QuestionState addQuestion() {
+    details.newQuestion();
     return QuestionState(details);
   }
 
-  QuestionState updateAnswer(QuestionAnswer answer) {
-    details.updateAnswer = answer;
+  QuestionState removeQuestion(SubQuestion question) {
+    details.removeQuestion(question);
     return QuestionState(details);
   }
 
-  QuestionState removeAnswer(QuestionAnswer answer) {
-    details.removeAnswer = answer;
+  QuestionState addAnswer(SubQuestion question) {
+    question.newAnswer = '';
+    return QuestionState(details);
+  }
+
+  QuestionState updateAnswer(
+      SubQuestion question, QuestionAnswer answer) {
+    question.updateAnswer = answer;
+    return QuestionState(details);
+  }
+
+  QuestionState removeAnswer(
+      SubQuestion question, QuestionAnswer answer) {
+    question.removeAnswer = answer;
     return QuestionState(details);
   }
 

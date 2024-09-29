@@ -9,36 +9,71 @@ part 'question.model.g.dart';
 @JsonSerializable(createToJson: false)
 class QuestionModel extends Equatable {
   const QuestionModel({
-    required this.correctAnswers,
-    required this.wrongAnswers,
     required this.id,
-    required this.questionText,
-    required this.difficulty,
+    required this.questions,
+    required this.caseText,
     required this.type,
+    required this.exam,
     required this.course,
-    required this.explanation,
     required this.source,
     required this.year,
-    required this.exam,
+    required this.withExplanation,
   });
-
-  final List<String>? correctAnswers;
-  final List<String>? wrongAnswers;
 
   @JsonKey(name: '_id')
   final String? id;
-  final String? questionText;
-  final String? difficulty;
+  final List<Question>? questions;
+  final String? caseText;
   final String? type;
+  final ExamModel? exam;
   final CourseModel? course;
-  final String? explanation;
   final SourceModel? source;
   final num? year;
-  final ExamModel? exam;
+  final bool? withExplanation;
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) =>
       _$QuestionModelFromJson(json);
 
   @override
   List<Object?> get props => [id];
+}
+
+@JsonSerializable(createToJson: false)
+class Question extends Equatable {
+  const Question({
+    required this.text,
+    required this.answers,
+    required this.difficulty,
+    required this.explanation,
+    required this.type,
+  });
+
+  final String? text;
+  final List<Answer>? answers;
+  final String? difficulty;
+  final String? explanation;
+  final String? type;
+
+  factory Question.fromJson(Map<String, dynamic> json) =>
+      _$QuestionFromJson(json);
+
+  @override
+  List<Object?> get props => [text];
+}
+
+@JsonSerializable(createToJson: false)
+class Answer extends Equatable {
+  const Answer({
+    required this.text,
+    required this.isCorrect,
+  });
+
+  final String text;
+  final bool isCorrect;
+
+  factory Answer.fromJson(Map<String, dynamic> json) =>
+      _$AnswerFromJson(json);
+
+  @override
+  List<Object?> get props => [text];
 }

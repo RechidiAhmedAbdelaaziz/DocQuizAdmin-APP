@@ -45,7 +45,7 @@ class CreateExamScreen extends StatelessWidget {
         _houreController,
         _minuteController,
       ),
-      resetButton: _ResetButton(),
+      resetButton: const _ResetButton(),
       saveButton: _SaveButton(
         _formKey,
         _cityController,

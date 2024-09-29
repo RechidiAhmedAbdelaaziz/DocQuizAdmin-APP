@@ -1,7 +1,7 @@
 part of 'home.screen.dart';
 
 class _Statistics extends StatelessWidget {
-  const _Statistics({super.key});
+  const _Statistics();
 
   @override
   Widget build(BuildContext context) {

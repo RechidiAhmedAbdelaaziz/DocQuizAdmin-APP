@@ -36,7 +36,7 @@ class _Selector extends StatelessWidget {
 }
 
 class _Item extends StatelessWidget {
-  const _Item(this.exam, {super.key});
+  const _Item(this.exam);
 
   final ExamModel exam;
 

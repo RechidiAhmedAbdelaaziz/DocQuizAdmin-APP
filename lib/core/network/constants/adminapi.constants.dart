@@ -1,6 +1,6 @@
 abstract class AdminApiConstants {
-  static const _baseUrl = 'http://192.168.1.12:3001';
-
+  // static const _baseUrl = 'https://admin.api.docquizz.top';
+  static const _baseUrl = 'http://192.168.1.2:3001';
 
   //*EXAM
   static const exam = '$_baseUrl/exam-admin';
@@ -10,7 +10,7 @@ abstract class AdminApiConstants {
   static const question = '$_baseUrl/question';
   static const questionWithId = '$_baseUrl/question/{id}';
 
-  //* Domain 
+  //* Domain
   static const domain = '$_baseUrl/domains';
   static const domainWithId = '$_baseUrl/domains/{id}';
 
@@ -29,6 +29,4 @@ abstract class AdminApiConstants {
   //* SOURCE
   static const source = '$_baseUrl/source';
   static const sourceWithId = '$_baseUrl/source/{id}';
-
-
 }

@@ -3,11 +3,14 @@ import 'package:admin_app/core/extension/bottomsheet.extension.dart';
 import 'package:admin_app/core/extension/dropdown.extension.dart';
 import 'package:admin_app/core/extension/navigator.extension.dart';
 import 'package:admin_app/core/extension/validator.extension.dart';
+import 'package:admin_app/core/shared/widget/dynamic_pageview.dart';
 import 'package:admin_app/core/shared/widget/inpute_field.widget.dart';
+import 'package:admin_app/core/shared/widget/space.widget.dart';
 import 'package:admin_app/feature/course/data/models/course.model.dart';
 import 'package:admin_app/feature/domain/ui/domain_selector.dart';
 import 'package:admin_app/feature/exam/data/models/exam.model.dart';
 import 'package:admin_app/feature/exam/view/exam_selector.dart';
+import 'package:admin_app/feature/question/data/dto/create_question.dto.dart';
 import 'package:admin_app/feature/question/module/question/logic/question.cubit.dart';
 import 'package:admin_app/feature/source/data/model/source.model.dart';
 import 'package:admin_app/feature/source/ui/source_selector.dart';
@@ -22,6 +25,9 @@ class QuestionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final isLoading =
         context.select((QuestionCubit cubit) => cubit.state.isSaving);
+
+    final question = context.watch<QuestionCubit>().state.details;
+
     return BlocListener<QuestionCubit, QuestionState>(
       listener: (context, state) {
         state.onError((error) {
@@ -48,17 +54,14 @@ class QuestionScreen extends StatelessWidget {
                   key: context.read<QuestionCubit>().formKey,
                   child: ListView(
                     children: [
-                      _buildTitle('Le question'),
-                      const _QuestionField(),
-                      const Divider(),
-                      _buildTitle('Les réponses'),
-                      const _AnswersField(),
-                      const Divider(),
-                      _buildTitle('Explication'),
-                      const _ExplanationField(),
-                      const Divider(),
-                      _buildTitle('Difficulté'),
-                      const _DifficultyField(),
+                      if (question.questions.length > 1) ...[
+                        _buildTitle('Le cas clinique'),
+                        const _CaseCliniqueField(),
+                        const Divider(),
+                      ],
+                      _buildTitle(
+                          '${question.questions.length > 1 ? 'Les questions' : 'Le question'} '),
+                      const _QuestionsBox(),
                       const Divider(),
                       _buildTitle('Cours'),
                       const _CourseField(),
@@ -95,17 +98,178 @@ class QuestionScreen extends StatelessWidget {
   }
 }
 
-class _QuestionField extends StatelessWidget {
-  const _QuestionField();
+class _CaseCliniqueField extends StatelessWidget {
+  const _CaseCliniqueField();
 
   @override
   Widget build(BuildContext context) {
     final controller =
-        context.read<QuestionCubit>().state.details.question;
+        context.watch<QuestionCubit>().state.details.caseText;
+    return AppInputeField(
+      controller: controller,
+      hint: 'Entrer le cas clinique',
+      keyboardType: TextInputType.multiline,
+    );
+  }
+}
+
+class _QuestionsBox extends StatelessWidget {
+  const _QuestionsBox();
+
+  @override
+  Widget build(BuildContext context) {
+    final questions =
+        context.watch<QuestionCubit>().state.details.questions;
+
+   
+    return Column(
+      children: [
+        _buildAddQuestionButton(
+            () => context.read<QuestionCubit>().addQuestion()),
+        const Divider(),
+        DynamicPageView(
+          children: [
+            for (int i = 0; i < questions.length; i++)
+              _buildQuestion(i, questions, context)
+          ],
+        ),
+        // PageView.builder(
+        //   controller: PageController(),
+        //   itemCount: questions.length,
+        //   itemBuilder: (context, index) {
+        //     return _buildQuestion(index, questions, context);
+        //   },
+        // ),
+      ],
+    );
+  }
+
+  Container _buildQuestion(
+      int index, List<SubQuestion> questions, BuildContext context) {
+    final question = questions[index];
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 4.w),
+      margin: EdgeInsets.only(right: 4.w),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.teal),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                width(12),
+                _buildIndicator(index),
+                const Spacer(),
+                if (questions.length > 1)
+                  IconButton(
+                    onPressed: () {
+                      context
+                          .read<QuestionCubit>()
+                          .removeQuestion(question);
+                    },
+                    icon: const Icon(
+                      Icons.delete,
+                      color: Colors.red,
+                    ),
+                  )
+              ],
+            ),
+            _QuestionField(question),
+            _buildTitle('Les réponses'),
+            _AnswersField(question),
+            const Divider(),
+            _buildTitle('Explication'),
+            _ExplanationField(question),
+            const Divider(),
+            _buildTitle('Difficulté'),
+            _DifficultyField(question),
+            height(12),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        title,
+        style: TextStyle(
+          fontSize: 22.sp,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAddQuestionButton(Function() onPressed) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8.h),
+      child: InkWell(
+        onTap: onPressed,
+        child: Container(
+          padding:
+              EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
+          decoration: BoxDecoration(
+            color: Colors.blue,
+            borderRadius: BorderRadius.circular(20.r),
+          ),
+          alignment: Alignment.center,
+          child: Text(
+            'Ajouter une question',
+            style: TextStyle(
+              fontSize: 18.sp,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildIndicator(
+    int index,
+  ) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          margin:
+              EdgeInsets.symmetric(horizontal: 4.w, vertical: 5.h),
+          padding:
+              EdgeInsets.symmetric(horizontal: 7.w, vertical: 7.h),
+          decoration: const BoxDecoration(
+              shape: BoxShape.circle, color: Colors.blue),
+          child: Text(
+            'Q${index + 1}',
+            style: TextStyle(
+              fontSize: 20.sp,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _QuestionField extends StatelessWidget {
+  const _QuestionField(this.question);
+
+  final SubQuestion question;
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = question.question;
 
     return AppInputeField(
       controller: controller,
-      hint: 'Entrer la question',
+      hint: 'Entrer le question',
       keyboardType: TextInputType.multiline,
       validator: (value) => value.isValidString,
     );
@@ -113,13 +277,14 @@ class _QuestionField extends StatelessWidget {
 }
 
 class _AnswersField extends StatelessWidget {
-  const _AnswersField();
+  const _AnswersField(this.question);
+
+  final SubQuestion question;
 
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<QuestionCubit>();
-    final answers =
-        context.watch<QuestionCubit>().state.details.answers;
+    final answers = question.answers;
     return Column(
       children: [
         ...answers.map((answer) => Padding(
@@ -127,7 +292,8 @@ class _AnswersField extends StatelessWidget {
               child: Row(
                 children: [
                   IconButton(
-                    onPressed: () => cubit.updateAnswer(answer),
+                    onPressed: () =>
+                        cubit.updateAnswer(question, answer),
                     icon: Icon(
                       answer.isCorrect
                           ? Icons.check_circle
@@ -147,7 +313,8 @@ class _AnswersField extends StatelessWidget {
                   ),
                   IconButton(
                     icon: const Icon(Icons.delete_outline),
-                    onPressed: () => cubit.removeAnswer(answer),
+                    onPressed: () =>
+                        cubit.removeAnswer(question, answer),
                   ),
                 ],
               ),
@@ -155,7 +322,7 @@ class _AnswersField extends StatelessWidget {
         IconButton(
           icon: const Icon(Icons.add),
           onPressed: () {
-            context.read<QuestionCubit>().addAnswer();
+            context.read<QuestionCubit>().addAnswer(question);
           },
         ),
       ],
@@ -207,12 +374,13 @@ class _CourseField extends StatelessWidget {
 }
 
 class _ExplanationField extends StatelessWidget {
-  const _ExplanationField();
+  const _ExplanationField(this.question);
+
+  final SubQuestion question;
 
   @override
   Widget build(BuildContext context) {
-    final controller =
-        context.watch<QuestionCubit>().state.details.explanation;
+    final controller = question.explanation;
     return AppInputeField(
       controller: controller,
       hint: 'Entrer l\'explication',
@@ -222,7 +390,9 @@ class _ExplanationField extends StatelessWidget {
 }
 
 class _DifficultyField extends StatefulWidget {
-  const _DifficultyField();
+  const _DifficultyField(this.question);
+
+  final SubQuestion question;
 
   @override
   State<_DifficultyField> createState() => _DifficultyFieldState();
@@ -231,8 +401,7 @@ class _DifficultyField extends StatefulWidget {
 class _DifficultyFieldState extends State<_DifficultyField> {
   @override
   Widget build(BuildContext context) {
-    final difficulty =
-        context.watch<QuestionCubit>().state.details.difficulty;
+    final difficulty = widget.question.difficulty;
 
     void onChange(String value) {
       setState(() => difficulty.text = value);

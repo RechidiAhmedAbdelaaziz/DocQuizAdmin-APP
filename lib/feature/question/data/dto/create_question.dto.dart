@@ -8,36 +8,68 @@ import '../models/question.model.dart';
 class QuestionDetails {
   QuestionDetails({
     QuestionModel? question,
-  })  : answers = question != null
+  })  : caseText = TextEditingController(text: question?.caseText),
+        questions = question != null
             ? [
-                if (question.correctAnswers != null)
-                  ...question.correctAnswers!.map((e) =>
-                      QuestionAnswer(value: e, isCorrect: true)),
-                if (question.wrongAnswers != null)
-                  ...question.wrongAnswers!.map((e) =>
-                      QuestionAnswer(value: e, isCorrect: false)),
+                ...question.questions!.map(
+                  (e) => SubQuestion(question: e),
+                )
               ]
-            : [],
+            : [SubQuestion()],
         source = question?.source,
         course = question?.course,
         exam = question?.exam,
-        question =
-            TextEditingController(text: question?.questionText),
+        year =
+            TextEditingController(text: question?.year?.toString());
+
+  final TextEditingController caseText;
+  final List<SubQuestion> questions;
+  SourceModel? source;
+  CourseModel? course;
+  ExamModel? exam;
+  final TextEditingController year;
+
+  set updateSource(SourceModel? value) => source = value;
+  set updateCourse(CourseModel? value) => course = value;
+  set updateExam(ExamModel? value) => exam = value;
+
+  void newQuestion() => questions.add(SubQuestion());
+  void removeQuestion(SubQuestion question) =>
+      questions.remove(question);
+
+  Map<String, dynamic> toJson() => {
+        if (questions.length > 1) 'caseText': caseText.text,
+        'questions': questions.map((e) => e.toJson()).toList(),
+        'sourceId': source?.id,
+        'courseId': course?.id,
+        if (exam?.id != null) 'examId': exam!.id,
+        'year': year.text,
+      };
+}
+
+class SubQuestion {
+  SubQuestion({
+    Question? question,
+  })  : answers = question != null
+            ? [
+                ...question.answers!.map(
+                  (e) => QuestionAnswer(
+                    value: e.text,
+                    isCorrect: e.isCorrect,
+                  ),
+                )
+              ]
+            : [],
+        question = TextEditingController(text: question?.text),
         explanation =
             TextEditingController(text: question?.explanation),
         difficulty =
-            TextEditingController(text: question?.difficulty),
-        year =
-            TextEditingController(text: question?.year?.toString());
+            TextEditingController(text: question?.difficulty);
 
   final TextEditingController question;
   final List<QuestionAnswer> answers;
   final TextEditingController explanation;
   final TextEditingController difficulty;
-  SourceModel? source;
-  CourseModel? course;
-  ExamModel? exam;
-  final TextEditingController year;
 
   set newAnswer(String value) =>
       answers.add(QuestionAnswer(value: value, isCorrect: false));
@@ -47,26 +79,11 @@ class QuestionDetails {
 
   set removeAnswer(QuestionAnswer answer) => answers.remove(answer);
 
-  set updateSource(SourceModel? value) => source = value;
-  set updateCourse(CourseModel? value) => course = value;
-  set updateExam(ExamModel? value) => exam = value;
-
   Map<String, dynamic> toJson() => {
-        'questionText': question.text,
-        'correctAnswers': answers
-            .where((e) => e.isCorrect)
-            .map((e) => e.controller.text)
-            .toList(),
-        'wrongAnswers': answers
-            .where((e) => !e.isCorrect)
-            .map((e) => e.controller.text)
-            .toList(),
+        'text': question.text,
+        'answers': answers.map((e) => e.toJson()).toList(),
         'explanation': explanation.text,
         'difficulty': difficulty.text,
-        'sourceId': source?.id,
-        'courseId': course?.id,
-        'examId': exam?.id,
-        'year': year.text,
       };
 }
 
@@ -80,4 +97,9 @@ class QuestionAnswer {
   }) {
     if (value != null) controller.text = value;
   }
+
+  Map<String, dynamic> toJson() => {
+        'text': controller.text,
+        'isCorrect': isCorrect,
+      };
 }

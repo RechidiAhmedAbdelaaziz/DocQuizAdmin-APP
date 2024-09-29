@@ -29,11 +29,10 @@ extension ValidationExtensions on String? {
   /// String must not be empty or null and not end with whitespace
   String? get isValidString {
     if (this == null || this!.isEmpty) return 'This is required';
-    if (this!.endsWith(' '))
-      return 'This must not end with whitespace';
+    // if (this!.endsWith(' '))
+    //   return 'This must not end with whitespace';
     return null;
   }
-
 
   bool get isNotEmptyOrNull => this != null && this!.isNotEmpty;
 }

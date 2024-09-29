@@ -62,12 +62,13 @@ class QuestionsListScreen extends StatelessWidget {
 }
 
 class _QuestionItem extends StatelessWidget {
-  final QuestionModel question;
+  final QuestionModel question_;
 
-  const _QuestionItem(this.question);
+  const _QuestionItem(this.question_);
 
   @override
   Widget build(BuildContext context) {
+    final question = question_.questions!.first;
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 12.w),
       padding: EdgeInsets.all(10.w),
@@ -83,14 +84,14 @@ class _QuestionItem extends StatelessWidget {
             children: [
               Expanded(
                 child: _buildHint(
-                    value: question.exam?.title, color: Colors.teal),
+                    value: question_.exam?.title, color: Colors.teal),
               ),
               _buildOption(),
             ],
           ),
           const Divider(),
           Text(
-            '  ${question.questionText!}',
+            '  ${question_.caseText ?? question.text}  ',
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
@@ -115,21 +116,24 @@ class _QuestionItem extends StatelessWidget {
               ),
               width(20),
               _buildHint(
-                value: question.type,
-                color: Colors.blue,
+                value: question_.type,
+                color: question_.type?.toLowerCase() == 'cas clinique'
+                    ? Colors.blue
+                    : Colors.teal,
               ),
               const Spacer(),
               _buildHint(
-                value: question.explanation?.isEmpty == true
-                    ? null
-                    : 'Has Explanation',
+                value: question_.withExplanation == true
+                    ? 'Has Explanation'
+                    : null,
                 color: Colors.purple,
               ),
             ],
           ),
-          _buildValue(title: 'Cours: ', value: question.course?.name),
           _buildValue(
-              title: 'Source: ', value: question.source?.name),
+              title: 'Cours: ', value: question_.course?.name),
+          _buildValue(
+              title: 'Source: ', value: question_.source?.name),
         ],
       ),
     );
@@ -213,7 +217,7 @@ class _QuestionItem extends StatelessWidget {
               leading: const Icon(Icons.edit),
               onTap: () async {
                 final newQuestion = await context
-                    .to<QuestionModel>(QuestionRoute.edit(question));
+                    .to<QuestionModel>(QuestionRoute.edit(question_));
 
                 if (newQuestion != null) {
                   cubit.onUpdateQuestion(newQuestion);
@@ -227,7 +231,7 @@ class _QuestionItem extends StatelessWidget {
               title: const Text('Supprimer'),
               leading: const Icon(Icons.delete),
               onTap: () {
-                context.read<QuestionListCubit>().delete(question);
+                context.read<QuestionListCubit>().delete(question_);
                 context.back();
               },
             ),

@@ -7,7 +7,6 @@ import 'package:admin_app/feature/exam/data/models/exam.model.dart';
 import 'package:admin_app/feature/exam/helper/create_exam.route.dart';
 import 'package:admin_app/feature/exam/logic/exam.cubit.dart';
 import 'package:admin_app/feature/question/helper/question.route.dart';
-import 'package:admin_app/feature/question/helper/question_list.route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

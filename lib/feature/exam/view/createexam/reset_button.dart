@@ -1,7 +1,7 @@
 part of 'create_exam.screen.dart';
 
 class _ResetButton extends StatelessWidget {
-  const _ResetButton({super.key});
+  const _ResetButton();
 
   @override
   Widget build(BuildContext context) {

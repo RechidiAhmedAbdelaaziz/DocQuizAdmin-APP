@@ -22,13 +22,19 @@ class QuestionCubit extends Cubit<QuestionState> {
 
   final formKey = GlobalKey<FormState>();
 
-  void addAnswer() => emit(state.addAnswer());
+  void addQuestion() => emit(state.addQuestion());
 
-  void updateAnswer(QuestionAnswer answer) =>
-      emit(state.updateAnswer(answer));
+  void removeQuestion(SubQuestion question) =>
+      emit(state.removeQuestion(question));
 
-  void removeAnswer(QuestionAnswer answer) =>
-      emit(state.removeAnswer(answer));
+  void addAnswer(SubQuestion question) =>
+      emit(state.addAnswer(question));
+
+  void updateAnswer(SubQuestion question, QuestionAnswer answer) =>
+      emit(state.updateAnswer(question, answer));
+
+  void removeAnswer(SubQuestion question, QuestionAnswer answer) =>
+      emit(state.removeAnswer(question, answer));
 
   void updateSource(SourceModel? value) =>
       emit(state.update(source: value));

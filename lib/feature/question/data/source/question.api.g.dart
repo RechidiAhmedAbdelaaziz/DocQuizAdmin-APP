@@ -35,7 +35,7 @@ class _QuestionApiService implements QuestionApiService {
     )
         .compose(
           _dio.options,
-          'http://192.168.1.12:3001/question',
+          'http://192.168.1.2:3001/question',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -72,7 +72,7 @@ class _QuestionApiService implements QuestionApiService {
     )
         .compose(
           _dio.options,
-          'http://192.168.1.12:3001/question/${id}',
+          'http://192.168.1.2:3001/question/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -105,7 +105,7 @@ class _QuestionApiService implements QuestionApiService {
     )
         .compose(
           _dio.options,
-          'http://192.168.1.12:3001/question/${id}',
+          'http://192.168.1.2:3001/question/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -140,7 +140,7 @@ class _QuestionApiService implements QuestionApiService {
     )
         .compose(
           _dio.options,
-          'http://192.168.1.12:3000/question',
+          'http://192.168.1.2:3000/question',
           queryParameters: queryParameters,
           data: _data,
         )
