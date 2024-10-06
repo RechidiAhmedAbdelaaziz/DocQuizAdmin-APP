@@ -35,7 +35,7 @@ class QuestionFilter extends StatelessWidget {
         const Divider(),
         _buildTitle('Types'),
         _buildFilter(
-          filters: ['QCM', 'QCU'],
+          filters: ['QCM', 'QCU', 'Cas Clinique'],
           selectedFilters: filter.types,
           onSelect: (type) => cubit.selectType(type),
         ),
@@ -50,10 +50,14 @@ class QuestionFilter extends StatelessWidget {
         height(20),
         _buildTitle('Additional Filters'),
         _buildFilter(
-          filters: ['With Explanation'],
-          selectedFilters:
-              filter.withExplanation ? ['With Explanation'] : [],
-          onSelect: (filter) => cubit.setWithExplanation(),
+          filters: ['With Explanation', 'Without Explanation'],
+          selectedFilters: [
+            if (filter.withExplanation) 'With Explanation',
+            if (filter.withoutExplanation) 'Without Explanation',
+          ],
+          onSelect: (filter) => cubit.setWithExplanation(
+            filter == 'With Explanation',
+          ),
         ),
       ],
     );

@@ -27,13 +27,16 @@ extension DropDowns on BuildContext {
             ),
           ).showModal(this);
         },
+        textAlign: TextAlign.center,
         decoration: InputDecoration(
-          suffixIcon: const Icon(Icons.arrow_drop_down),
+          // suffixIcon: const Icon(Icons.arrow_drop_down),
+
           contentPadding:
-              EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
+              EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
           hintText: hintText,
           labelText: hintText,
           alignLabelWithHint: true,
+
           border: const OutlineInputBorder(
             borderSide: BorderSide(
               width: 0,

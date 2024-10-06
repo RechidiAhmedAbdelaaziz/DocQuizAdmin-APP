@@ -6,7 +6,7 @@ class QuestionState {
 
   QuestionState(this._details, {this.error});
 
-  QuestionDetails get details => _details!;
+  QuestionDetails get details => _details ?? QuestionDetails();
 
   factory QuestionState.initial(QuestionModel? question) {
     return QuestionState(QuestionDetails(question: question));
@@ -44,8 +44,14 @@ class QuestionState {
     CourseModel? course,
     ExamModel? exam,
     bool removeExam = false,
+    SourceYearModel? removeSource,
   }) {
-    if (source != null) details.updateSource = source;
+    if (removeSource != null) {
+      details.removeSource = removeSource;
+    } else if (source != null) {
+      details.addSource = source;
+    }
+
     if (course != null) details.updateCourse = course;
     if (exam != null) details.updateExam = exam;
     if (removeExam) details.updateExam = null;

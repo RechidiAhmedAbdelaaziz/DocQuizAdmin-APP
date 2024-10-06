@@ -3,7 +3,6 @@ import 'package:admin_app/core/extension/bottomsheet.extension.dart';
 import 'package:admin_app/core/extension/dropdown.extension.dart';
 import 'package:admin_app/core/extension/navigator.extension.dart';
 import 'package:admin_app/core/extension/validator.extension.dart';
-import 'package:admin_app/core/shared/widget/dynamic_pageview.dart';
 import 'package:admin_app/core/shared/widget/inpute_field.widget.dart';
 import 'package:admin_app/core/shared/widget/space.widget.dart';
 import 'package:admin_app/feature/course/data/models/course.model.dart';
@@ -44,6 +43,14 @@ class QuestionScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Question'),
+          actions: [
+            IconButton(
+              onPressed: () {
+                context.read<QuestionCubit>().addQuestion();
+              },
+              icon: const Icon(Icons.add),
+            ),
+          ],
         ),
         body: Padding(
           padding:
@@ -60,8 +67,45 @@ class QuestionScreen extends StatelessWidget {
                         const Divider(),
                       ],
                       _buildTitle(
-                          '${question.questions.length > 1 ? 'Les questions' : 'Le question'} '),
-                      const _QuestionsBox(),
+                          'Les questions : ${question.questions.length}'),
+
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => BlocProvider.value(
+                                value: context.read<QuestionCubit>(),
+                                child: _QuestionsBox(),
+                              ),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 12.w, vertical: 12.h),
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(20.r),
+                          ),
+                          alignment: Alignment.center,
+                          child: Row(
+                            mainAxisAlignment:
+                                MainAxisAlignment.center,
+                            children: [
+                              const Icon(Icons.settings,
+                                  color: Colors.white),
+                              Text(
+                                '   Ajouter ou modifier les questions',
+                                style: TextStyle(
+                                  fontSize: 18.sp,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      // _QuestionsBox(),
                       const Divider(),
                       _buildTitle('Cours'),
                       const _CourseField(),
@@ -72,8 +116,8 @@ class QuestionScreen extends StatelessWidget {
                       _buildTitle('Examen'),
                       const _ExamField(),
                       const Divider(),
-                      _buildTitle('Année'),
-                      const _YearField(),
+                      // _buildTitle('Année'),
+                      // const _YearField(),
                       const Divider(),
                       const _SubmitButton(),
                     ],
@@ -114,83 +158,135 @@ class _CaseCliniqueField extends StatelessWidget {
 }
 
 class _QuestionsBox extends StatelessWidget {
-  const _QuestionsBox();
+  _QuestionsBox();
+
+  final controller = PageController(viewportFraction: 0.95);
 
   @override
   Widget build(BuildContext context) {
     final questions =
         context.watch<QuestionCubit>().state.details.questions;
 
-   
-    return Column(
-      children: [
-        _buildAddQuestionButton(
-            () => context.read<QuestionCubit>().addQuestion()),
-        const Divider(),
-        DynamicPageView(
-          children: [
-            for (int i = 0; i < questions.length; i++)
-              _buildQuestion(i, questions, context)
-          ],
-        ),
-        // PageView.builder(
-        //   controller: PageController(),
-        //   itemCount: questions.length,
-        //   itemBuilder: (context, index) {
-        //     return _buildQuestion(index, questions, context);
-        //   },
-        // ),
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Questions'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.read<QuestionCubit>().addQuestion();
+              controller.animateToPage(
+                questions.length,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.bounceInOut,
+              );
+            },
+            icon: const Icon(Icons.add),
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          SizedBox(
+            height: 820.h,
+            child: PageView(
+              controller: controller,
+              children: [
+                for (int i = 0; i < questions.length; i++)
+                  _buildQuestion(i, questions, context)
+              ],
+            ),
+          ),
+          // PageView.builder(
+          //   controller: PageController(),
+          //   itemCount: questions.length,
+          //   itemBuilder: (context, index) {
+          //     return _buildQuestion(index, questions, context);
+          //   },
+          // ),
+        ],
+      ),
     );
   }
 
-  Container _buildQuestion(
+  Widget _buildQuestion(
       int index, List<SubQuestion> questions, BuildContext context) {
     final question = questions[index];
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4.w),
-      margin: EdgeInsets.only(right: 4.w),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.teal),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: Container(
+            padding:
+                EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
+            margin:
+                EdgeInsets.symmetric(horizontal: 4.w, vertical: 6.h),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12.r),
+              border: Border.all(color: Colors.teal, width: 2),
+            ),
+            child: Column(
               children: [
-                width(12),
-                _buildIndicator(index),
-                const Spacer(),
-                if (questions.length > 1)
-                  IconButton(
-                    onPressed: () {
-                      context
-                          .read<QuestionCubit>()
-                          .removeQuestion(question);
-                    },
-                    icon: const Icon(
-                      Icons.delete,
-                      color: Colors.red,
+                Row(
+                  children: [
+                    width(12),
+                    _buildIndicator(index),
+                    const Spacer(),
+                    if (questions.length > 1)
+                      IconButton(
+                        onPressed: () {
+                          if (index == (questions.length - 1)) {
+                            controller.animateToPage(
+                              index,
+                              duration:
+                                  const Duration(milliseconds: 300),
+                              curve: Curves.bounceInOut,
+                            );
+                          }
+                          context
+                              .read<QuestionCubit>()
+                              .removeQuestion(question);
+                          // if it is the last  then move to new last one
+                        },
+                        icon: const Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                        ),
+                      )
+                  ],
+                ),
+                const Divider(),
+                height(12),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _QuestionField(question),
+                        _buildTitle('Les réponses'),
+                        _AnswersField(question),
+                        const Divider(),
+                        _buildTitle('Explication'),
+                        _ExplanationField(question),
+                        const Divider(),
+                        _buildTitle('Difficulté'),
+                        _DifficultyField(question),
+                        height(5),
+                        //add keyboard height if it's enabled
+                        SizedBox(
+                          height: MediaQuery.of(context)
+                              .viewInsets
+                              .bottom,
+                        ),
+                      ],
                     ),
-                  )
+                  ),
+                ),
               ],
             ),
-            _QuestionField(question),
-            _buildTitle('Les réponses'),
-            _AnswersField(question),
-            const Divider(),
-            _buildTitle('Explication'),
-            _ExplanationField(question),
-            const Divider(),
-            _buildTitle('Difficulté'),
-            _DifficultyField(question),
-            height(12),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 
@@ -202,31 +298,6 @@ class _QuestionsBox extends StatelessWidget {
         style: TextStyle(
           fontSize: 22.sp,
           fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildAddQuestionButton(Function() onPressed) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.h),
-      child: InkWell(
-        onTap: onPressed,
-        child: Container(
-          padding:
-              EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
-          decoration: BoxDecoration(
-            color: Colors.blue,
-            borderRadius: BorderRadius.circular(20.r),
-          ),
-          alignment: Alignment.center,
-          child: Text(
-            'Ajouter une question',
-            style: TextStyle(
-              fontSize: 18.sp,
-              color: Colors.white,
-            ),
-          ),
         ),
       ),
     );
@@ -468,57 +539,75 @@ class _SourceField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final source =
-        context.watch<QuestionCubit>().state.details.source;
+    final sources =
+        context.watch<QuestionCubit>().state.details.sources;
     final cubit = context.read<QuestionCubit>();
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(12.r),
-      ),
-      child: Row(
-        children: [
-          Text(
-            source?.name ?? 'Choisir une source...',
-            style: TextStyle(
-              fontSize: 18.sp,
-              color: source == null ? Colors.grey : Colors.black,
+    return Column(
+      children: [
+        ...sources.map(
+          (source) => Container(
+            margin: EdgeInsets.symmetric(vertical: 5.h),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey),
+              borderRadius: BorderRadius.circular(12.r),
+            ),
+            child: Row(
+              children: [
+                width(22),
+                Expanded(
+                  child: Text(
+                    source.source.name ?? '',
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                    width: 120.w,
+                    child: _YearField(source.controller)),
+                IconButton(
+                  icon: const Icon(Icons.cancel),
+                  onPressed: () {
+                    cubit.deleteSource(source);
+                  },
+                ),
+              ],
             ),
           ),
-          const Spacer(),
-          IconButton(
-            icon: Icon(
-              source == null ? Icons.add : Icons.edit,
-              color: source != null ? Colors.grey : Colors.black,
-            ),
-            onPressed: () async {
-              final source =
-                  await context.showBottomSheet<SourceModel>(
-                child: const SourceSelector(),
-              );
-
-              if (source != null) cubit.updateSource(source);
-            },
-          ),
-        ],
-      ),
+        ),
+        // add button
+        IconButton(
+          icon: const Icon(Icons.add),
+          onPressed: () {
+            context
+                .showBottomSheet<SourceModel>(
+              child: const SourceSelector(),
+            )
+                .then((source) {
+              if (source != null) {
+                cubit.addSource(source);
+              }
+            });
+          },
+        ),
+      ],
     );
   }
 }
 
 class _YearField extends StatelessWidget {
-  const _YearField();
+  const _YearField(this.controller);
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
-    final controller =
-        context.watch<QuestionCubit>().state.details.year;
     return context.showSingleItemDropDown(
       controller: controller,
       data: [
         for (var i = 2000; i <= DateTime.now().year; i++)
           i.toString(),
+        '0'
       ],
     );
   }

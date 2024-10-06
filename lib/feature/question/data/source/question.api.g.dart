@@ -35,7 +35,7 @@ class _QuestionApiService implements QuestionApiService {
     )
         .compose(
           _dio.options,
-          'http://192.168.1.2:3001/question',
+          'https://admin.api.docquizz.top/question',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -72,7 +72,7 @@ class _QuestionApiService implements QuestionApiService {
     )
         .compose(
           _dio.options,
-          'http://192.168.1.2:3001/question/${id}',
+          'https://admin.api.docquizz.top/question/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -105,7 +105,7 @@ class _QuestionApiService implements QuestionApiService {
     )
         .compose(
           _dio.options,
-          'http://192.168.1.2:3001/question/${id}',
+          'https://admin.api.docquizz.top/question/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -140,7 +140,7 @@ class _QuestionApiService implements QuestionApiService {
     )
         .compose(
           _dio.options,
-          'http://192.168.1.2:3000/question',
+          'https://api.docquizz.top/question',
           queryParameters: queryParameters,
           data: _data,
         )

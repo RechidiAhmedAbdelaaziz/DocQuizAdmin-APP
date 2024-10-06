@@ -15,7 +15,7 @@ class QuestionModel extends Equatable {
     required this.type,
     required this.exam,
     required this.course,
-    required this.source,
+    required this.sources,
     required this.year,
     required this.withExplanation,
   });
@@ -27,7 +27,7 @@ class QuestionModel extends Equatable {
   final String? type;
   final ExamModel? exam;
   final CourseModel? course;
-  final SourceModel? source;
+  final List<SourceYear> sources;
   final num? year;
   final bool? withExplanation;
 
@@ -76,4 +76,21 @@ class Answer extends Equatable {
 
   @override
   List<Object?> get props => [text];
+}
+
+@JsonSerializable(createToJson: false)
+class SourceYear extends Equatable {
+  final SourceModel? source;
+  final int year;
+
+  const SourceYear({
+    required this.source,
+    required this.year,
+  });
+
+  factory SourceYear.fromJson(Map<String, dynamic> json) =>
+      _$SourceYearFromJson(json);
+
+  @override
+  List<Object?> get props => [source];
 }

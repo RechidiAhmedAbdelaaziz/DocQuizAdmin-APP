@@ -16,6 +16,7 @@ class ListQuestionsFilter extends KeywordQuery {
     List<String>? years,
     this.exam,
     this.withExplanation = false,
+    this.withoutExplanation = false,
   })  : types = types ?? [],
         difficulties = difficulties ?? [],
         sources = sources ?? [],
@@ -29,6 +30,7 @@ class ListQuestionsFilter extends KeywordQuery {
   final ExamModel? exam;
   final List<String> years;
   final bool withExplanation;
+  final bool withoutExplanation ;
 
   Map<String, dynamic> toQueryMap() {
     final query = super.toJson();
@@ -47,6 +49,7 @@ class ListQuestionsFilter extends KeywordQuery {
     if (exam != null) query['examId'] = exam!.id;
     if (years.isNotEmpty) query['years[]'] = years;
     if (withExplanation) query['withExplanation'] = 'true';
+    if (withoutExplanation) query['withoutExplanation'] = 'true';
 
     return query;
   }
@@ -63,6 +66,7 @@ class ListQuestionsFilter extends KeywordQuery {
     ExamModel? exam,
     List<String>? years,
     bool? withExplanation,
+    bool? withoutExplanation,
   }) {
     if (type != null) types.addOrRemove(type);
     if (difficultie != null) difficulties.addOrRemove(difficultie);
@@ -78,6 +82,7 @@ class ListQuestionsFilter extends KeywordQuery {
       exam: exam ?? this.exam,
       years: years ?? this.years,
       withExplanation: withExplanation ?? this.withExplanation,
+      withoutExplanation: withoutExplanation ?? this.withoutExplanation,
     );
   }
 }

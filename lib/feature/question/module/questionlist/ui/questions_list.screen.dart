@@ -133,7 +133,11 @@ class _QuestionItem extends StatelessWidget {
           _buildValue(
               title: 'Cours: ', value: question_.course?.name),
           _buildValue(
-              title: 'Source: ', value: question_.source?.name),
+            title: 'Source: ',
+            value: question_.sources
+                .map((e) => '${e.source?.name} | ${e.year}')
+                .join(', '),
+          ),
         ],
       ),
     );

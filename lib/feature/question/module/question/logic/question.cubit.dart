@@ -36,8 +36,11 @@ class QuestionCubit extends Cubit<QuestionState> {
   void removeAnswer(SubQuestion question, QuestionAnswer answer) =>
       emit(state.removeAnswer(question, answer));
 
-  void updateSource(SourceModel? value) =>
+  void addSource(SourceModel? value) =>
       emit(state.update(source: value));
+
+  void deleteSource(SourceYearModel source) =>
+      emit(state.update(removeSource: source));
   void updateCourse(CourseModel? value) =>
       emit(state.update(course: value));
   void updateExam(ExamModel? value) =>

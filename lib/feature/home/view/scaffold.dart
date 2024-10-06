@@ -15,10 +15,14 @@ class _Scaffold extends StatelessWidget {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
+            icon: const Icon(Icons.tips_and_updates_outlined),
+            onPressed: () => context.to(UpdatesRoute()),
+          ),
+          IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: () =>
                 context.read<HomeCubit>().fetchStatistics(),
-          )
+          ),
         ],
       ),
       body: RefreshIndicator(

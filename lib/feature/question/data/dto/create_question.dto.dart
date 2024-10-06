@@ -1,6 +1,8 @@
+import 'package:admin_app/core/extension/list.extension.dart';
 import 'package:admin_app/feature/course/data/models/course.model.dart';
 import 'package:admin_app/feature/exam/data/models/exam.model.dart';
 import 'package:admin_app/feature/source/data/model/source.model.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 import '../models/question.model.dart';
@@ -16,20 +18,29 @@ class QuestionDetails {
                 )
               ]
             : [SubQuestion()],
-        source = question?.source,
+        sources = question?.sources
+                .map(
+                  (e) => SourceYearModel(
+                    source: e.source!,
+                    year: e.year.toString(),
+                  ),
+                )
+                .toList() ??
+            [],
         course = question?.course,
-        exam = question?.exam,
-        year =
-            TextEditingController(text: question?.year?.toString());
+        exam = question?.exam;
 
   final TextEditingController caseText;
   final List<SubQuestion> questions;
-  SourceModel? source;
+  List<SourceYearModel> sources;
   CourseModel? course;
   ExamModel? exam;
-  final TextEditingController year;
 
-  set updateSource(SourceModel? value) => source = value;
+  set addSource(SourceModel? value) =>
+      sources.add(SourceYearModel(source: value!));
+
+  set removeSource(SourceYearModel source) => sources.remove(source);
+
   set updateCourse(CourseModel? value) => course = value;
   set updateExam(ExamModel? value) => exam = value;
 
@@ -40,10 +51,9 @@ class QuestionDetails {
   Map<String, dynamic> toJson() => {
         if (questions.length > 1) 'caseText': caseText.text,
         'questions': questions.map((e) => e.toJson()).toList(),
-        'sourceId': source?.id,
+        'sources': sources.map((e) => e.toJson()).toList(),
         'courseId': course?.id,
         if (exam?.id != null) 'examId': exam!.id,
-        'year': year.text,
       };
 }
 
@@ -102,4 +112,22 @@ class QuestionAnswer {
         'text': controller.text,
         'isCorrect': isCorrect,
       };
+}
+
+// ignore: must_be_immutable
+class SourceYearModel extends Equatable {
+  final controller = TextEditingController();
+  SourceModel source;
+
+  SourceYearModel({required this.source, String? year}) {
+    if (year != null) controller.text = year;
+  }
+
+  Map<String, dynamic> toJson() => {
+        'sourceId': source.id,
+        'year': controller.text,
+      };
+
+  @override
+  List<Object?> get props => [source];
 }

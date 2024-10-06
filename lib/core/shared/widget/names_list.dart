@@ -1,3 +1,4 @@
+import 'package:admin_app/core/extension/alertdialog.extenstion.dart';
 import 'package:admin_app/core/shared/models/named.model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -59,7 +60,18 @@ class NamesList<T extends NamedModelBase> extends StatelessWidget {
                   ),
                   IconButton(
                     icon: const Icon(Icons.delete),
-                    onPressed: () => onDelete(item),
+                    onPressed: () => context.showDialogBox(
+                      title: 'Supprimer',
+                      body:
+                          'Voulez-vous vraiment supprimer ${item.name}?',
+                      confirmText: 'Supprimer',
+                      onConfirm: (back) {
+                        onDelete(item);
+                        back();
+                      },
+                      cancelText: 'Annuler',
+                      onCancel: (back) => back(),
+                    ),
                   ),
                 ],
               ),

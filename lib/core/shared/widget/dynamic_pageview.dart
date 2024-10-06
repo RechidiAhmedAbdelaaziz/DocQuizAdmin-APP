@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 class DynamicPageView extends StatefulWidget {
   final List<Widget> children;
-
-  const DynamicPageView({
-    super.key,
-    required this.children,
-  });
+  final PageController controller;
+  DynamicPageView(
+      {super.key, required this.children, PageController? controller})
+      : controller = controller ?? PageController();
 
   @override
   State<DynamicPageView> createState() => _DynamicPageViewState();
@@ -15,13 +14,11 @@ class DynamicPageView extends StatefulWidget {
 class _DynamicPageViewState extends State<DynamicPageView> {
   double? _currentItemHeight;
   int _current = 0;
-  final PageController _controller =
-      PageController(viewportFraction: 0.95);
 
   @override
   initState() {
-    _controller.addListener(() {
-      final page = _controller.page!.round();
+    widget.controller.addListener(() {
+      final page = widget.controller.page!.round();
       if (page != _current) {
         setState(() {
           _current = page;
@@ -50,7 +47,7 @@ class _DynamicPageViewState extends State<DynamicPageView> {
           duration: const Duration(milliseconds: 100),
           height: _currentItemHeight ?? 0,
           child: PageView.builder(
-            controller: _controller,
+            controller: widget.controller,
             itemCount: widget.children.length,
             itemBuilder: (__, index) => widget.children[index],
           ),

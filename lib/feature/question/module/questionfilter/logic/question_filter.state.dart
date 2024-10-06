@@ -26,9 +26,13 @@ class QuestionFilterState {
         filter: filter.copyWith(difficultie: difficulty));
   }
 
-  QuestionFilterState setWithExplanation() {
-    return QuestionFilterState(
-        filter: filter.copyWith(
-            withExplanation: !filter.withExplanation));
+  QuestionFilterState setWithExplanation(bool withExplanation) {
+    if (withExplanation) {
+      return QuestionFilterState(
+          filter: filter.copyWith(withExplanation: !filter.withExplanation));
+    } else {
+      return QuestionFilterState(
+          filter: filter.copyWith(withoutExplanation: !filter.withoutExplanation));
+    }
   }
 }

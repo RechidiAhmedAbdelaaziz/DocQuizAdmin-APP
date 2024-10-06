@@ -20,11 +20,11 @@ QuestionModel _$QuestionModelFromJson(Map<String, dynamic> json) =>
       course: json['course'] == null
           ? null
           : CourseModel.fromJson(json['course'] as Map<String, dynamic>),
-      source: json['source'] == null
-          ? null
-          : SourceModel.fromJson(json['source'] as Map<String, dynamic>),
+      sources: (json['sources'] as List<dynamic>)
+          .map((e) => SourceYear.fromJson(e as Map<String, dynamic>))
+          .toList(),
       year: json['year'] as num?,
-      withExplanation : json['withExplanation'] as bool?,
+      withExplanation: json['withExplanation'] as bool?,
     );
 
 Question _$QuestionFromJson(Map<String, dynamic> json) => Question(
@@ -40,4 +40,11 @@ Question _$QuestionFromJson(Map<String, dynamic> json) => Question(
 Answer _$AnswerFromJson(Map<String, dynamic> json) => Answer(
       text: json['text'] as String,
       isCorrect: json['isCorrect'] as bool,
+    );
+
+SourceYear _$SourceYearFromJson(Map<String, dynamic> json) => SourceYear(
+      source: json['source'] == null
+          ? null
+          : SourceModel.fromJson(json['source'] as Map<String, dynamic>),
+      year: (json['year'] as num).toInt(),
     );

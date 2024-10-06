@@ -22,5 +22,6 @@ class QuestionFilterCubit extends Cubit<QuestionFilterState> {
   void selectDifficulty(String difficulty) =>
       emit(state.selectDifficulty(difficulty));
 
-  void setWithExplanation() => emit(state.setWithExplanation());
+  void setWithExplanation(bool withExplanation) =>
+      emit(state.setWithExplanation(withExplanation));
 }
