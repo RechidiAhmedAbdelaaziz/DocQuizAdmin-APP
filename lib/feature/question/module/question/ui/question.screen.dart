@@ -605,7 +605,7 @@ class _YearField extends StatelessWidget {
     return context.showSingleItemDropDown(
       controller: controller,
       data: [
-        for (var i = 2000; i <= DateTime.now().year; i++)
+        for (var i = 2000; i <= DateTime.now().year + 2; i++)
           i.toString(),
         '0'
       ],
