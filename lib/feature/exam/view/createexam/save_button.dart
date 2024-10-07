@@ -27,8 +27,8 @@ class _SaveButton extends StatelessWidget {
             city: _cityController.text,
             major: _majorController.text,
             year: int.parse(_yearController.text),
-            time: int.parse(_houreController.text) * 60 +
-                int.parse(_minuteController.text) ,
+            time: int.parse(_houreController.text) * 3600 +
+                int.parse(_minuteController.text) * 60,
           ));
         }
       },
