@@ -184,26 +184,28 @@ class _QuestionsBox extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 820.h,
-            child: PageView(
-              controller: controller,
-              children: [
-                for (int i = 0; i < questions.length; i++)
-                  _buildQuestion(i, questions, context)
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 820.h,
+              child: PageView(
+                controller: controller,
+                children: [
+                  for (int i = 0; i < questions.length; i++)
+                    _buildQuestion(i, questions, context)
+                ],
+              ),
             ),
-          ),
-          // PageView.builder(
-          //   controller: PageController(),
-          //   itemCount: questions.length,
-          //   itemBuilder: (context, index) {
-          //     return _buildQuestion(index, questions, context);
-          //   },
-          // ),
-        ],
+            // PageView.builder(
+            //   controller: PageController(),
+            //   itemCount: questions.length,
+            //   itemBuilder: (context, index) {
+            //     return _buildQuestion(index, questions, context);
+            //   },
+            // ),
+          ],
+        ),
       ),
     );
   }
@@ -632,14 +634,17 @@ class _ExamField extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Text(
-                  exam?.title ?? 'Choisir un examen...',
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    color: exam == null ? Colors.grey : Colors.black,
+                Expanded(
+                  child: Text(
+                    exam?.title ?? 'Choisir un examen...',
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      color:
+                          exam == null ? Colors.grey : Colors.black,
+                    ),
                   ),
                 ),
-                const Spacer(),
                 IconButton(
                   icon: Icon(
                     exam == null ? Icons.add : Icons.edit,
