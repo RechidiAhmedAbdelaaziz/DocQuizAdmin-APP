@@ -3,7 +3,7 @@ abstract class UserApiConstants {
   // static const _baseUrl = 'http://192.168.1.2:3000';
 
   //*AUTH
-  static const login = '$_baseUrl/auth/login';
+  static const login = '$_baseUrl/auth/login-admin';
   static const refreshToken = '$_baseUrl/auth/refresh-token';
 
   //*EXAM
@@ -33,4 +33,9 @@ abstract class UserApiConstants {
 
   //* UPDATES
   static const updates = '$_baseUrl/updates';
+
+  // * ADMIN
+  static const admins = '$_baseUrl/admins';
+  static const admin = '$_baseUrl/admins/{id}';
+
 }

@@ -43,8 +43,8 @@ class QuestionState {
     SourceModel? source,
     CourseModel? course,
     ExamModel? exam,
-    bool removeExam = false,
     SourceYearModel? removeSource,
+    ExamModel? removeExam ,
   }) {
     if (removeSource != null) {
       details.removeSource = removeSource;
@@ -53,8 +53,12 @@ class QuestionState {
     }
 
     if (course != null) details.updateCourse = course;
-    if (exam != null) details.updateExam = exam;
-    if (removeExam) details.updateExam = null;
+    
+    if (removeExam != null) {
+      details.removeExam = removeExam;
+    } else if (exam != null) {
+      details.addExam = exam;
+    }
 
     return QuestionState(details);
   }

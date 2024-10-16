@@ -27,7 +27,7 @@ class DomainSelector extends StatelessWidget {
                   await context.showBottomSheet<CourseModel>(
                 child: LevelSelector(domain),
               );
-              getResultBack(course);
+              if (course != null) getResultBack(course);
             },
           );
         },

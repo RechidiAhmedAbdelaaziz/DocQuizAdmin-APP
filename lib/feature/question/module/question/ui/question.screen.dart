@@ -188,7 +188,7 @@ class _QuestionsBox extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 820.h,
+              height: MediaQuery.of(context).size.height - 100.h,
               child: PageView(
                 controller: controller,
                 children: [
@@ -274,12 +274,14 @@ class _QuestionsBox extends StatelessWidget {
                         _buildTitle('Difficulté'),
                         _DifficultyField(question),
                         height(5),
-                        //add keyboard height if it's enabled
-                        SizedBox(
-                          height: MediaQuery.of(context)
-                              .viewInsets
-                              .bottom,
-                        ),
+                        //add keyboard height if it's enabled if orientation is portrait
+                        if (MediaQuery.of(context).orientation ==
+                            Orientation.portrait)
+                          SizedBox(
+                            height: MediaQuery.of(context)
+                                .viewInsets
+                                .bottom,
+                          ),
                       ],
                     ),
                   ),
@@ -620,59 +622,65 @@ class _ExamField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final exam = context.watch<QuestionCubit>().state.details.exam;
+    final exams = context.watch<QuestionCubit>().state.details.exams;
     final cubit = context.read<QuestionCubit>();
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            padding:
-                EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey),
-              borderRadius: BorderRadius.circular(12.r),
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    exam?.title ?? 'Choisir un examen...',
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      color:
-                          exam == null ? Colors.grey : Colors.black,
-                    ),
+    return Column(children: [
+      ...exams.map(
+        (exam) => Container(
+          margin: EdgeInsets.symmetric(vertical: 5.h),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey),
+            borderRadius: BorderRadius.circular(12.r),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 8.w, vertical: 3.h),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          exam.title!,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 18.sp,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                IconButton(
-                  icon: Icon(
-                    exam == null ? Icons.add : Icons.edit,
-                    color: exam != null ? Colors.grey : Colors.black,
-                  ),
-                  onPressed: () {
-                    context
-                        .showBottomSheet<ExamModel>(
-                      child: const ExamSelector(),
-                    )
-                        .then((exam) {
-                      if (exam != null) cubit.updateExam(exam);
-                    });
-                  },
-                ),
-              ],
-            ),
+              ),
+              IconButton(
+                icon: const Icon(Icons.cancel),
+                onPressed: () {
+                  cubit.removeExam(exam);
+                },
+              ),
+            ],
           ),
         ),
-        if (exam != null)
-          IconButton(
-            icon: const Icon(Icons.cancel),
-            onPressed: () {
-              cubit.removeExam();
-            },
-          ),
-      ],
-    );
+      ),
+      IconButton(
+        icon: const Icon(Icons.add, color: Colors.black),
+        onPressed: () {
+          context
+              .showBottomSheet<ExamModel>(
+            child: const ExamSelector(),
+          )
+              .then((exam) {
+            if (exam != null) cubit.addExam(exam);
+          });
+        },
+      ),
+    ]);
   }
 }
 

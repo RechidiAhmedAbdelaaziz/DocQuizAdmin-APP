@@ -30,7 +30,7 @@ class LevelSelector extends StatelessWidget {
                   await context.showBottomSheet<CourseModel>(
                 child: MajorSelector(level),
               );
-              getResultBack(course);
+              if (course != null) getResultBack(course);
             },
           );
         },

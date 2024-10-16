@@ -1,4 +1,5 @@
 import 'package:admin_app/core/extension/navigator.extension.dart';
+import 'package:admin_app/core/extension/snackbar.extension.dart';
 import 'package:admin_app/core/shared/widget/names_list.dart';
 import 'package:admin_app/feature/question/helper/question.route.dart';
 import 'package:flutter/material.dart';
@@ -12,14 +13,20 @@ class SourceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.watch<SourceCubit>();
-    return NamesList(
-      title: 'Sources',
-      items: cubit.state.sources,
-      onAdd: cubit.addSource,
-      onEdit: cubit.updateSource,
-      onDelete: cubit.deleteSource,
-      onTap: (source) =>
-          context.to(QuestionListRoute.ofSource(source)),
+    return BlocListener<SourceCubit, SourceState>(
+      listener: (context, state) {
+        state
+            .onError((message) => context.showErrorSnackBar(message));
+      },
+      child: NamesList(
+        title: 'Sources',
+        items: cubit.state.sources,
+        onAdd: cubit.addSource,
+        onEdit: cubit.updateSource,
+        onDelete: cubit.deleteSource,
+        onTap: (source) =>
+            context.to(QuestionListRoute.ofSource(source)),
+      ),
     );
   }
 }

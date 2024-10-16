@@ -10,6 +10,7 @@ import 'package:admin_app/feature/major/helper/major.dependency.dart';
 import 'package:admin_app/feature/question/helper/question.dependency.dart';
 import 'package:admin_app/feature/source/helper/source.dependency.dart';
 import 'package:admin_app/feature/updates/helper/updates.di.dart';
+import 'package:admin_app/feature/user/helper/user.di.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,4 +44,5 @@ Future<void> setupLocator() async {
   await setupCourseDependency();
   await setupSourceDependency();
   await setupUpdatesDi(locator);
+  await setupUserDi(locator);
 }

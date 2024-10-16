@@ -1,4 +1,3 @@
-import 'package:admin_app/core/extension/list.extension.dart';
 import 'package:admin_app/feature/course/data/models/course.model.dart';
 import 'package:admin_app/feature/exam/data/models/exam.model.dart';
 import 'package:admin_app/feature/source/data/model/source.model.dart';
@@ -28,21 +27,22 @@ class QuestionDetails {
                 .toList() ??
             [],
         course = question?.course,
-        exam = question?.exam;
+        exams = question?.exams ?? [];
 
   final TextEditingController caseText;
   final List<SubQuestion> questions;
   List<SourceYearModel> sources;
   CourseModel? course;
-  ExamModel? exam;
+  List<ExamModel> exams;
 
   set addSource(SourceModel? value) =>
       sources.add(SourceYearModel(source: value!));
-
   set removeSource(SourceYearModel source) => sources.remove(source);
 
   set updateCourse(CourseModel? value) => course = value;
-  set updateExam(ExamModel? value) => exam = value;
+
+  set addExam(ExamModel value) => exams.add(value);
+  set removeExam(ExamModel exam) => exams.remove(exam);
 
   void newQuestion() => questions.add(SubQuestion());
   void removeQuestion(SubQuestion question) =>
@@ -53,7 +53,8 @@ class QuestionDetails {
         'questions': questions.map((e) => e.toJson()).toList(),
         'sources': sources.map((e) => e.toJson()).toList(),
         'courseId': course?.id,
-        if (exam?.id != null) 'examId': exam!.id,
+        if (exams.isNotEmpty)
+          'examIds': exams.map((e) => e.id).toList(),
       };
 }
 

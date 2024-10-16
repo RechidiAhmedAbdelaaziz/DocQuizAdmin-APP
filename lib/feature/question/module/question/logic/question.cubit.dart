@@ -43,9 +43,9 @@ class QuestionCubit extends Cubit<QuestionState> {
       emit(state.update(removeSource: source));
   void updateCourse(CourseModel? value) =>
       emit(state.update(course: value));
-  void updateExam(ExamModel? value) =>
-      emit(state.update(exam: value));
-  void removeExam() => emit(state.update(removeExam: true));
+  void addExam(ExamModel? value) => emit(state.update(exam: value));
+  void removeExam(ExamModel exam) =>
+      emit(state.update(removeExam: exam));
 
   Future<void> save() async {
     if (!formKey.currentState!.validate()) return;

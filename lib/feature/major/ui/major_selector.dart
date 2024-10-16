@@ -30,7 +30,7 @@ class MajorSelector extends StatelessWidget {
                   await context.showBottomSheet<CourseModel>(
                 child: CourseSelector(major),
               );
-              getResultBack(course);
+             if (course != null)  getResultBack(course);
             },
           );
         },

@@ -13,7 +13,7 @@ class QuestionModel extends Equatable {
     required this.questions,
     required this.caseText,
     required this.type,
-    required this.exam,
+    required this.exams,
     required this.course,
     required this.sources,
     required this.year,
@@ -25,7 +25,7 @@ class QuestionModel extends Equatable {
   final List<Question>? questions;
   final String? caseText;
   final String? type;
-  final ExamModel? exam;
+  final List<ExamModel>? exams;
   final CourseModel? course;
   final List<SourceYear> sources;
   final num? year;

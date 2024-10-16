@@ -14,9 +14,9 @@ QuestionModel _$QuestionModelFromJson(Map<String, dynamic> json) =>
           .toList(),
       caseText: json['caseText'] as String?,
       type: json['type'] as String?,
-      exam: json['exam'] == null
-          ? null
-          : ExamModel.fromJson(json['exam'] as Map<String, dynamic>),
+      exams: (json['exams'] as List<dynamic>?)
+          ?.map((e) => ExamModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       course: json['course'] == null
           ? null
           : CourseModel.fromJson(json['course'] as Map<String, dynamic>),

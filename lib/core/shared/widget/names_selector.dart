@@ -13,19 +13,21 @@ class NamesSelector<T extends NamedModelBase>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          'Choiser un ${T.toString().split('Model')[0]}',
-          style: TextStyle(fontSize: 24.sp),
-        ),
-        ...items.map(
-          (course) => _Selector(
-            course,
-            onSelect: onSelect,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Text(
+            'Choiser un ${T.toString().split('Model')[0]}',
+            style: TextStyle(fontSize: 24.sp),
           ),
-        )
-      ],
+          ...items.map(
+            (course) => _Selector(
+              course,
+              onSelect: onSelect,
+            ),
+          )
+        ],
+      ),
     );
   }
 }

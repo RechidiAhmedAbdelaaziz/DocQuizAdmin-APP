@@ -38,8 +38,7 @@ class _Statistics extends StatelessWidget {
                 title: 'Les questions',
                 value: statistics.totalQuestion,
                 color: Colors.orange,
-                onTap: () =>
-                    context.to(QuestionListRoute()), 
+                onTap: () => context.to(QuestionListRoute()),
               ),
             ],
           ),
@@ -50,7 +49,9 @@ class _Statistics extends StatelessWidget {
                 title: 'Utilisateurs',
                 value: statistics.totalUser,
                 color: Colors.purple,
-                onTap: () {},
+                onTap: () {
+                  context.to(UserRoute());
+                },
               ),
               _Item(
                 title: 'Utilisateurs abonnés',

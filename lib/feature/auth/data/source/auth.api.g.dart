@@ -35,7 +35,7 @@ class _AuthApiService implements AuthApiService {
     )
         .compose(
           _dio.options,
-          'https://api.docquizz.top/auth/login',
+          'https://api.docquizz.top/auth/login-admin',
           queryParameters: queryParameters,
           data: _data,
         )
