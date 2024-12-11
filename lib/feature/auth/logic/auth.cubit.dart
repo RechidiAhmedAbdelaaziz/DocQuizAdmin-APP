@@ -51,7 +51,7 @@ class AuthCubit extends Cubit<AuthState> {
 
         emit(const AuthState.sessionRefreshed());
       },
-      failure: (error) async {
+      error: (error) async {
         await onLogout();
         emit(const AuthState.sessionExpired());
       },

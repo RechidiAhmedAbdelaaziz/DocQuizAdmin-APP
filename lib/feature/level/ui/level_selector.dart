@@ -1,5 +1,6 @@
 import 'package:admin_app/core/extension/bottomsheet.extension.dart';
 import 'package:admin_app/core/extension/navigator.extension.dart';
+import 'package:admin_app/core/shared/models/named.model.dart';
 import 'package:admin_app/core/shared/widget/names_selector.dart';
 import 'package:admin_app/feature/course/data/models/course.model.dart';
 import 'package:admin_app/feature/major/ui/major_selector.dart';
@@ -8,14 +9,15 @@ import 'package:admin_app/feature/level/logic/level.cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LevelSelector extends StatelessWidget {
+class LevelSelector<T extends NamedModelBase>
+    extends StatelessWidget {
   const LevelSelector(this.domain, {super.key});
 
   final DomainModel domain;
 
   @override
   Widget build(BuildContext context) {
-    void getResultBack(CourseModel? major) => context.back(major);
+    void getResultBack(T? major) => context.back(major);
 
     return BlocProvider(
       create: (context) => LevelCubit(domain)..getLevels(),
@@ -26,9 +28,8 @@ class LevelSelector extends StatelessWidget {
           return NamesSelector(
             items: levels,
             onSelect: (level) async {
-              final course =
-                  await context.showBottomSheet<CourseModel>(
-                child: MajorSelector(level),
+              final course = await context.showBottomSheet<T>(
+                child: MajorSelector<T>(level),
               );
               if (course != null) getResultBack(course);
             },

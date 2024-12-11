@@ -103,7 +103,7 @@ class QuestionsListScreen extends StatelessWidget {
 //             maxLines: 3,
 //             overflow: TextOverflow.ellipsis,
 //             style: TextStyle(
-//               fontSize: 22.sp,
+//               fontSize: 22.spMin,
 //               fontWeight: FontWeight.w500,
 //             ),
 //           ),
@@ -172,7 +172,7 @@ class QuestionsListScreen extends StatelessWidget {
 //                   title,
 //                   style: TextStyle(
 //                     color: Colors.black,
-//                     fontSize: 18.sp,
+//                     fontSize: 18.spMin,
 //                     fontWeight: FontWeight.bold,
 //                   ),
 //                 ),
@@ -182,7 +182,7 @@ class QuestionsListScreen extends StatelessWidget {
 //                     overflow: TextOverflow.ellipsis,
 //                     style: TextStyle(
 //                       color: Colors.black,
-//                       fontSize: 18.sp,
+//                       fontSize: 18.spMin,
 //                     ),
 //                   ),
 //                 ),
@@ -283,15 +283,27 @@ class _QuestionItem extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: _buildHint(
-                  value: question_.exams != null &&
-                          question_.exams!.isNotEmpty
-                      ? question_.exams!.first.title
-                      : 'Il n\'y a pas d\'examen',
-                  color: question_.exams != null &&
-                          question_.exams!.isNotEmpty
-                      ? Colors.teal
-                      : Colors.transparent,
+                child: Column(
+                  children: [
+                    ...question_.exams!.map(
+                      (e) => _buildHint(
+                        value: e.title,
+                        color: Colors.teal,
+                        maxLines: 1,
+                        vertical: 2,
+                      ),
+                    ),
+                    // _buildHint(
+                    //   value: question_.exams != null &&
+                    //           question_.exams!.isNotEmpty
+                    //       ? question_.exams!.first.title
+                    //       : 'Il n\'y a pas d\'examen',
+                    //   color: question_.exams != null &&
+                    //           question_.exams!.isNotEmpty
+                    //       ? Colors.teal
+                    //       : Colors.transparent,
+                    // ),
+                  ],
                 ),
               ),
               _buildOption(),
@@ -303,7 +315,7 @@ class _QuestionItem extends StatelessWidget {
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
-              fontSize: 22.sp,
+              fontSize: 22.spMin,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -344,7 +356,8 @@ class _QuestionItem extends StatelessWidget {
           ),
           _buildValue(
             title: 'Source: ',
-            value: question_.sources != null && question_.sources!.isNotEmpty
+            value: question_.sources != null &&
+                    question_.sources!.isNotEmpty
                 ? question_.sources
                     .map((e) => '${e.source?.name} | ${e.year}')
                     .join(', ')
@@ -376,7 +389,7 @@ class _QuestionItem extends StatelessWidget {
                   title,
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 18.sp,
+                    fontSize: 18.spMin,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -386,7 +399,7 @@ class _QuestionItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 18.sp,
+                      fontSize: 18.spMin,
                     ),
                   ),
                 ),
@@ -398,11 +411,13 @@ class _QuestionItem extends StatelessWidget {
   Widget _buildHint({
     required String? value,
     required Color color,
+    int? vertical,
+    int? maxLines,
   }) {
     return value == null
         ? const SizedBox.shrink()
         : Container(
-            margin: EdgeInsets.symmetric(vertical: 5.h),
+            margin: EdgeInsets.symmetric(vertical: (vertical ?? 5).h),
             padding:
                 EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
             decoration: BoxDecoration(
@@ -411,7 +426,7 @@ class _QuestionItem extends StatelessWidget {
             ),
             child: Text(
               value,
-              maxLines: 3,
+              maxLines: maxLines ?? 3,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 color: Colors.white,

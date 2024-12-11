@@ -16,13 +16,26 @@ class ExamCubit extends Cubit<ExamState> {
 
   final List<ExamModel> _exams = [];
   int _page = 1;
+  String? _search;
+
+
+  void setSearch(String? search) {
+    _search = search;
+    _page = 1;
+    _exams.clear();
+
+    if (search?.isEmpty ?? true) _search = null;
+
+    fetchExams();
+  }
 
   List<ExamModel> get exams => _exams;
 
   Future<void> fetchExams() async {
     emit(const ExamState.fetchingExams());
 
-    final result = await _examRepo.getExams(page: _page);
+    final result =
+        await _examRepo.getExams(page: _page, search: _search);
 
     result.when(
       success: (exams) {
@@ -58,19 +71,13 @@ class ExamCubit extends Cubit<ExamState> {
 
   Future<void> updateExam(
     ExamModel exam, {
-    String? major,
-    int? time,
-    int? year,
-    String? city,
+    CreateExamParam? details,
   }) async {
     emit(const ExamState.examUpdating());
 
     final result = await _examRepo.updateExam(
       exam.id!,
-      major: major,
-      time: time,
-      year: year,
-      city: city,
+      details: details,
     );
 
     result.when(
@@ -92,12 +99,11 @@ class ExamCubit extends Cubit<ExamState> {
     result.when(
       success: (_) {
         _exams.remove(exam);
-        emit(const ExamState.examUpdated());
+        emit(const ExamState.examDeleted());
       },
       error: (error) {
         emit(ExamState.error(error.message));
       },
     );
   }
-
 }

@@ -20,10 +20,8 @@ abstract class ExamApiService {
   );
 
   @GET(UserApiConstants.getExams)
-  Future<PaginatedDataResponse> getExams({
-    @Query('page') required int page,
-    @Query('limit') required int limit,
-  });
+  Future<PaginatedDataResponse> getExams(
+      @Queries() Map<String, dynamic> queries);
 
   @DELETE(AdminApiConstants.examWithID)
   Future<MessageResponse> deleteExam(@Path('id') String id);

@@ -18,7 +18,7 @@ class NamesSelector<T extends NamedModelBase>
         children: [
           Text(
             'Choiser un ${T.toString().split('Model')[0]}',
-            style: TextStyle(fontSize: 24.sp),
+            style: TextStyle(fontSize: 24.spMin),
           ),
           ...items.map(
             (course) => _Selector(
@@ -52,7 +52,7 @@ class _Selector<T extends NamedModelBase> extends StatelessWidget {
           borderRadius: BorderRadius.circular(20.r),
         ),
         alignment: Alignment.center,
-        child: Text(item.name!, style: TextStyle(fontSize: 18.sp)),
+        child: Text(item.name!, style: TextStyle(fontSize: 18.spMin)),
       ),
     );
   }

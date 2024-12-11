@@ -48,7 +48,7 @@ class NamesList<T extends NamedModelBase> extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 20.sp,
+                        fontSize: 20.spMin,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 1.2,
                       ),

@@ -25,6 +25,7 @@ mixin _$ExamState {
     required TResult Function() examCreated,
     required TResult Function() examUpdating,
     required TResult Function() examUpdated,
+    required TResult Function() examDeleted,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +38,7 @@ mixin _$ExamState {
     TResult? Function()? examCreated,
     TResult? Function()? examUpdating,
     TResult? Function()? examUpdated,
+    TResult? Function()? examDeleted,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +51,7 @@ mixin _$ExamState {
     TResult Function()? examCreated,
     TResult Function()? examUpdating,
     TResult Function()? examUpdated,
+    TResult Function()? examDeleted,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -62,6 +65,7 @@ mixin _$ExamState {
     required TResult Function(_ExamCreated value) examCreated,
     required TResult Function(_ExamUpdating value) examUpdating,
     required TResult Function(_ExamUpdated value) examUpdated,
+    required TResult Function(_ExamDeleted value) examDeleted,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -74,6 +78,7 @@ mixin _$ExamState {
     TResult? Function(_ExamCreated value)? examCreated,
     TResult? Function(_ExamUpdating value)? examUpdating,
     TResult? Function(_ExamUpdated value)? examUpdated,
+    TResult? Function(_ExamDeleted value)? examDeleted,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -86,6 +91,7 @@ mixin _$ExamState {
     TResult Function(_ExamCreated value)? examCreated,
     TResult Function(_ExamUpdating value)? examUpdating,
     TResult Function(_ExamUpdated value)? examUpdated,
+    TResult Function(_ExamDeleted value)? examDeleted,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -160,6 +166,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() examCreated,
     required TResult Function() examUpdating,
     required TResult Function() examUpdated,
+    required TResult Function() examDeleted,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -175,6 +182,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? examCreated,
     TResult? Function()? examUpdating,
     TResult? Function()? examUpdated,
+    TResult? Function()? examDeleted,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -190,6 +198,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? examCreated,
     TResult Function()? examUpdating,
     TResult Function()? examUpdated,
+    TResult Function()? examDeleted,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -209,6 +218,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_ExamCreated value) examCreated,
     required TResult Function(_ExamUpdating value) examUpdating,
     required TResult Function(_ExamUpdated value) examUpdated,
+    required TResult Function(_ExamDeleted value) examDeleted,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -224,6 +234,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_ExamCreated value)? examCreated,
     TResult? Function(_ExamUpdating value)? examUpdating,
     TResult? Function(_ExamUpdated value)? examUpdated,
+    TResult? Function(_ExamDeleted value)? examDeleted,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -239,6 +250,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_ExamCreated value)? examCreated,
     TResult Function(_ExamUpdating value)? examUpdating,
     TResult Function(_ExamUpdated value)? examUpdated,
+    TResult Function(_ExamDeleted value)? examDeleted,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -301,6 +313,7 @@ class _$FetchingExamsImpl implements _FetchingExams {
     required TResult Function() examCreated,
     required TResult Function() examUpdating,
     required TResult Function() examUpdated,
+    required TResult Function() examDeleted,
     required TResult Function(String message) error,
   }) {
     return fetchingExams();
@@ -316,6 +329,7 @@ class _$FetchingExamsImpl implements _FetchingExams {
     TResult? Function()? examCreated,
     TResult? Function()? examUpdating,
     TResult? Function()? examUpdated,
+    TResult? Function()? examDeleted,
     TResult? Function(String message)? error,
   }) {
     return fetchingExams?.call();
@@ -331,6 +345,7 @@ class _$FetchingExamsImpl implements _FetchingExams {
     TResult Function()? examCreated,
     TResult Function()? examUpdating,
     TResult Function()? examUpdated,
+    TResult Function()? examDeleted,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -350,6 +365,7 @@ class _$FetchingExamsImpl implements _FetchingExams {
     required TResult Function(_ExamCreated value) examCreated,
     required TResult Function(_ExamUpdating value) examUpdating,
     required TResult Function(_ExamUpdated value) examUpdated,
+    required TResult Function(_ExamDeleted value) examDeleted,
     required TResult Function(_Error value) error,
   }) {
     return fetchingExams(this);
@@ -365,6 +381,7 @@ class _$FetchingExamsImpl implements _FetchingExams {
     TResult? Function(_ExamCreated value)? examCreated,
     TResult? Function(_ExamUpdating value)? examUpdating,
     TResult? Function(_ExamUpdated value)? examUpdated,
+    TResult? Function(_ExamDeleted value)? examDeleted,
     TResult? Function(_Error value)? error,
   }) {
     return fetchingExams?.call(this);
@@ -380,6 +397,7 @@ class _$FetchingExamsImpl implements _FetchingExams {
     TResult Function(_ExamCreated value)? examCreated,
     TResult Function(_ExamUpdating value)? examUpdating,
     TResult Function(_ExamUpdated value)? examUpdated,
+    TResult Function(_ExamDeleted value)? examDeleted,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -442,6 +460,7 @@ class _$FetchedExamsImpl implements _FetchedExams {
     required TResult Function() examCreated,
     required TResult Function() examUpdating,
     required TResult Function() examUpdated,
+    required TResult Function() examDeleted,
     required TResult Function(String message) error,
   }) {
     return fetchedExams();
@@ -457,6 +476,7 @@ class _$FetchedExamsImpl implements _FetchedExams {
     TResult? Function()? examCreated,
     TResult? Function()? examUpdating,
     TResult? Function()? examUpdated,
+    TResult? Function()? examDeleted,
     TResult? Function(String message)? error,
   }) {
     return fetchedExams?.call();
@@ -472,6 +492,7 @@ class _$FetchedExamsImpl implements _FetchedExams {
     TResult Function()? examCreated,
     TResult Function()? examUpdating,
     TResult Function()? examUpdated,
+    TResult Function()? examDeleted,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -491,6 +512,7 @@ class _$FetchedExamsImpl implements _FetchedExams {
     required TResult Function(_ExamCreated value) examCreated,
     required TResult Function(_ExamUpdating value) examUpdating,
     required TResult Function(_ExamUpdated value) examUpdated,
+    required TResult Function(_ExamDeleted value) examDeleted,
     required TResult Function(_Error value) error,
   }) {
     return fetchedExams(this);
@@ -506,6 +528,7 @@ class _$FetchedExamsImpl implements _FetchedExams {
     TResult? Function(_ExamCreated value)? examCreated,
     TResult? Function(_ExamUpdating value)? examUpdating,
     TResult? Function(_ExamUpdated value)? examUpdated,
+    TResult? Function(_ExamDeleted value)? examDeleted,
     TResult? Function(_Error value)? error,
   }) {
     return fetchedExams?.call(this);
@@ -521,6 +544,7 @@ class _$FetchedExamsImpl implements _FetchedExams {
     TResult Function(_ExamCreated value)? examCreated,
     TResult Function(_ExamUpdating value)? examUpdating,
     TResult Function(_ExamUpdated value)? examUpdated,
+    TResult Function(_ExamDeleted value)? examDeleted,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -583,6 +607,7 @@ class _$ExamCreatingImpl implements _ExamCreating {
     required TResult Function() examCreated,
     required TResult Function() examUpdating,
     required TResult Function() examUpdated,
+    required TResult Function() examDeleted,
     required TResult Function(String message) error,
   }) {
     return examCreating();
@@ -598,6 +623,7 @@ class _$ExamCreatingImpl implements _ExamCreating {
     TResult? Function()? examCreated,
     TResult? Function()? examUpdating,
     TResult? Function()? examUpdated,
+    TResult? Function()? examDeleted,
     TResult? Function(String message)? error,
   }) {
     return examCreating?.call();
@@ -613,6 +639,7 @@ class _$ExamCreatingImpl implements _ExamCreating {
     TResult Function()? examCreated,
     TResult Function()? examUpdating,
     TResult Function()? examUpdated,
+    TResult Function()? examDeleted,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -632,6 +659,7 @@ class _$ExamCreatingImpl implements _ExamCreating {
     required TResult Function(_ExamCreated value) examCreated,
     required TResult Function(_ExamUpdating value) examUpdating,
     required TResult Function(_ExamUpdated value) examUpdated,
+    required TResult Function(_ExamDeleted value) examDeleted,
     required TResult Function(_Error value) error,
   }) {
     return examCreating(this);
@@ -647,6 +675,7 @@ class _$ExamCreatingImpl implements _ExamCreating {
     TResult? Function(_ExamCreated value)? examCreated,
     TResult? Function(_ExamUpdating value)? examUpdating,
     TResult? Function(_ExamUpdated value)? examUpdated,
+    TResult? Function(_ExamDeleted value)? examDeleted,
     TResult? Function(_Error value)? error,
   }) {
     return examCreating?.call(this);
@@ -662,6 +691,7 @@ class _$ExamCreatingImpl implements _ExamCreating {
     TResult Function(_ExamCreated value)? examCreated,
     TResult Function(_ExamUpdating value)? examUpdating,
     TResult Function(_ExamUpdated value)? examUpdated,
+    TResult Function(_ExamDeleted value)? examDeleted,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -724,6 +754,7 @@ class _$ExamCreatedImpl implements _ExamCreated {
     required TResult Function() examCreated,
     required TResult Function() examUpdating,
     required TResult Function() examUpdated,
+    required TResult Function() examDeleted,
     required TResult Function(String message) error,
   }) {
     return examCreated();
@@ -739,6 +770,7 @@ class _$ExamCreatedImpl implements _ExamCreated {
     TResult? Function()? examCreated,
     TResult? Function()? examUpdating,
     TResult? Function()? examUpdated,
+    TResult? Function()? examDeleted,
     TResult? Function(String message)? error,
   }) {
     return examCreated?.call();
@@ -754,6 +786,7 @@ class _$ExamCreatedImpl implements _ExamCreated {
     TResult Function()? examCreated,
     TResult Function()? examUpdating,
     TResult Function()? examUpdated,
+    TResult Function()? examDeleted,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -773,6 +806,7 @@ class _$ExamCreatedImpl implements _ExamCreated {
     required TResult Function(_ExamCreated value) examCreated,
     required TResult Function(_ExamUpdating value) examUpdating,
     required TResult Function(_ExamUpdated value) examUpdated,
+    required TResult Function(_ExamDeleted value) examDeleted,
     required TResult Function(_Error value) error,
   }) {
     return examCreated(this);
@@ -788,6 +822,7 @@ class _$ExamCreatedImpl implements _ExamCreated {
     TResult? Function(_ExamCreated value)? examCreated,
     TResult? Function(_ExamUpdating value)? examUpdating,
     TResult? Function(_ExamUpdated value)? examUpdated,
+    TResult? Function(_ExamDeleted value)? examDeleted,
     TResult? Function(_Error value)? error,
   }) {
     return examCreated?.call(this);
@@ -803,6 +838,7 @@ class _$ExamCreatedImpl implements _ExamCreated {
     TResult Function(_ExamCreated value)? examCreated,
     TResult Function(_ExamUpdating value)? examUpdating,
     TResult Function(_ExamUpdated value)? examUpdated,
+    TResult Function(_ExamDeleted value)? examDeleted,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -865,6 +901,7 @@ class _$ExamUpdatingImpl implements _ExamUpdating {
     required TResult Function() examCreated,
     required TResult Function() examUpdating,
     required TResult Function() examUpdated,
+    required TResult Function() examDeleted,
     required TResult Function(String message) error,
   }) {
     return examUpdating();
@@ -880,6 +917,7 @@ class _$ExamUpdatingImpl implements _ExamUpdating {
     TResult? Function()? examCreated,
     TResult? Function()? examUpdating,
     TResult? Function()? examUpdated,
+    TResult? Function()? examDeleted,
     TResult? Function(String message)? error,
   }) {
     return examUpdating?.call();
@@ -895,6 +933,7 @@ class _$ExamUpdatingImpl implements _ExamUpdating {
     TResult Function()? examCreated,
     TResult Function()? examUpdating,
     TResult Function()? examUpdated,
+    TResult Function()? examDeleted,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -914,6 +953,7 @@ class _$ExamUpdatingImpl implements _ExamUpdating {
     required TResult Function(_ExamCreated value) examCreated,
     required TResult Function(_ExamUpdating value) examUpdating,
     required TResult Function(_ExamUpdated value) examUpdated,
+    required TResult Function(_ExamDeleted value) examDeleted,
     required TResult Function(_Error value) error,
   }) {
     return examUpdating(this);
@@ -929,6 +969,7 @@ class _$ExamUpdatingImpl implements _ExamUpdating {
     TResult? Function(_ExamCreated value)? examCreated,
     TResult? Function(_ExamUpdating value)? examUpdating,
     TResult? Function(_ExamUpdated value)? examUpdated,
+    TResult? Function(_ExamDeleted value)? examDeleted,
     TResult? Function(_Error value)? error,
   }) {
     return examUpdating?.call(this);
@@ -944,6 +985,7 @@ class _$ExamUpdatingImpl implements _ExamUpdating {
     TResult Function(_ExamCreated value)? examCreated,
     TResult Function(_ExamUpdating value)? examUpdating,
     TResult Function(_ExamUpdated value)? examUpdated,
+    TResult Function(_ExamDeleted value)? examDeleted,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -1006,6 +1048,7 @@ class _$ExamUpdatedImpl implements _ExamUpdated {
     required TResult Function() examCreated,
     required TResult Function() examUpdating,
     required TResult Function() examUpdated,
+    required TResult Function() examDeleted,
     required TResult Function(String message) error,
   }) {
     return examUpdated();
@@ -1021,6 +1064,7 @@ class _$ExamUpdatedImpl implements _ExamUpdated {
     TResult? Function()? examCreated,
     TResult? Function()? examUpdating,
     TResult? Function()? examUpdated,
+    TResult? Function()? examDeleted,
     TResult? Function(String message)? error,
   }) {
     return examUpdated?.call();
@@ -1036,6 +1080,7 @@ class _$ExamUpdatedImpl implements _ExamUpdated {
     TResult Function()? examCreated,
     TResult Function()? examUpdating,
     TResult Function()? examUpdated,
+    TResult Function()? examDeleted,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1055,6 +1100,7 @@ class _$ExamUpdatedImpl implements _ExamUpdated {
     required TResult Function(_ExamCreated value) examCreated,
     required TResult Function(_ExamUpdating value) examUpdating,
     required TResult Function(_ExamUpdated value) examUpdated,
+    required TResult Function(_ExamDeleted value) examDeleted,
     required TResult Function(_Error value) error,
   }) {
     return examUpdated(this);
@@ -1070,6 +1116,7 @@ class _$ExamUpdatedImpl implements _ExamUpdated {
     TResult? Function(_ExamCreated value)? examCreated,
     TResult? Function(_ExamUpdating value)? examUpdating,
     TResult? Function(_ExamUpdated value)? examUpdated,
+    TResult? Function(_ExamDeleted value)? examDeleted,
     TResult? Function(_Error value)? error,
   }) {
     return examUpdated?.call(this);
@@ -1085,6 +1132,7 @@ class _$ExamUpdatedImpl implements _ExamUpdated {
     TResult Function(_ExamCreated value)? examCreated,
     TResult Function(_ExamUpdating value)? examUpdating,
     TResult Function(_ExamUpdated value)? examUpdated,
+    TResult Function(_ExamDeleted value)? examDeleted,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -1097,6 +1145,153 @@ class _$ExamUpdatedImpl implements _ExamUpdated {
 
 abstract class _ExamUpdated implements ExamState {
   const factory _ExamUpdated() = _$ExamUpdatedImpl;
+}
+
+/// @nodoc
+abstract class _$$ExamDeletedImplCopyWith<$Res> {
+  factory _$$ExamDeletedImplCopyWith(
+          _$ExamDeletedImpl value, $Res Function(_$ExamDeletedImpl) then) =
+      __$$ExamDeletedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ExamDeletedImplCopyWithImpl<$Res>
+    extends _$ExamStateCopyWithImpl<$Res, _$ExamDeletedImpl>
+    implements _$$ExamDeletedImplCopyWith<$Res> {
+  __$$ExamDeletedImplCopyWithImpl(
+      _$ExamDeletedImpl _value, $Res Function(_$ExamDeletedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ExamState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ExamDeletedImpl implements _ExamDeleted {
+  const _$ExamDeletedImpl();
+
+  @override
+  String toString() {
+    return 'ExamState.examDeleted()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ExamDeletedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() fetchingExams,
+    required TResult Function() fetchedExams,
+    required TResult Function() examCreating,
+    required TResult Function() examCreated,
+    required TResult Function() examUpdating,
+    required TResult Function() examUpdated,
+    required TResult Function() examDeleted,
+    required TResult Function(String message) error,
+  }) {
+    return examDeleted();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? fetchingExams,
+    TResult? Function()? fetchedExams,
+    TResult? Function()? examCreating,
+    TResult? Function()? examCreated,
+    TResult? Function()? examUpdating,
+    TResult? Function()? examUpdated,
+    TResult? Function()? examDeleted,
+    TResult? Function(String message)? error,
+  }) {
+    return examDeleted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? fetchingExams,
+    TResult Function()? fetchedExams,
+    TResult Function()? examCreating,
+    TResult Function()? examCreated,
+    TResult Function()? examUpdating,
+    TResult Function()? examUpdated,
+    TResult Function()? examDeleted,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (examDeleted != null) {
+      return examDeleted();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_FetchingExams value) fetchingExams,
+    required TResult Function(_FetchedExams value) fetchedExams,
+    required TResult Function(_ExamCreating value) examCreating,
+    required TResult Function(_ExamCreated value) examCreated,
+    required TResult Function(_ExamUpdating value) examUpdating,
+    required TResult Function(_ExamUpdated value) examUpdated,
+    required TResult Function(_ExamDeleted value) examDeleted,
+    required TResult Function(_Error value) error,
+  }) {
+    return examDeleted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_FetchingExams value)? fetchingExams,
+    TResult? Function(_FetchedExams value)? fetchedExams,
+    TResult? Function(_ExamCreating value)? examCreating,
+    TResult? Function(_ExamCreated value)? examCreated,
+    TResult? Function(_ExamUpdating value)? examUpdating,
+    TResult? Function(_ExamUpdated value)? examUpdated,
+    TResult? Function(_ExamDeleted value)? examDeleted,
+    TResult? Function(_Error value)? error,
+  }) {
+    return examDeleted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_FetchingExams value)? fetchingExams,
+    TResult Function(_FetchedExams value)? fetchedExams,
+    TResult Function(_ExamCreating value)? examCreating,
+    TResult Function(_ExamCreated value)? examCreated,
+    TResult Function(_ExamUpdating value)? examUpdating,
+    TResult Function(_ExamUpdated value)? examUpdated,
+    TResult Function(_ExamDeleted value)? examDeleted,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (examDeleted != null) {
+      return examDeleted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ExamDeleted implements ExamState {
+  const factory _ExamDeleted() = _$ExamDeletedImpl;
 }
 
 /// @nodoc
@@ -1174,6 +1369,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() examCreated,
     required TResult Function() examUpdating,
     required TResult Function() examUpdated,
+    required TResult Function() examDeleted,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -1189,6 +1385,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? examCreated,
     TResult? Function()? examUpdating,
     TResult? Function()? examUpdated,
+    TResult? Function()? examDeleted,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -1204,6 +1401,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? examCreated,
     TResult Function()? examUpdating,
     TResult Function()? examUpdated,
+    TResult Function()? examDeleted,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1223,6 +1421,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_ExamCreated value) examCreated,
     required TResult Function(_ExamUpdating value) examUpdating,
     required TResult Function(_ExamUpdated value) examUpdated,
+    required TResult Function(_ExamDeleted value) examDeleted,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -1238,6 +1437,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_ExamCreated value)? examCreated,
     TResult? Function(_ExamUpdating value)? examUpdating,
     TResult? Function(_ExamUpdated value)? examUpdated,
+    TResult? Function(_ExamDeleted value)? examDeleted,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -1253,6 +1453,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_ExamCreated value)? examCreated,
     TResult Function(_ExamUpdating value)? examUpdating,
     TResult Function(_ExamUpdated value)? examUpdated,
+    TResult Function(_ExamDeleted value)? examDeleted,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

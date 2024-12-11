@@ -10,7 +10,7 @@ class TryCallApi {
     } catch (error) {
       debugPrint(
           '\n\n!!!\n TryCallApi error: ${error.toString()} \n!!!\n\n');
-      return ApiResult.failure(ApiErrorHandler.handle(error));
+      return ApiResult.error(ApiErrorHandler.handle(error));
     }
   }
 }

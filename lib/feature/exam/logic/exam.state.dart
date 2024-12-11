@@ -13,5 +13,7 @@ class ExamState with _$ExamState {
   const factory ExamState.examUpdating() = _ExamUpdating;
   const factory ExamState.examUpdated() = _ExamUpdated;
 
+  const factory ExamState.examDeleted() = _ExamDeleted;
+
   const factory ExamState.error(String message) = _Error;
 }

@@ -46,7 +46,7 @@ class _AppInputeFieldState extends State<AppInputeField> {
         hintText: widget._hint,
         hintStyle: TextStyle(
           color: AppColors.warmGrey,
-          fontSize: 18.sp,
+          fontSize: 18.spMin,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.r),

@@ -86,7 +86,7 @@ class _Item extends StatelessWidget {
         onTap: onTap,
         child: Container(
           // width: double.infinity,
-          height: 180.h,
+          height: 200.h,
           margin:
               EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
           padding: EdgeInsets.all(10.w),
@@ -101,7 +101,7 @@ class _Item extends StatelessWidget {
                 title,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 22.sp,
+                  fontSize: 22.spMin,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -110,7 +110,7 @@ class _Item extends StatelessWidget {
                 value.toString(),
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 30.sp,
+                  fontSize: 30.spMin,
                   fontWeight: FontWeight.bold,
                 ),
               ),

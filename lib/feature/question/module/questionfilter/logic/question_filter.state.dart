@@ -26,6 +26,14 @@ class QuestionFilterState {
         filter: filter.copyWith(difficultie: difficulty));
   }
 
+  QuestionFilterState selectYear(String year) {
+    return QuestionFilterState(filter: filter.copyWith(year: year));
+  }
+
+  QuestionFilterState setKeyword(String keyword) {
+    return QuestionFilterState(filter: filter.copyWith(keyword: keyword));
+  }
+
   QuestionFilterState setWithExplanation(bool withExplanation) {
     if (withExplanation) {
       return QuestionFilterState(

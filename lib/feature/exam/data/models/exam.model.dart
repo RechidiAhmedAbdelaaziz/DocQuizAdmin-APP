@@ -1,9 +1,11 @@
+import 'package:admin_app/feature/domain/data/model/domain.model.dart';
+import 'package:admin_app/feature/major/data/models/major.model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'exam.model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class ExamModel extends Equatable {
   const ExamModel({
     required this.questions,
@@ -11,6 +13,11 @@ class ExamModel extends Equatable {
     required this.title,
     required this.time,
     required this.year,
+    required this.city,
+    required this.group,
+    required this.type,
+    required this.major,
+    required this.domain,
   });
 
   final num? questions;
@@ -19,11 +26,11 @@ class ExamModel extends Equatable {
   final String? title;
   final num? time;
   final num? year;
-
-  // title : "Exam: Major | Year | City"
-  String get city => title!.split('|').last.trim();
-  // remove "Exam: " from title
-  String get major => title!.split('|').first.split(':').last.trim();
+  final String? city;
+  final String? group;
+  final String? type;
+  final MajorModel? major;
+  final DomainModel? domain;
 
   ExamModel copyWith({
     num? questions,
@@ -32,6 +39,11 @@ class ExamModel extends Equatable {
     String? title,
     num? time,
     num? year,
+    String? city,
+    String? group,
+    String? type,
+    MajorModel? major,
+    DomainModel? domain,
   }) {
     return ExamModel(
       questions: questions ?? this.questions,
@@ -39,14 +51,18 @@ class ExamModel extends Equatable {
       title: title ?? this.title,
       time: time ?? this.time,
       year: year ?? this.year,
+      city: city ?? this.city,
+      group: group ?? this.group,
+      type: type ?? this.type,
+      major: major ?? this.major,
+      domain: domain ?? this.domain,
     );
   }
 
   factory ExamModel.fromJson(Map<String, dynamic> json) =>
       _$ExamModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ExamModelToJson(this);
-
   @override
   List<Object?> get props => [id];
 }
+

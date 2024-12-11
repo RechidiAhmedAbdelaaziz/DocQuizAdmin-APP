@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 extension DropDowns on BuildContext {
-  Widget showSingleItemDropDown(
-      {required List<String> data,
-      required TextEditingController controller,
-      String? hintText,
-      String? Function(String?)? validator}) {
+  Widget showSingleItemDropDown({
+    required List<String> data,
+    required TextEditingController controller,
+    String? hintText,
+    String? Function(String?)? validator,
+    ValueChanged<String>? onChanged,
+  }) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
       child: TextFormField(
@@ -22,6 +24,7 @@ extension DropDowns on BuildContext {
                   .map((e) => SelectedListItem(name: e, value: e))
                   .toList(),
               onSelected: (list) {
+                onChanged?.call(list.first.name);
                 controller.text = list.first.name;
               },
             ),

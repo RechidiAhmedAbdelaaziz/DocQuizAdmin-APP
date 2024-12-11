@@ -24,6 +24,8 @@
 				"development",
 				"--target",
 				"lib/main_development.dart",
+				"--web-port",
+				"8000"
 			]
 		},
 

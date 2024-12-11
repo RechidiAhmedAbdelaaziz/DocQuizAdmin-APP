@@ -2,6 +2,7 @@ import 'package:admin_app/core/extension/navigator.extension.dart';
 import 'package:admin_app/core/shared/widget/pagination.widget.dart';
 import 'package:admin_app/feature/exam/data/models/exam.model.dart';
 import 'package:admin_app/feature/exam/logic/exam.cubit.dart';
+import 'package:admin_app/feature/user/logic/user.cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,14 +24,37 @@ class _Selector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final exams = context.watch<ExamCubit>().exams;
-    return PaginationBuilder(
-      onFetch: context.read<ExamCubit>().fetchExams,
-      builder: (loading) {
-        return Column(
-          children: [...exams.map((e) => _Item(e)), loading],
-        );
-      },
+    final cubit = context.watch<ExamCubit>();
+    return Column(
+      children: [
+        Padding(
+          padding:
+              EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+          child: TextField(
+            onSubmitted: cubit.setSearch,
+            decoration: InputDecoration(
+              hintText: 'Rechercher...',
+              prefixIcon: const Icon(Icons.search),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: PaginationBuilder(
+            onFetch: context.read<ExamCubit>().fetchExams,
+            builder: (loading) {
+              return Column(
+                children: [
+                  ...cubit.exams.map((e) => _Item(e)),
+                  loading
+                ],
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }
@@ -53,7 +77,8 @@ class _Item extends StatelessWidget {
           borderRadius: BorderRadius.circular(20.r),
         ),
         alignment: Alignment.center,
-        child: Text(exam.title!, style: TextStyle(fontSize: 18.sp)),
+        child:
+            Text(exam.title!, style: TextStyle(fontSize: 18.spMin)),
       ),
     );
   }

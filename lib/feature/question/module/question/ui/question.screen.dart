@@ -97,7 +97,7 @@ class QuestionScreen extends StatelessWidget {
                               Text(
                                 '   Ajouter ou modifier les questions',
                                 style: TextStyle(
-                                  fontSize: 18.sp,
+                                  fontSize: 18.spMin,
                                   color: Colors.white,
                                 ),
                               ),
@@ -134,7 +134,7 @@ class QuestionScreen extends StatelessWidget {
       child: Text(
         title,
         style: TextStyle(
-          fontSize: 22.sp,
+          fontSize: 22.spMin,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -300,7 +300,7 @@ class _QuestionsBox extends StatelessWidget {
       child: Text(
         title,
         style: TextStyle(
-          fontSize: 22.sp,
+          fontSize: 22.spMin,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -323,7 +323,7 @@ class _QuestionsBox extends StatelessWidget {
           child: Text(
             'Q${index + 1}',
             style: TextStyle(
-              fontSize: 20.sp,
+              fontSize: 20.spMin,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -424,7 +424,7 @@ class _CourseField extends StatelessWidget {
           Text(
             course?.name ?? 'Choisir un cours...',
             style: TextStyle(
-              fontSize: 18.sp,
+              fontSize: 18.spMin,
               color: course == null ? Colors.grey : Colors.black,
             ),
           ),
@@ -527,7 +527,7 @@ class _DifficultyFieldState extends State<_DifficultyField> {
         child: Text(
           title,
           style: TextStyle(
-            fontSize: 18.sp,
+            fontSize: 18.spMin,
             fontWeight:
                 isSelected ? FontWeight.bold : FontWeight.normal,
             color: isSelected ? Colors.white : color,
@@ -562,7 +562,7 @@ class _SourceField extends StatelessWidget {
                   child: Text(
                     source.source.name ?? '',
                     style: TextStyle(
-                      fontSize: 18.sp,
+                      fontSize: 18.spMin,
                       color: Colors.black,
                     ),
                   ),
@@ -649,7 +649,7 @@ class _ExamField extends StatelessWidget {
                           exam.title!,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            fontSize: 18.sp,
+                            fontSize: 18.spMin,
                             color: Colors.black,
                           ),
                         ),
@@ -704,7 +704,7 @@ class _SubmitButton extends StatelessWidget {
         child: Text(
           'Enregistrer',
           style: TextStyle(
-            fontSize: 18.sp,
+            fontSize: 18.spMin,
             color: Colors.white,
           ),
         ),

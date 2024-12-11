@@ -21,18 +21,11 @@ class ExamRepo {
 
   RepoResult<ExamModel> updateExam(
     String id, {
-    String? major,
-    int? time,
-    int? year,
-    String? city,
+    CreateExamParam? details,
   }) async {
     apiCall() async {
-      final response = await _examApi.updateExam(id, {
-        'major': major,
-        'time': time,
-        'year': year,
-        'city': city,
-      });
+      final response =
+          await _examApi.updateExam(id, details?.toJson() ?? {});
 
       return ExamModel.fromJson(response.data!);
     }
@@ -42,11 +35,16 @@ class ExamRepo {
 
   RepoListResult<ExamModel> getExams({
     required int page,
-    int limit = 15,
+    String? search,
   }) async {
     apiCall() async {
-      final response =
-          await _examApi.getExams(page: page, limit: limit);
+      final response = await _examApi.getExams(
+        {
+          'page': page,
+          'limit': 15,
+          if (search != null) 'search': search,
+        },
+      );
 
       return response.data!
           .map((e) => ExamModel.fromJson(e))

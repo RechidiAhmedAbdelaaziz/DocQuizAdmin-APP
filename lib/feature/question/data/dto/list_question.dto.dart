@@ -17,6 +17,7 @@ class ListQuestionsFilter extends KeywordQuery {
     this.exam,
     this.withExplanation = false,
     this.withoutExplanation = false,
+    this.keyword,
   })  : types = types ?? [],
         difficulties = difficulties ?? [],
         sources = sources ?? [],
@@ -30,7 +31,8 @@ class ListQuestionsFilter extends KeywordQuery {
   final ExamModel? exam;
   final List<String> years;
   final bool withExplanation;
-  final bool withoutExplanation ;
+  final bool withoutExplanation;
+  final String? keyword;
 
   Map<String, dynamic> toQueryMap() {
     final query = super.toJson();
@@ -50,6 +52,10 @@ class ListQuestionsFilter extends KeywordQuery {
     if (years.isNotEmpty) query['years[]'] = years;
     if (withExplanation) query['withExplanation'] = 'true';
     if (withoutExplanation) query['withoutExplanation'] = 'true';
+    if (keyword != null) query['keywords'] = keyword;
+    if (years.isNotEmpty) {
+      query['years[]'] = years.map((e) => int.parse(e)).toList();
+    }
 
     return query;
   }
@@ -64,12 +70,14 @@ class ListQuestionsFilter extends KeywordQuery {
     List<SourceModel>? sources,
     List<CourseModel>? courses,
     ExamModel? exam,
-    List<String>? years,
+    String? year,
     bool? withExplanation,
     bool? withoutExplanation,
+    String? keyword,
   }) {
     if (type != null) types.addOrRemove(type);
     if (difficultie != null) difficulties.addOrRemove(difficultie);
+    if (year != null) years.addOrRemove(year);
 
     return ListQuestionsFilter(
       keywords: keywords ?? this.keywords,
@@ -80,9 +88,11 @@ class ListQuestionsFilter extends KeywordQuery {
       sources: sources ?? this.sources,
       courses: courses ?? this.courses,
       exam: exam ?? this.exam,
-      years: years ?? this.years,
+      years: years,
       withExplanation: withExplanation ?? this.withExplanation,
-      withoutExplanation: withoutExplanation ?? this.withoutExplanation,
+      withoutExplanation:
+          withoutExplanation ?? this.withoutExplanation,
+      keyword: keyword ?? this.keyword,
     );
   }
 }
