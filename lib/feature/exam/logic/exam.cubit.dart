@@ -18,7 +18,6 @@ class ExamCubit extends Cubit<ExamState> {
   int _page = 1;
   String? _search;
 
-
   void setSearch(String? search) {
     _search = search;
     _page = 1;
@@ -40,7 +39,7 @@ class ExamCubit extends Cubit<ExamState> {
     result.when(
       success: (exams) {
         if (exams.isNotEmpty) {
-          _exams.addAllUniq(exams);
+          _exams.addAllUniqe(exams);
           _page++;
         }
         emit(const ExamState.fetchedExams());
@@ -60,7 +59,7 @@ class ExamCubit extends Cubit<ExamState> {
 
     result.when(
       success: (exam) {
-        _exams.addUniq(exam);
+        _exams.addUniqe(exam);
         emit(const ExamState.examCreated());
       },
       error: (error) {
