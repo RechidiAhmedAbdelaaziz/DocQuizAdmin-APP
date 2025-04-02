@@ -1,9 +1,10 @@
 import 'package:admin_app/core/router/router_generator.dart';
-import 'package:admin_app/core/theme/colors.dart';
 import 'package:admin_app/core/utils/auth_listener.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'core/themes/colors.dart';
 
 class AdminApp extends StatelessWidget {
   const AdminApp({super.key, required AppRouter router})
@@ -27,7 +28,7 @@ class AdminApp extends StatelessWidget {
         ),
         theme: ThemeData(
           appBarTheme: const AppBarTheme(
-            backgroundColor: AppColors.silver,
+            backgroundColor: AppColors.greyLight,
             elevation: 0,
             iconTheme: IconThemeData(color: Colors.black),
           ),

@@ -1,4 +1,4 @@
-import 'package:admin_app/core/theme/colors.dart';
+import 'package:admin_app/core/themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -45,12 +45,12 @@ class _AppInputeFieldState extends State<AppInputeField> {
       decoration: InputDecoration(
         hintText: widget._hint,
         hintStyle: TextStyle(
-          color: AppColors.warmGrey,
+          color: AppColors.grey,
           fontSize: 18.spMin,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.r),
-          borderSide: const BorderSide(color: AppColors.silver),
+          borderSide: const BorderSide(color: AppColors.grey),
         ),
         isDense: true,
         isCollapsed: true,
@@ -62,7 +62,7 @@ class _AppInputeFieldState extends State<AppInputeField> {
                   _showPassword
                       ? Icons.visibility
                       : Icons.visibility_off,
-                  color: AppColors.warmGrey,
+                  color: AppColors.greyDark,
                 ),
                 onPressed: () {
                   setState(() {

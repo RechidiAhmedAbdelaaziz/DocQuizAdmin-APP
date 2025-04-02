@@ -12,6 +12,8 @@ abstract class SubscriptionOfferFormCubit<
   final T _dto;
   final _repo = locator<SubscriptionOfferRepo>();
 
+  T get dto => _dto;
+
   SubscriptionOfferFormCubit(this._dto)
       : super(SubscriptionOfferFormState.initial());
 
@@ -25,7 +27,7 @@ class CreateSubscriptionOfferCubit
 
   @override
   void saveOffer() async {
-    if (state.isLoading) return;
+    if (state.isLoading || !_dto.validate()) return;
     emit(state._loadign());
     final result = await _repo.createSubscriptionOffer(_dto);
     result.when(

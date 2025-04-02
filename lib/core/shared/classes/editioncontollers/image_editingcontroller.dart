@@ -1,5 +1,5 @@
 // import 'package:flutter/foundation.dart';
-// import 'package:dirasaty_admin/core/shared/dto/imagedto/image.dto.dart';
+// import 'package:admin_app/core/shared/dto/imagedto/image.dto.dart';
 
 // class ImageEditingController extends ValueNotifier<ImageDTO?> {
 //   ImageEditingController([super._value]);

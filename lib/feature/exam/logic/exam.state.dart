@@ -1,7 +1,7 @@
 part of 'exam.cubit.dart';
 
 @freezed
-class ExamState with _$ExamState {
+sealed class ExamState with _$ExamState {
   const factory ExamState.initial() = _Initial;
 
   const factory ExamState.fetchingExams() = _FetchingExams;

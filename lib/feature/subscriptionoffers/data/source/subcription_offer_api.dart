@@ -8,7 +8,7 @@ part 'subcription_offer_api.g.dart';
 @RestApi()
 abstract class SubscriptionOfferApi {
   factory SubscriptionOfferApi(Dio dio, {String baseUrl}) =
-      _SubcriptionOfferApi;
+      _SubscriptionOfferApi;
 
   @GET(AdminApiConstants.subscriptionOffer)
   Future<PaginatedDataResponse> getSubscriptionOffers(

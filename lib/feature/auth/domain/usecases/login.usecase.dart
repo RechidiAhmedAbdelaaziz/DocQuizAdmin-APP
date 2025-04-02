@@ -15,8 +15,9 @@ class LoginUsecase {
   ) async {
     final response = await _authRepository.login(email, password);
 
-    await response.whenOrNull(
+    await response.when(
       success: (data) async => await _authCubit.onLogin(data),
+      error: (_) {},
     );
 
     return response;
