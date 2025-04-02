@@ -6,7 +6,7 @@ part of 'question.api.dart';
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _QuestionApiService implements QuestionApiService {
   _QuestionApiService(
@@ -35,7 +35,7 @@ class _QuestionApiService implements QuestionApiService {
     )
         .compose(
           _dio.options,
-          'https://admin.api.docquizz.top/question',
+          'http://192.168.1.9:3001/question',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -72,7 +72,7 @@ class _QuestionApiService implements QuestionApiService {
     )
         .compose(
           _dio.options,
-          'https://admin.api.docquizz.top/question/${id}',
+          'http://192.168.1.9:3001/question/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -105,7 +105,7 @@ class _QuestionApiService implements QuestionApiService {
     )
         .compose(
           _dio.options,
-          'https://admin.api.docquizz.top/question/${id}',
+          'http://192.168.1.9:3001/question/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -140,7 +140,7 @@ class _QuestionApiService implements QuestionApiService {
     )
         .compose(
           _dio.options,
-          'https://api.docquizz.top/question',
+          'http://192.168.1.9:3000/question',
           queryParameters: queryParameters,
           data: _data,
         )

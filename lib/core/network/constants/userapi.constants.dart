@@ -1,6 +1,6 @@
 abstract class UserApiConstants {
-  static const _baseUrl = 'https://api.docquizz.top';
-  // static const _baseUrl = 'http://192.168.6.172:3000';
+  // static const _baseUrl = 'https://api.docquizz.top';
+  static const _baseUrl = 'http://192.168.1.9:3000';
 
   //*AUTH
   static const login = '$_baseUrl/auth/login-admin';

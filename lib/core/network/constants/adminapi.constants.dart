@@ -1,6 +1,6 @@
 abstract class AdminApiConstants {
-  static const _baseUrl = 'https://admin.api.docquizz.top';
-  // static const _baseUrl = 'http://192.168.6.172:3001';
+  // static const _baseUrl = 'https://admin.api.docquizz.top';
+  static const _baseUrl = 'http://192.168.1.9:3001';
 
   //*EXAM
   static const exam = '$_baseUrl/exam-admin';

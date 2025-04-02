@@ -6,7 +6,7 @@ part of 'exam.api.dart';
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _ExamApiService implements ExamApiService {
   _ExamApiService(
@@ -35,7 +35,7 @@ class _ExamApiService implements ExamApiService {
     )
         .compose(
           _dio.options,
-          'https://admin.api.docquizz.top/exam-admin',
+          'http://192.168.1.9:3001/exam-admin',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -72,7 +72,7 @@ class _ExamApiService implements ExamApiService {
     )
         .compose(
           _dio.options,
-          'https://admin.api.docquizz.top/exam-admin/${id}',
+          'http://192.168.1.9:3001/exam-admin/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -106,7 +106,7 @@ class _ExamApiService implements ExamApiService {
     )
         .compose(
           _dio.options,
-          'https://api.docquizz.top/exam',
+          'http://192.168.1.9:3000/exam',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -139,7 +139,7 @@ class _ExamApiService implements ExamApiService {
     )
         .compose(
           _dio.options,
-          'https://admin.api.docquizz.top/exam-admin/${id}',
+          'http://192.168.1.9:3001/exam-admin/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
