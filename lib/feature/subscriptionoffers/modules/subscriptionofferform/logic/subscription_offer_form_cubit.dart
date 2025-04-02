@@ -37,7 +37,9 @@ class CreateSubscriptionOfferCubit
 
 class UpdateSubscriptionOfferCubit
     extends SubscriptionOfferFormCubit<UpdateSubscriptionOfferDto> {
-  UpdateSubscriptionOfferCubit(super.dto);
+  UpdateSubscriptionOfferCubit(
+    SubscriptionOfferModel offer,
+  ) : super(UpdateSubscriptionOfferDto(offer));
 
   @override
   void saveOffer() async {

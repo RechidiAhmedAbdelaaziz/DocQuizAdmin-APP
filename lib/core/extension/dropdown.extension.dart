@@ -19,13 +19,15 @@ extension DropDowns on BuildContext {
         validator: validator,
         onTap: () {
           DropDownState(
-            DropDown(
+            dropDown: DropDown(
               data: data
-                  .map((e) => SelectedListItem(name: e, value: e))
+                  .map((e) => SelectedListItem(
+                        data: e,
+                      ))
                   .toList(),
               onSelected: (list) {
-                onChanged?.call(list.first.name);
-                controller.text = list.first.name;
+                onChanged?.call(list.first.data);
+                controller.text = list.first.data;
               },
             ),
           ).showModal(this);
@@ -68,18 +70,17 @@ extension DropDowns on BuildContext {
         maxLines: null,
         onTap: () {
           DropDownState(
-            DropDown(
+            dropDown: DropDown(
               maxSelectedItems: maxSelected,
               enableMultipleSelection: true,
               data: data
                   .map((e) => SelectedListItem(
-                        name: e,
-                        value: e,
+                        data: e,
                         isSelected: controller.text.contains(e),
                       ))
                   .toList(),
               onSelected: (list) {
-                controller.text = list.map((e) => e.name).join(', ');
+                controller.text = list.map((e) => e.data).join(', ');
               },
             ),
           ).showModal(this);
