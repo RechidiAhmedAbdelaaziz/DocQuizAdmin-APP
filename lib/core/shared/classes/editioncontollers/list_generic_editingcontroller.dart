@@ -1,8 +1,11 @@
 import 'package:admin_app/core/extension/list.extension.dart';
-import 'package:flutter/material.dart';
+import 'package:admin_app/core/shared/classes/editioncontollers/generic_editingcontroller.dart';
 
-class ListEditingController<T> extends ValueNotifier<List<T>> {
+class ListEditingController<T> extends EditingController<List<T>> {
   ListEditingController([List<T>? value]) : super(value ?? []);
+
+  @override
+  List<T> get value => super.value!;
 
   void addValue(T value) {
     this.value.addUniqe(value);
@@ -24,10 +27,8 @@ class ListEditingController<T> extends ValueNotifier<List<T>> {
     notifyListeners();
   }
 
-  void clear() {
-    value = [];
-    notifyListeners();
-  }
+  @override
+  void clear() => value = [];
 
   void addValues(List<T> values) => value.addAllUnique(values);
 

@@ -17,6 +17,8 @@ class AppTextField extends StatelessWidget {
 
   final double width;
 
+  final TextInputType keyboardType;
+
   const AppTextField({
     super.key,
     required this.controller,
@@ -25,6 +27,7 @@ class AppTextField extends StatelessWidget {
     this.inputFormatters,
     this.isRequired = false,
     this.width = double.infinity,
+    this.keyboardType = TextInputType.text,
   });
 
   @override
@@ -66,6 +69,9 @@ class AppTextField extends StatelessWidget {
             TextFormField(
               controller: controller,
               validator: validator,
+              keyboardType: keyboardType,
+              maxLines:
+                  keyboardType == TextInputType.multiline ? null : 1,
               style: AppTextStyles.medium.copyWith(
                 color:
                     state.hasError ? AppColors.red : AppColors.black,

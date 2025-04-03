@@ -63,4 +63,19 @@ extension AlertDialogExtension on BuildContext {
       },
     );
   }
+
+  void dialogWithResult<T>({
+    required Widget child,
+    required void Function(T result) onResult,
+    void Function()? onError,
+  }) async {
+    final result = await showDialog<T>(
+      context: this,
+      builder: (context) {
+        return child;
+      },
+    );
+
+    (result != null) ? onResult(result) : onError?.call();
+  }
 }
