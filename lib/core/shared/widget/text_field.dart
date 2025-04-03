@@ -36,6 +36,7 @@ class AppTextField extends StatelessWidget {
       width: width,
       child: FormField(
         validator: (_) => validator?.call(controller.text),
+        autovalidateMode: AutovalidateMode.onUnfocus,
         builder: (state) => Column(
           children: [
             Padding(
@@ -66,9 +67,8 @@ class AppTextField extends StatelessWidget {
                 ],
               ),
             ),
-            TextFormField(
+            TextField(
               controller: controller,
-              validator: validator,
               keyboardType: keyboardType,
               maxLines:
                   keyboardType == TextInputType.multiline ? null : 1,
@@ -83,7 +83,6 @@ class AppTextField extends StatelessWidget {
                   vertical: 12.h,
                   horizontal: 12.w,
                 ),
-                error: SizedBox.shrink(),
                 prefixIconConstraints: BoxConstraints(
                   minWidth: 8.w,
                 ),
@@ -118,7 +117,7 @@ class AppTextField extends StatelessWidget {
                 children: [
                   widthSpace(8),
                   Icon(
-                    AppIcons.error_outline,
+                    Icons.error_outline,
                     color: AppColors.red,
                     size: 20.r,
                   ),

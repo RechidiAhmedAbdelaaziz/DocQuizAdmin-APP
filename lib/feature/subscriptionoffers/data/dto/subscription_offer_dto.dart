@@ -48,7 +48,7 @@ class CreateSubscriptionOfferDto extends SubscriptionOfferDto {
       'title': titleController.text,
       'description': descriptionController.text,
       'price': int.parse(priceController.text),
-      'domain': domainController.value?.id,
+      'domainId': domainController.value?.id,
       'levels': levelsController.value.map((e) => e.id).toList(),
     };
   }

@@ -38,4 +38,8 @@ abstract class UserApiConstants {
   static const admins = '$_baseUrl/admins';
   static const admin = '$_baseUrl/admins/{id}';
 
+  //* SUBSCRIPTION OFFER
+  static const subscriptionOffer = '$_baseUrl/subscription-offer';
+  static const subscriptionOfferWithId =
+      '$_baseUrl/subscription-offer/{id}';
 }

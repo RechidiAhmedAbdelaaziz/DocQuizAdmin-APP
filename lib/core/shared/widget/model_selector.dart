@@ -47,7 +47,7 @@ class ModelSelector<T> extends StatelessWidget {
                 color: AppColors.black,
               ),
             ),
-            heightSpace(12),
+            heightSpace(4),
             ValueListenableBuilder(
               valueListenable: controller,
               builder: (context, value, child) {
@@ -56,6 +56,14 @@ class ModelSelector<T> extends StatelessWidget {
                     : Row(
                         children: [
                           itemBuilder(context, value),
+                          const Spacer(),
+                          IconButton(
+                            onPressed: () => _selectModel(context),
+                            icon: const Icon(
+                              Icons.edit,
+                              color: AppColors.black,
+                            ),
+                          ),
                           if (!isRequired)
                             IconButton(
                               onPressed: controller.clear,
@@ -70,33 +78,54 @@ class ModelSelector<T> extends StatelessWidget {
             ),
             heightSpace(4),
             if (state.hasError)
-              Text(
-                state.errorText ?? '',
-                style: AppTextStyles.medium.copyWith(
-                  color: AppColors.red,
-                ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  widthSpace(8),
+                  Icon(
+                    Icons.error_outline,
+                    color: AppColors.red,
+                    size: 20.r,
+                  ),
+                  widthSpace(8),
+                  Expanded(
+                    child: Text(
+                      state.errorText!,
+                      style: AppTextStyles.error,
+                    ),
+                  ),
+                  widthSpace(8),
+                ],
               ),
           ]),
     );
   }
 
+  void _selectModel(BuildContext context) {
+    context.dialogWith<T>(
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          vertical: 12.h,
+          horizontal: 16.w,
+        ),
+        margin: EdgeInsets.symmetric(
+          vertical: 32.h,
+          horizontal: 20.w,
+        ),
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(12.r),
+          border: Border.all(color: AppColors.grey),
+        ),
+        child: selector,
+      ),
+      onResult: controller.setValue,
+    );
+  }
+
   Widget _buildSelector(BuildContext context) {
     return InkWell(
-      onTap: () => context.dialogWithResult<T>(
-        child: Container(
-          padding: EdgeInsets.symmetric(
-            vertical: 12.h,
-            horizontal: 16.w,
-          ),
-          decoration: BoxDecoration(
-            color: AppColors.white,
-            borderRadius: BorderRadius.circular(8.r),
-            border: Border.all(color: AppColors.grey),
-          ),
-          child: selector,
-        ),
-        onResult: controller.setValue,
-      ),
+      onTap: () => _selectModel(context),
       child: Container(
         padding: EdgeInsets.symmetric(
           vertical: 12.h,

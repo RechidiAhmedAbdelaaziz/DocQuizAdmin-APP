@@ -34,8 +34,5 @@ abstract class AdminApiConstants {
   static const updates = '$_baseUrl/updates';
   static const updatesWithId = '$_baseUrl/updates/{id}';
 
-  //* SUBSCRIPTION OFFER
-  static const subscriptionOffer = '$_baseUrl/subscription-offer';
-  static const subscriptionOfferWithId =
-      '$_baseUrl/subscription-offer/{id}';
+ 
 }

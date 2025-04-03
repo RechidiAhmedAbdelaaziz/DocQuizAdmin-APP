@@ -7,7 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../modules/subscriptionofferform/ui/subscription_offer_form_screen.dart';
 
-class SubscriptionOfferRoute extends NavigatorRouteBase {
+class SubscriptionOfferRoute
+    extends NavigatorRouteBase<SubscriptionOfferModel> {
   static const offersRoute = '/subscription-offers';
   static const createOfferRoute = '/subscription-offer/create';
   static const editOfferRoute = '/subscription-offer/edit';
@@ -16,6 +17,7 @@ class SubscriptionOfferRoute extends NavigatorRouteBase {
       : super(
           offersRoute,
           child: BlocProvider(
+            lazy: false,
             create: (_) =>
                 MultiSubscriptionOfferCubit()..loadOffers(),
             child: const MultiSubscriptionOfferScreen(),

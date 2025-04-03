@@ -64,18 +64,31 @@ extension AlertDialogExtension on BuildContext {
     );
   }
 
-  void dialogWithResult<T>({
-    required Widget child,
-    required void Function(T result) onResult,
-    void Function()? onError,
-  }) async {
-    final result = await showDialog<T>(
+  /// Show a dialog with the given [child] widget.
+  /// [T] is the type of the result that will be returned when the dialog is closed.
+  Future<T?> dialog<T>({required Widget child}) {
+    return showDialog<T>(
       context: this,
-      builder: (context) {
-        return child;
-      },
+      builder:
+          (_) => Stack(
+            alignment: Alignment.center,
+            children: [
+              Material(color: Colors.transparent, child: child),
+            ],
+          ),
     );
+  }
 
-    (result != null) ? onResult(result) : onError?.call();
+  /// Show a dialog with the given [child] widget.
+  /// [T] is the type of the result that will be returned when the dialog is closed.
+  /// [onResult] is called when the dialog is closed with a result.
+  /// [onError] is called when the dialog is closed without a result.
+  Future<void> dialogWith<T>({
+    required Widget child,
+    required void Function(T) onResult,
+    VoidCallback? onError,
+  }) async {
+    final result = await dialog<T>(child: child);
+    result != null ? onResult(result) : onError?.call();
   }
 }

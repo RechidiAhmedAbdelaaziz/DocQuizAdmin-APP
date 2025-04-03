@@ -12,6 +12,8 @@ class MultiSubscriptionOfferCubit
   final _repository = locator<SubscriptionOfferRepo>();
   final _pagination = PaginationDto();
 
+  List<SubscriptionOfferModel> get offers => state.offers;
+
   MultiSubscriptionOfferCubit()
       : super(MultiSubscriptionOfferState.initial());
 
