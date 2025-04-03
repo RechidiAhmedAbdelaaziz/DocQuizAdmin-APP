@@ -1,3 +1,4 @@
+import 'package:admin_app/core/extension/alertdialog.extenstion.dart';
 import 'package:admin_app/core/extension/navigator.extension.dart';
 import 'package:admin_app/core/shared/widget/pagination.widget.dart';
 import 'package:admin_app/core/themes/colors.dart';
@@ -40,8 +41,7 @@ class MultiSubscriptionOfferScreen extends StatelessWidget {
           builder: (loadingWidget) => Column(
             children: [
               ...offers
-                  .map((offer) => _buildOfferCard(offer, context))
-                  ,
+                  .map((offer) => _buildOfferCard(offer, context)),
               if (offers.isEmpty) loadingWidget,
             ],
           ),
@@ -89,6 +89,21 @@ class MultiSubscriptionOfferScreen extends StatelessWidget {
                       .updateOffer,
                 ),
                 icon: const Icon(Icons.edit),
+              ),
+              IconButton(
+                onPressed: () => context.showDialogBox(
+                    title: "Supprimer",
+                    content: Text(
+                        "Voulez-vous vraiment supprimer cette offre ?"),
+                    confirmText: "Supprimer",
+                    cancelText: "Annuler",
+                    onConfirm: (back) {
+                      context
+                          .read<MultiSubscriptionOfferCubit>()
+                          .deleteOffer(offer);
+                      back();
+                    }),
+                icon: const Icon(Icons.delete),
               ),
             ],
           ),
