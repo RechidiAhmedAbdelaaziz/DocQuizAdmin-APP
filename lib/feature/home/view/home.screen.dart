@@ -5,6 +5,7 @@ import 'package:admin_app/feature/exam/helper/exam.route.dart';
 import 'package:admin_app/feature/home/cubit/home_cubit.dart';
 import 'package:admin_app/feature/question/helper/question.route.dart';
 import 'package:admin_app/feature/source/helper/source.route.dart';
+import 'package:admin_app/feature/subscriptionoffers/helper/subscription_offer_route.dart';
 import 'package:admin_app/feature/updates/helper/update.route.dart';
 import 'package:admin_app/feature/user/helper/user.route.dart';
 import 'package:flutter/material.dart';

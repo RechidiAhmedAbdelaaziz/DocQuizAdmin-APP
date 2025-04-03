@@ -61,6 +61,18 @@ class _Statistics extends StatelessWidget {
               ),
             ],
           ),
+          height(15),
+          Row(
+            children: [
+              _Item(
+                title: 'Les offres',
+                value: null,
+                color: Colors.yellow,
+                onTap: () =>
+                    context.to(SubscriptionOfferRoute.offers()),
+              ),
+            ],
+          )
         ],
       ),
     );
@@ -107,7 +119,7 @@ class _Item extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                value.toString(),
+                value != null ? value.toString() : '',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 30.spMin,

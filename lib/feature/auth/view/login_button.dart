@@ -11,33 +11,18 @@ class _LoginButton extends StatelessWidget {
         .watch<LoginCubit>()
         .state
         .maybeWhen(orElse: () => false, loginInProgress: () => true);
-
     return SizedBox(
       height: 60.h,
       width: 354.w,
-      child: ElevatedButton(
+      child: AppButton.primary(
         onPressed: () {
           if (!isLoding &&
               _formKey.currentState?.validate() == true) {
             context.read<LoginCubit>().login();
           }
         },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.lightBlue,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.r),
-          ),
-        ),
-        child: isLoding
-            ? const CircularProgressIndicator(color: AppColors.black)
-            : Text(
-                'Login',
-                style: TextStyle(
-                  color: AppColors.black,
-                  fontSize: 24.spMin,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+        isLoading: (_) => isLoding,
+        text: "Login",
       ),
     );
   }

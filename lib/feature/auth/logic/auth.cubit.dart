@@ -39,7 +39,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> onRefreshToken(String refreshToken) async {
     final result = await _authRepository.refreshToken(refreshToken);
 
-    result.whenOrNull(
+    result.when(
       success: (data) async {
         final newAccessToken = data.tokens?.accessToken ?? '';
         final newRefreshToken = data.tokens?.refreshToken ?? '';

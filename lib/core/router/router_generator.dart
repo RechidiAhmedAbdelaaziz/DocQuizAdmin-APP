@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class AppRouter {
   const AppRouter();
-  Route<T> generateRoute<T>(RouteSettings settings) {
-    final route = settings.arguments as NavigatorRouteBase<T>;
+  Route generateRoute(RouteSettings settings) {
+    final route = settings.arguments as NavigatorRouteBase;
     return route.buildRoute();
   }
 }

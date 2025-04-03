@@ -16,7 +16,7 @@ class SourceState {
 
   SourceState sourceAdded(SourceModel source) {
     final newSources = List<SourceModel>.from(sources)
-      ..addUniq(source);
+      ..addUniqe(source);
     return SourceState(sources: newSources);
   }
 

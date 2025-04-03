@@ -11,7 +11,7 @@ class UserState {
   factory UserState.initial() => UserState([]);
 
   UserState addUsers(List<UserModel> users) {
-    _users.addAllUniq(users);
+    _users.addAllUniqe(users);
     return UserState(_users);
   }
 

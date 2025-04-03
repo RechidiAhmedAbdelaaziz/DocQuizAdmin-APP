@@ -9,12 +9,12 @@ class QuestionListState {
   factory QuestionListState.initial() => QuestionListState([]);
 
   QuestionListState fetchQuestions(List<QuestionModel> newQuestions) {
-    questions.addAllUniq(newQuestions);
+    questions.addAllUniqe(newQuestions);
     return QuestionListState(questions);
   }
 
   QuestionListState addQuestion(QuestionModel question) {
-    questions.addUniq(question);
+    questions.addUniqe(question);
     return QuestionListState(questions);
   }
 

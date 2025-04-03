@@ -12,6 +12,17 @@ extension NavigatorExtension on BuildContext {
         .pushNamed<T>(route.path, arguments: route));
   }
 
+  void toWith<T>(
+    NavigatorRouteBase route, {
+    required void Function(T result) onResult,
+    void Function()? onError,
+  }) async {
+    final result = await _tryNavigate<T>(() => Navigator.of(this)
+        .pushNamed<T>(route.path, arguments: route));
+
+    result != null ? onResult(result) : onError?.call();
+  }
+
   /// Navigate to a named route and replace the current route
   Future<T?> off<T, TO>(NavigatorRouteBase route, {TO? result}) {
     return _tryNavigate(() {

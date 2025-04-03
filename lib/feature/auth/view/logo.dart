@@ -9,7 +9,7 @@ class _Logo extends StatelessWidget {
       width: 430.w,
       height: 347.h,
       decoration: BoxDecoration(
-        color: AppColors.duckEggBlue,
+        color: AppColors.primary,
         borderRadius: BorderRadius.circular(8),
       ),
     );
