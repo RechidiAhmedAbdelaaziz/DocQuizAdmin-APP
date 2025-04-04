@@ -9,70 +9,50 @@ class _Statistics extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Row(
-            children: [
-              _Item(
-                title: 'Les sources',
-                value: statistics.totalSources,
-                color: Colors.blue,
-                onTap: () => context.to(SourceRoute()),
-              ),
-              _Item(
-                title: 'Les domaines',
-                value: statistics.totalDomain,
-                color: Colors.pink,
-                onTap: () => context.to(DomainRoute()),
-              ),
-            ],
+          _Item(
+            title: 'Les sources',
+            value: statistics.totalSources,
+            onTap: () => context.to(SourceRoute()),
           ),
-          height(15),
-          Row(
-            children: [
-              _Item(
-                title: 'Les examens',
-                value: statistics.totalExam,
-                color: Colors.green,
-                onTap: () => context.to(ExamRoute()),
-              ),
-              _Item(
-                title: 'Les questions',
-                value: statistics.totalQuestion,
-                color: Colors.orange,
-                onTap: () => context.to(QuestionListRoute()),
-              ),
-            ],
+          _Item(
+            title: 'Les domaines',
+            value: statistics.totalDomain,
+            onTap: () => context.to(DomainRoute()),
           ),
-          height(15),
-          Row(
-            children: [
-              _Item(
-                title: 'Utilisateurs',
-                value: statistics.totalUser,
-                color: Colors.purple,
-                onTap: () {
-                  context.to(UserRoute());
-                },
-              ),
-              _Item(
-                title: 'Utilisateurs abonnés',
-                value: statistics.totalSubscribedUser,
-                color: Colors.red,
-                onTap: () {},
-              ),
-            ],
+          _Item(
+            title: 'Les examens',
+            value: statistics.totalExam,
+            onTap: () => context.to(ExamRoute()),
           ),
-          height(15),
-          Row(
-            children: [
-              _Item(
-                title: 'Les offres',
-                value: null,
-                color: Colors.yellow,
-                onTap: () =>
-                    context.to(SubscriptionOfferRoute.offers()),
-              ),
-            ],
-          )
+          _Item(
+            title: 'Les questions',
+            value: statistics.totalQuestion,
+            onTap: () => context.to(QuestionListRoute()),
+          ),
+          _Item(
+            title: 'Utilisateurs',
+            value: statistics.totalUser,
+            onTap: () {
+              context.to(UserRoute());
+            },
+          ),
+          _Item(
+            title: 'Utilisateurs abonnés',
+            value: statistics.totalSubscribedUser,
+            onTap: () {},
+          ),
+          _Item(
+            title: 'Les offres',
+            onTap: () => context.to(SubscriptionOfferRoute.offers()),
+          ),
+          _Item(
+            title: 'Les demandes d\'abonnement',
+            onTap: () => context.to(SubscriptionRequestRoute()),
+          ),
+          _Item(
+            title: 'Les abonnements',
+            onTap: () => context.to(SubscriptionRoute()),
+          ),
         ],
       ),
     );
@@ -80,55 +60,56 @@ class _Statistics extends StatelessWidget {
 }
 
 class _Item extends StatelessWidget {
-  const _Item(
-      {required this.title,
-      required this.value,
-      required this.onTap,
-      required this.color});
+  const _Item({
+    required this.title,
+    this.value,
+    required this.onTap,
+  });
 
   final String title;
   final num? value;
   final VoidCallback onTap;
-  final Color color;
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-          // width: double.infinity,
-          height: 200.h,
-          margin:
-              EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
-          padding: EdgeInsets.all(10.w),
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(20.r),
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 12.h, horizontal: 8.w),
+        padding: EdgeInsets.all(10.w),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.r),
+          border: Border.all(
+            color: AppColors.primary,
+            width: 2,
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Text(
                 title,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: AppColors.primaryDark,
                   fontSize: 22.spMin,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const Spacer(),
-              Text(
-                value != null ? value.toString() : '',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30.spMin,
-                  fontWeight: FontWeight.bold,
-                ),
+            ),
+            Text(
+              value != null ? value.toString() : '',
+              style: TextStyle(
+                color: AppColors.primaryDark,
+                fontSize: 30.spMin,
+                fontWeight: FontWeight.bold,
               ),
-              height(12),
-            ],
-          ),
+            ),
+            const Icon(
+              Icons.arrow_forward_ios,
+              color: AppColors.primaryDark,
+            ),
+          ],
         ),
       ),
     );

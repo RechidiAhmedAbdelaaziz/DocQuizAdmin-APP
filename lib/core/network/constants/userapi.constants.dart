@@ -42,4 +42,14 @@ abstract class UserApiConstants {
   static const subscriptionOffer = '$_baseUrl/subscription-offer';
   static const subscriptionOfferWithId =
       '$_baseUrl/subscription-offer/{id}';
+
+  //* SUBSCRIPTION REQUEST
+  static const subscriptionRequest = '$_baseUrl/subscription-request';
+  static const subscriptionRequestWithId =
+      '$_baseUrl/subscription-request/{id}';
+
+  //* SUBSCRIPTION
+  static const subscription = '$_baseUrl/subscription';
+  static const subscriptionWithId =
+      '$_baseUrl/subscription/{id}';
 }
