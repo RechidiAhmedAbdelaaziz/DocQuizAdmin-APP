@@ -12,7 +12,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MultiSubscriptionOfferScreen extends StatelessWidget {
-  const MultiSubscriptionOfferScreen({super.key});
+  final bool selectable;
+
+  const MultiSubscriptionOfferScreen(
+      {super.key, this.selectable = false});
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +43,10 @@ class MultiSubscriptionOfferScreen extends StatelessWidget {
           },
           builder: (loadingWidget) => Column(
             children: [
-              ...offers
-                  .map((offer) => _buildOfferCard(offer, context)),
+              ...offers.map((offer) => InkWell(
+                  onTap:
+                      selectable ? () => context.back(offer) : null,
+                  child: _buildOfferCard(offer, context))),
               if (offers.isEmpty) loadingWidget,
             ],
           ),

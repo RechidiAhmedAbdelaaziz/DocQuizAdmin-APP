@@ -49,6 +49,10 @@ class _Statistics extends StatelessWidget {
             title: 'Les demandes d\'abonnement',
             onTap: () => context.to(SubscriptionRequestRoute()),
           ),
+          _Item(
+            title: 'Les abonnements',
+            onTap: () => context.to(SubscriptionRoute()),
+          ),
         ],
       ),
     );

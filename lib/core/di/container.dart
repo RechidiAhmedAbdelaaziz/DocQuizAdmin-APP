@@ -12,6 +12,7 @@ import 'package:admin_app/feature/level/helper/level.dependency.dart';
 import 'package:admin_app/feature/major/helper/major.dependency.dart';
 import 'package:admin_app/feature/question/helper/question.dependency.dart';
 import 'package:admin_app/feature/source/helper/source.dependency.dart';
+import 'package:admin_app/feature/subscription/config/subscription_di.dart';
 import 'package:admin_app/feature/subscriptionoffers/helper/subscription_offer_dependency.dart';
 import 'package:admin_app/feature/subscriptionrequest/config/subscription_request_di.dart';
 import 'package:admin_app/feature/updates/helper/updates.di.dart';
@@ -59,4 +60,5 @@ Future<void> setupLocator() async {
   await setupUserDi(locator);
   await setupSubscriptionOfferDependency();
   await setupSubscriptionRequestDependency();
+  await setupSubscriptionDependency();
 }
