@@ -35,6 +35,7 @@ class SubscriptionRequestCubit
       },
       error: (error) => emit(state._error(error.message)),
     );
+    
   }
 
   void approveRequest(
