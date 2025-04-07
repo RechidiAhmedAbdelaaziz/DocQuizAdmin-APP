@@ -28,7 +28,7 @@ class _AuthApiService implements AuthApiService {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'http://192.168.1.9:3000/auth/login-admin',
+            'https://api.docquizz.top/auth/login-admin',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -55,7 +55,7 @@ class _AuthApiService implements AuthApiService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'http://192.168.1.9:3000/auth/refresh-token',
+            'https://api.docquizz.top/auth/refresh-token',
             queryParameters: queryParameters,
             data: _data,
           )

@@ -28,7 +28,7 @@ class _ExamApiService implements ExamApiService {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'http://192.168.1.9:3001/exam-admin',
+            'https://admin.api.docquizz.top/exam-admin',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -56,7 +56,7 @@ class _ExamApiService implements ExamApiService {
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'http://192.168.1.9:3001/exam-admin/${id}',
+            'https://admin.api.docquizz.top/exam-admin/${id}',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -84,7 +84,7 @@ class _ExamApiService implements ExamApiService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'http://192.168.1.9:3000/exam',
+            'https://api.docquizz.top/exam',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -111,7 +111,7 @@ class _ExamApiService implements ExamApiService {
       Options(method: 'DELETE', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'http://192.168.1.9:3001/exam-admin/${id}',
+            'https://admin.api.docquizz.top/exam-admin/${id}',
             queryParameters: queryParameters,
             data: _data,
           )

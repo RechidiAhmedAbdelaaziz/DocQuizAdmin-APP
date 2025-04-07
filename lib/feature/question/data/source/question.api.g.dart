@@ -28,7 +28,7 @@ class _QuestionApiService implements QuestionApiService {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'http://192.168.1.9:3001/question',
+            'https://admin.api.docquizz.top/question',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -59,7 +59,7 @@ class _QuestionApiService implements QuestionApiService {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'http://192.168.1.9:3001/question/${id}',
+            'https://admin.api.docquizz.top/question/${id}',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -86,7 +86,7 @@ class _QuestionApiService implements QuestionApiService {
       Options(method: 'DELETE', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'http://192.168.1.9:3001/question/${id}',
+            'https://admin.api.docquizz.top/question/${id}',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -116,7 +116,7 @@ class _QuestionApiService implements QuestionApiService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'http://192.168.1.9:3000/question',
+            'https://api.docquizz.top/question',
             queryParameters: queryParameters,
             data: _data,
           )
