@@ -47,7 +47,6 @@ class ModelSelector<T> extends StatelessWidget {
                 color: AppColors.black,
               ),
             ),
-            heightSpace(4),
             ValueListenableBuilder(
               valueListenable: controller,
               builder: (context, value, child) {
@@ -55,8 +54,9 @@ class ModelSelector<T> extends StatelessWidget {
                     ? _buildSelector(context)
                     : Row(
                         children: [
-                          itemBuilder(context, value),
-                          const Spacer(),
+                          widthSpace(8),
+                          Expanded(
+                              child: itemBuilder(context, value)),
                           IconButton(
                             onPressed: () => _selectModel(context),
                             icon: const Icon(
@@ -126,31 +126,20 @@ class ModelSelector<T> extends StatelessWidget {
   Widget _buildSelector(BuildContext context) {
     return InkWell(
       onTap: () => _selectModel(context),
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          vertical: 12.h,
-          horizontal: 16.w,
-        ),
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.circular(8.r),
-          border: Border.all(color: AppColors.grey),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Sélectionner',
-              style: AppTextStyles.medium.copyWith(
-                color: AppColors.grey,
-              ),
-            ),
-            const Icon(
-              Icons.arrow_forward_ios,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            'Sélectionner',
+            style: AppTextStyles.medium.copyWith(
               color: AppColors.grey,
             ),
-          ],
-        ),
+          ),
+          const Icon(
+            Icons.arrow_forward_ios,
+            color: AppColors.grey,
+          ),
+        ],
       ),
     );
   }

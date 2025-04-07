@@ -18,6 +18,7 @@ class QuestionModel extends Equatable {
     required this.sources,
     required this.year,
     required this.withExplanation,
+    required this.images,
   });
 
   @JsonKey(name: '_id')
@@ -30,6 +31,7 @@ class QuestionModel extends Equatable {
   final List<SourceYear> sources;
   final num? year;
   final bool? withExplanation;
+  final List<String>? images;
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) =>
       _$QuestionModelFromJson(json);
@@ -46,13 +48,17 @@ class Question extends Equatable {
     required this.difficulty,
     required this.explanation,
     required this.type,
+    this.years = const [],
+    this.images = const [],
   });
 
   final String? text;
   final List<Answer>? answers;
   final String? difficulty;
-  final String? explanation;
+  final Explanation? explanation;
   final String? type;
+  final List<String>? years;
+  final List<String>? images;
 
   factory Question.fromJson(Map<String, dynamic> json) =>
       _$QuestionFromJson(json);
@@ -66,10 +72,12 @@ class Answer extends Equatable {
   const Answer({
     required this.text,
     required this.isCorrect,
+    this.images = const [],
   });
 
   final String text;
   final bool isCorrect;
+  final List<String>? images;
 
   factory Answer.fromJson(Map<String, dynamic> json) =>
       _$AnswerFromJson(json);
@@ -93,4 +101,21 @@ class SourceYear extends Equatable {
 
   @override
   List<Object?> get props => [source];
+}
+
+@JsonSerializable(createToJson: false)
+class Explanation extends Equatable {
+  const Explanation({
+    required this.text,
+    required this.images,
+  });
+
+  final String text;
+  final List<String>? images;
+
+  factory Explanation.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationFromJson(json);
+
+  @override
+  List<Object?> get props => [text];
 }

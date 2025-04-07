@@ -1,10 +1,8 @@
 import 'package:admin_app/core/di/container.dart';
-import 'package:admin_app/feature/course/data/models/course.model.dart';
-import 'package:admin_app/feature/exam/data/models/exam.model.dart';
+import 'package:admin_app/core/types/cubit_error_state.dart';
 import 'package:admin_app/feature/question/data/dto/create_question.dto.dart';
 import 'package:admin_app/feature/question/data/models/question.model.dart';
 import 'package:admin_app/feature/question/data/repo/question.repo.dart';
-import 'package:admin_app/feature/source/data/model/source.model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,36 +18,13 @@ class QuestionCubit extends Cubit<QuestionState> {
 
   bool get isEditing => _questionId != null;
 
-  final formKey = GlobalKey<FormState>();
-
-  void addQuestion() => emit(state.addQuestion());
-
-  void removeQuestion(SubQuestion question) =>
-      emit(state.removeQuestion(question));
-
-  void addAnswer(SubQuestion question) =>
-      emit(state.addAnswer(question));
-
-  void updateAnswer(SubQuestion question, QuestionAnswer answer) =>
-      emit(state.updateAnswer(question, answer));
-
-  void removeAnswer(SubQuestion question, QuestionAnswer answer) =>
-      emit(state.removeAnswer(question, answer));
-
-  void addSource(SourceModel? value) =>
-      emit(state.update(source: value));
-
-  void deleteSource(SourceYearModel source) =>
-      emit(state.update(removeSource: source));
-  void updateCourse(CourseModel? value) =>
-      emit(state.update(course: value));
-  void addExam(ExamModel? value) => emit(state.update(exam: value));
-  void removeExam(ExamModel exam) =>
-      emit(state.update(removeExam: exam));
+  GlobalKey<FormState> get formKey => state._dto.formKey;
+  QuestionDTO get dto => state._dto;
 
   Future<void> save() async {
-    if (!formKey.currentState!.validate()) return;
-    emit(state.saving());
+    if (state.isLoading || !dto.validate()) return;
+
+    emit(state._loading());
 
     _questionId == null
         ? await _createQuestion()
@@ -58,23 +33,23 @@ class QuestionCubit extends Cubit<QuestionState> {
 
   Future<void> _createQuestion() async {
     final result =
-        await _questionRepo.createQuestion(details: state.details);
+        await _questionRepo.createQuestion(details: state._dto);
 
     result.when(
-      success: (question) => emit(state.saved(question)),
-      error: (error) => emit(state.errorOccured(error.message)),
+      success: (question) => emit(state._loaded(question)),
+      error: (error) => emit(state._error(error.message)),
     );
   }
 
   Future<void> _updateQuestion() async {
     final result = await _questionRepo.updateQuestion(
       _questionId!,
-      body: state.details,
+      body: state._dto,
     );
 
     result.when(
-      success: (question) => emit(state.saved(question)),
-      error: (error) => emit(state.errorOccured(error.message)),
+      success: (question) => emit(state._loaded(question)),
+      error: (error) => emit(state._error(error.message)),
     );
   }
 }

@@ -21,8 +21,9 @@ class SourceScreen extends StatelessWidget {
       child: NamesList(
         title: 'Sources',
         items: cubit.state.sources,
-        onAdd: cubit.addSource,
-        onEdit: cubit.updateSource,
+        onAdd: (name, [isOpen]) => cubit.addSource(name),
+        onEdit: (source, name, [isOpen]) =>
+            cubit.updateSource(source, name),
         onDelete: cubit.deleteSource,
         onTap: (source) =>
             context.to(QuestionListRoute.ofSource(source)),

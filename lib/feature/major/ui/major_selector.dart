@@ -2,7 +2,6 @@ import 'package:admin_app/core/extension/bottomsheet.extension.dart';
 import 'package:admin_app/core/extension/navigator.extension.dart';
 import 'package:admin_app/core/shared/models/named.model.dart';
 import 'package:admin_app/core/shared/widget/names_selector.dart';
-import 'package:admin_app/feature/course/data/models/course.model.dart';
 import 'package:admin_app/feature/course/ui/course_selector.dart';
 import 'package:admin_app/feature/level/data/models/level.model.dart';
 import 'package:admin_app/feature/major/data/models/major.model.dart';

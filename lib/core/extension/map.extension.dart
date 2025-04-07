@@ -17,8 +17,12 @@ extension MapExtension<T, V> on Map<T, V> {
             (element) =>
                 element.value != null &&
                 element.value != '' &&
-                element.value != {} &&
-                element.value != [],
+                (element.value is List
+                    ? (element.value as List).isNotEmpty
+                    : true) &&
+                (element.value is Map
+                    ? (element.value as Map).isNotEmpty
+                    : true),
           ),
     );
   }

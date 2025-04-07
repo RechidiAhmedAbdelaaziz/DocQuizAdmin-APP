@@ -15,8 +15,10 @@ class MajorsScreen extends StatelessWidget {
     return NamesList(
       title: "Les modules de ${cubit.level.name}",
       items: cubit.state.majors,
-      onAdd: cubit.addMajor,
-      onEdit: cubit.updateMajor,
+      onAdd: (name, [isOpen]) =>
+          cubit.addMajor(name, isOpen ?? false),
+      onEdit: (p0, name, [isOpen]) =>
+          cubit.updateMajor(p0, name, isOpen ?? false),
       onDelete: cubit.deleteMajor,
       onTap: (major) => context.to(CourseRoute.major(major)),
     );

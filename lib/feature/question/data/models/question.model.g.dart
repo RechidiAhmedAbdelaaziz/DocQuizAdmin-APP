@@ -25,6 +25,8 @@ QuestionModel _$QuestionModelFromJson(Map<String, dynamic> json) =>
           .toList(),
       year: json['year'] as num?,
       withExplanation: json['withExplanation'] as bool?,
+      images:
+          (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
 
 Question _$QuestionFromJson(Map<String, dynamic> json) => Question(
@@ -33,13 +35,26 @@ Question _$QuestionFromJson(Map<String, dynamic> json) => Question(
           ?.map((e) => Answer.fromJson(e as Map<String, dynamic>))
           .toList(),
       difficulty: json['difficulty'] as String?,
-      explanation: json['explanation'] as String?,
+      explanation: json['explanation'] == null
+          ? null
+          : Explanation.fromJson(json['explanation'] as Map<String, dynamic>),
       type: json['type'] as String?,
+      years:
+          (json['years'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              const [],
+      images: (json['images'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
     );
 
 Answer _$AnswerFromJson(Map<String, dynamic> json) => Answer(
       text: json['text'] as String,
       isCorrect: json['isCorrect'] as bool,
+      images: (json['images'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
     );
 
 SourceYear _$SourceYearFromJson(Map<String, dynamic> json) => SourceYear(
@@ -47,4 +62,10 @@ SourceYear _$SourceYearFromJson(Map<String, dynamic> json) => SourceYear(
           ? null
           : SourceModel.fromJson(json['source'] as Map<String, dynamic>),
       year: (json['year'] as num).toInt(),
+    );
+
+Explanation _$ExplanationFromJson(Map<String, dynamic> json) => Explanation(
+      text: json['text'] as String,
+      images:
+          (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );

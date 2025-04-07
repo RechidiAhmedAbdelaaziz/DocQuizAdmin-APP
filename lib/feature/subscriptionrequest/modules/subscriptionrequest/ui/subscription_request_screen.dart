@@ -47,6 +47,11 @@ class SubscriptionRequestScreen extends StatelessWidget {
   ) {
     return Container(
       padding: EdgeInsets.all(8).r,
+      margin: EdgeInsets.only(
+        left: 12.w,
+        right: 12.w,
+        top: 8.h,
+      ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8).r,
         color: AppColors.white,
@@ -59,22 +64,12 @@ class SubscriptionRequestScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                  onPressed: () => context.showDialogBox(
-                      title: 'Confirmer',
-                      content: Text(
-                          'Voulez-vous vraiment accepter cette demande ?'),
-                      onConfirm: (back) {
-                        context
-                            .read<SubscriptionRequestCubit>()
-                            .approveRequest(request);
-                        back();
-                      }),
-                  icon: const Icon(Icons.check, color: Colors.green)),
-              IconButton(
                 onPressed: () => context.showDialogBox(
                     title: 'Confirmer',
                     content: Text(
                         'Voulez-vous vraiment refuser cette demande ?'),
+                    confirmText: 'Refuser',
+                    cancelText: 'Annuler',
                     onConfirm: (back) {
                       context
                           .read<SubscriptionRequestCubit>()
@@ -82,13 +77,27 @@ class SubscriptionRequestScreen extends StatelessWidget {
                       back();
                     }),
                 icon: const Icon(Icons.close, color: Colors.red),
-              )
+              ),
+              IconButton(
+                  onPressed: () => context.showDialogBox(
+                      title: 'Confirmer',
+                      content: Text(
+                          'Voulez-vous vraiment accepter cette demande ?'),
+                      confirmText: 'Accepter',
+                      cancelText: 'Annuler',
+                      onConfirm: (back) {
+                        context
+                            .read<SubscriptionRequestCubit>()
+                            .approveRequest(request);
+                        back();
+                      }),
+                  icon: const Icon(Icons.check, color: Colors.green)),
             ],
           ),
           heightSpace(6),
           Text(
             request.user?.name ?? '',
-            style: AppTextStyles.medium.copyWith(
+            style: AppTextStyles.h4.copyWith(
               color: AppColors.primaryDark,
             ),
           ),

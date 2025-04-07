@@ -3,7 +3,7 @@ import 'package:admin_app/feature/course/data/models/course.model.dart';
 import 'package:admin_app/feature/exam/data/models/exam.model.dart';
 import 'package:admin_app/feature/question/data/models/question.model.dart';
 import 'package:admin_app/feature/question/module/question/logic/question.cubit.dart';
-import 'package:admin_app/feature/question/module/question/ui/question.screen.dart';
+import 'package:admin_app/feature/question/module/question/ui/question_screen.dart';
 import 'package:admin_app/feature/question/module/questionfilter/logic/question_filter.cubit.dart';
 import 'package:admin_app/feature/question/module/questionlist/logic/question_list.cubit.dart';
 import 'package:admin_app/feature/question/module/questionlist/ui/questions_list.screen.dart';

@@ -11,11 +11,11 @@ class QuestionRepo {
   final _questionApi = locator<QuestionApiService>();
 
   RepoResult<QuestionModel> createQuestion({
-    required QuestionDetails details,
+    required QuestionDTO details,
   }) async {
     apiCall() async {
       final result =
-          await _questionApi.createQuestion(details.toJson());
+          await _questionApi.createQuestion(await details.toMap());
       return QuestionModel.fromJson(result.data!);
     }
 
@@ -23,10 +23,10 @@ class QuestionRepo {
   }
 
   RepoResult<QuestionModel> updateQuestion(String id,
-      {required QuestionDetails body}) async {
+      {required QuestionDTO body}) async {
     apiCall() async {
       final result =
-          await _questionApi.updateQuestion(id, body.toJson());
+          await _questionApi.updateQuestion(id, await body.toMap());
       return QuestionModel.fromJson(result.data!);
     }
 

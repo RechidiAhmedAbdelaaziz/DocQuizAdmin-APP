@@ -59,11 +59,20 @@ class MultiModelSelector<T> extends StatelessWidget {
               ),
             ],
           ),
-          heightSpace(4),
-          ValueListenableBuilder(
-            valueListenable: controller,
-            builder: (context, value, child) =>
-                itemsBuilder(context, value ?? []),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.w),
+            child: ValueListenableBuilder(
+              valueListenable: controller,
+              builder: (context, value, child) =>
+                  value?.isEmpty == true
+                      ? Text(
+                          'Aucun $title ajouté',
+                          style: AppTextStyles.small.copyWith(
+                            color: Colors.grey[600],
+                          ),
+                        )
+                      : itemsBuilder(context, value ?? []),
+            ),
           ),
           heightSpace(4),
           if (state.hasError)

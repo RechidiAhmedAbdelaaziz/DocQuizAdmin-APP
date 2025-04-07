@@ -15,8 +15,9 @@ class LevelsScreen extends StatelessWidget {
     return NamesList(
       title: "Les niveaux de ${cubit.domain.name}",
       items: cubit.state.levels,
-      onAdd: cubit.addLevel,
-      onEdit: cubit.updateLevel,
+      onAdd: (name, [isOpen]) => cubit.addLevel(name),
+      onEdit: (level, name, [isOpen]) =>
+          cubit.updateLevel(level, name),
       onDelete: cubit.deleteLevel,
       onTap: (level) => context.to(MajorRoute.level(level)),
     );

@@ -16,8 +16,9 @@ class DomainsScreen extends StatelessWidget {
       title: 'Les domaines',
       items: domains,
       onDelete: cubit.deleteDomain,
-      onEdit: cubit.updateDomain,
-      onAdd: cubit.addDomain,
+      onAdd: (name, [isOpen]) => cubit.addDomain(name),
+      onEdit: (domain, name, [isOpen]) =>
+          cubit.updateDomain(domain, name),
       onTap: (domain) => context.to(LevelRoute.domain(domain)),
     );
   }

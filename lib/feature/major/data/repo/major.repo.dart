@@ -22,10 +22,11 @@ class MajorRepo {
   RepoResult<MajorModel> createMajor({
     required String levelId,
     required String name,
+    required bool isOpen,
   }) async {
     apiCall() async {
       final response =
-          await _majorApi.createMajor(levelId, {'name': name});
+          await _majorApi.createMajor(levelId, {'name': name , 'isOpen' : isOpen});
       return MajorModel.fromJson(response.data!);
     }
 
@@ -35,10 +36,11 @@ class MajorRepo {
   RepoResult<MajorModel> updateMajor(
     String id, {
     required String name,
+    required bool isOpen,
   }) async {
     apiCall() async {
       final response =
-          await _majorApi.updateMajor(id, {'name': name});
+          await _majorApi.updateMajor(id, {'name': name , 'isOpen' : isOpen});
       return MajorModel.fromJson(response.data!);
     }
 

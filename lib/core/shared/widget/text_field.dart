@@ -8,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AppTextField extends StatelessWidget {
   final TextEditingController controller;
   final String label;
-  final String? Function(String?)? validator;
+  final String? Function(String? value)? validator;
 
   final List<TextInputFormatter>? inputFormatters;
 
@@ -91,19 +91,19 @@ class AppTextField extends StatelessWidget {
                 hintStyle: AppTextStyles.medium.copyWith(
                   color: AppColors.greyDark,
                 ),
-                border: UnderlineInputBorder(
+                border: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: AppColors.greyDark,
                   ),
                   borderRadius: BorderRadius.circular(8).r,
                 ),
-                focusedBorder: UnderlineInputBorder(
+                focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: AppColors.primary,
                   ),
                   borderRadius: BorderRadius.circular(8).r,
                 ),
-                errorBorder: UnderlineInputBorder(
+                errorBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: AppColors.red),
                   borderRadius: BorderRadius.circular(8).r,
                 ),
