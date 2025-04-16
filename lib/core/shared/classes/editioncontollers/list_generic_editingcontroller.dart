@@ -2,12 +2,11 @@ import 'package:admin_app/core/extension/list.extension.dart';
 import 'package:admin_app/core/shared/classes/editioncontollers/generic_editingcontroller.dart';
 
 class ListEditingController<T> extends EditingController<List<T>> {
-  ListEditingController([List<T>? value]) : super(value ?? []);
+  ListEditingController([List<T>? value])
+      : super(List<T>.from(value ?? []));
 
   @override
   List<T> get value => super.value!;
-
-  
 
   void addValue(T value) {
     this.value.addUniqe(value);

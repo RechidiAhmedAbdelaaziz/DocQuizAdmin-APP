@@ -13,6 +13,7 @@ abstract class SubscriptionOfferDto extends FormDTO {
   final TextEditingController priceController;
   final EditingController<DomainModel> domainController;
   final ListEditingController<LevelModel> levelsController;
+  final EditingController<DateTime> endDateController;
 
   SubscriptionOfferDto({
     required this.titleController,
@@ -20,6 +21,7 @@ abstract class SubscriptionOfferDto extends FormDTO {
     required this.priceController,
     required this.domainController,
     required this.levelsController,
+    required this.endDateController,
   });
 
   @override
@@ -40,6 +42,8 @@ class CreateSubscriptionOfferDto extends SubscriptionOfferDto {
           priceController: TextEditingController(),
           domainController: EditingController<DomainModel>(),
           levelsController: ListEditingController<LevelModel>(),
+          endDateController:
+              EditingController<DateTime>(DateTime.now()),
         );
 
   @override
@@ -50,6 +54,7 @@ class CreateSubscriptionOfferDto extends SubscriptionOfferDto {
       'price': int.parse(priceController.text),
       'domainId': domainController.value?.id,
       'levels': levelsController.value.map((e) => e.id).toList(),
+      'endDate': endDateController.value!.toIso8601String(),
     };
   }
 }
@@ -68,6 +73,9 @@ class UpdateSubscriptionOfferDto extends SubscriptionOfferDto {
           levelsController: ListEditingController<LevelModel>(
             _model.levels,
           ),
+          endDateController: EditingController<DateTime>(
+            _model.endDate ?? DateTime.now(),
+          ),
         );
 
   String get id => _model.id!;
@@ -85,6 +93,8 @@ class UpdateSubscriptionOfferDto extends SubscriptionOfferDto {
         'domain': domainController.value?.id,
       if (!_model.levels.equals(levelsController.value))
         'levels': levelsController.value.map((e) => e.id).toList(),
+      if (_model.endDate != endDateController.value)
+        'endDate': endDateController.value!.toIso8601String(),
     };
   }
 }

@@ -15,8 +15,10 @@ class CoursesScreen extends StatelessWidget {
     return NamesList(
       title: "Les cours de ${cubit.major.name}",
       items: cubit.state.courses,
-      onAdd: (name, [isOpen]) => cubit.addCourse(name),
-      onEdit: (p0, name, [isOpen]) => cubit.updateCourse(p0, name),
+      onAdd: (name, [isOpen]) =>
+          cubit.addCourse(name, isOpen ?? false),
+      onEdit: (p0, name, [isOpen]) =>
+          cubit.updateCourse(p0, name, isOpen ?? false),
       onDelete: cubit.deleteCourse,
       onTap: (course) =>
           context.to(QuestionListRoute.ofCourse(course)),

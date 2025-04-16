@@ -61,7 +61,7 @@ class _QuestionForm extends StatelessWidget {
                       builder: (_, difficulty, __) {
                         return Row(
                             mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceAround,
                             children: [
                               ...{
                                 "easy": Colors.green,

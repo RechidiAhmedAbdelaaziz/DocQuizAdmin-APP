@@ -13,6 +13,7 @@ class StatisticsModel {
     this.totalMajor,
     this.totalDomain,
     this.quizDoneToday,
+    this.totalSubscriptionRequest,
   });
 
   num? totalSources;
@@ -23,6 +24,7 @@ class StatisticsModel {
   num? totalMajor;
   num? totalDomain;
   num? quizDoneToday;
+  num? totalSubscriptionRequest;
 
   factory StatisticsModel.fromJson(Map<String, dynamic> json) =>
       _$StatisticsModelFromJson(json);
@@ -36,5 +38,6 @@ class StatisticsModel {
     totalMajor = statistic.totalMajor;
     totalDomain = statistic.totalDomain;
     quizDoneToday = statistic.quizDoneToday;
+    totalSubscriptionRequest = statistic.totalSubscriptionRequest;
   }
 }

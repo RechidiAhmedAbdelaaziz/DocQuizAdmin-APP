@@ -16,4 +16,5 @@ StatisticsModel _$StatisticsModelFromJson(Map<String, dynamic> json) =>
       totalMajor: json['totalMajor'] as num?,
       totalDomain: json['totalDomain'] as num?,
       quizDoneToday: json['quizDoneToday'] as num?,
+      totalSubscriptionRequest: json['totalSubscriptionRequest'] as num?,
     );

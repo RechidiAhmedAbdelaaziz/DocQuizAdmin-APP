@@ -11,14 +11,14 @@ class SubscriptionModel extends Equatable {
   final String? id;
   final UserModel? user;
   final SubscriptionOfferModel? offer;
-  final DateTime? endDate;
 
   const SubscriptionModel({
     this.id,
     this.user,
     this.offer,
-    this.endDate,
   });
+
+  DateTime get endDate => offer?.endDate ?? DateTime.now();
 
   factory SubscriptionModel.fromJson(Map<String, dynamic> json) =>
       _$SubscriptionModelFromJson(json);

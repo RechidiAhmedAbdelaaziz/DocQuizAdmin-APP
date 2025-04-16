@@ -22,10 +22,11 @@ class CourseRepo {
   RepoResult<CourseModel> createCourse({
     required String majorId,
     required String name,
+    required bool isOpen,
   }) async {
     apiCall() async {
-      final response =
-          await _courseApi.createCourse(majorId, {'name': name});
+      final response = await _courseApi
+          .createCourse(majorId, {'name': name, 'isOpen': isOpen});
       return CourseModel.fromJson(response.data!);
     }
 
@@ -35,10 +36,11 @@ class CourseRepo {
   RepoResult<CourseModel> updateCourse(
     String id, {
     required String name,
+    required bool isOpen,
   }) async {
     apiCall() async {
-      final response =
-          await _courseApi.updateCourse(id, {'name': name});
+      final response = await _courseApi
+          .updateCourse(id, {'name': name, 'isOpen': isOpen});
       return CourseModel.fromJson(response.data!);
     }
 

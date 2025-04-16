@@ -45,8 +45,12 @@ class UpdateSubscriptionOfferCubit
 
   @override
   void saveOffer() async {
-    if (state.isLoading) return;
+    if (state.isLoading || !_dto.validate()) return;
+
+
+
     emit(state._loadign());
+
     final result = await _repo.updateSubscriptionOffer(_dto);
     result.when(
       success: (offer) => emit(state._loaded(offer)),

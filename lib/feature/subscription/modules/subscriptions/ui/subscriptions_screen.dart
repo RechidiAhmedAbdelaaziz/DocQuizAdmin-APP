@@ -2,6 +2,7 @@ import 'package:admin_app/core/extension/alertdialog.extenstion.dart';
 import 'package:admin_app/core/extension/date_formatter.extension.dart';
 import 'package:admin_app/core/shared/widget/pagination.widget.dart';
 import 'package:admin_app/core/themes/colors.dart';
+import 'package:admin_app/core/themes/font_styles.dart';
 import 'package:admin_app/feature/subscription/data/models/subscription_model.dart';
 import 'package:admin_app/feature/subscription/modules/subscriptionform/logic/subscription_form_cubit.dart';
 import 'package:admin_app/feature/subscription/modules/subscriptionform/ui/subscription_form.dart';
@@ -65,10 +66,9 @@ class SubscriptionsScreen extends StatelessWidget {
       ),
       padding: EdgeInsets.all(8).r,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8).r,
+        borderRadius: BorderRadius.circular(12).r,
         color: AppColors.white,
-        border:
-            Border(bottom: BorderSide(color: AppColors.primaryDark)),
+        border: Border.all(color: AppColors.primaryDark),
       ),
       child: Column(
         children: [
@@ -76,10 +76,21 @@ class SubscriptionsScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                  child: Text(
-                      subscription.user?.name ?? 'Unknown User')),
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    subscription.user?.name ?? 'Unknown User',
+                    style: AppTextStyles.large,
+                  ),
+                  Text(
+                    subscription.user?.email ?? 'Unknown Email',
+                    style: AppTextStyles.medium,
+                  ),
+                ],
+              )),
               IconButton(
-                icon: const Icon(Icons.delete),
+                icon: const Icon(Icons.delete, color: Colors.red),
                 onPressed: () {
                   context.showDialogBox(
                     title: 'Delete Subscription',
@@ -101,9 +112,11 @@ class SubscriptionsScreen extends StatelessWidget {
           const Divider(),
           Text(
             'Subscription Offer: ${subscription.offer?.title ?? 'Unknown'}',
+            style: AppTextStyles.medium,
           ),
           Text(
             'End Date: ${subscription.endDate?.toDayMonthYear()}',
+            style: AppTextStyles.medium,
           ),
         ],
       ),

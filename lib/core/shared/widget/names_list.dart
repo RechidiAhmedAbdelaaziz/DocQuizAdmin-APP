@@ -3,7 +3,7 @@ import 'package:admin_app/core/shared/classes/editioncontollers/generic_editingc
 import 'package:admin_app/core/shared/models/named.model.dart';
 import 'package:admin_app/core/shared/widget/check_box.dart';
 import 'package:admin_app/core/shared/widget/space.widget.dart';
-import 'package:admin_app/feature/major/data/models/major.model.dart';
+import 'package:admin_app/feature/course/data/models/course.model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -83,26 +83,24 @@ class NamesList<T extends NamedModelBase> extends StatelessWidget {
                       ),
                     ],
                   ),
-                  if (item is MajorModel)
+                  if (item is CourseModel)
                     Container(
                       padding: EdgeInsets.all(8).r,
                       margin: EdgeInsets.only(top: 8.h),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.r),
                         border: Border.all(
-                          color: item.isOpen!
-                              ? Colors.green
-                              : Colors.red,
+                          color:
+                              item.isOpen ? Colors.green : Colors.red,
                         ),
                       ),
                       child: Text(
-                        item.isOpen! ? 'Gratuit' : 'Payant',
+                        item.isOpen ? 'Gratuit' : 'Payant',
                         style: TextStyle(
                           fontSize: 16.spMin,
                           fontWeight: FontWeight.w500,
-                          color: item.isOpen!
-                              ? Colors.green
-                              : Colors.red,
+                          color:
+                              item.isOpen ? Colors.green : Colors.red,
                         ),
                       ),
                     )
@@ -121,8 +119,8 @@ class NamesList<T extends NamedModelBase> extends StatelessWidget {
 
   void _showEditDialog(BuildContext context, T item) {
     final controller = TextEditingController(text: item.name);
-    final boolController = item is MajorModel
-        ? EditingController<bool>((item as MajorModel).isOpen)
+    final boolController = item is CourseModel
+        ? EditingController<bool>((item as CourseModel).isOpen)
         : null;
     showDialog(
       context: context,
@@ -159,7 +157,7 @@ class NamesList<T extends NamedModelBase> extends StatelessWidget {
 
   void _showAddDialog(BuildContext context) {
     final controller = TextEditingController();
-    final boolController = items.whereType<MajorModel>().isNotEmpty
+    final boolController = items.whereType<CourseModel>().isNotEmpty
         ? EditingController<bool>()
         : null;
     showDialog(

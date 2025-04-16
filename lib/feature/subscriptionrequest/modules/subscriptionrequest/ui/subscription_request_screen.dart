@@ -7,6 +7,7 @@ import 'package:admin_app/feature/subscriptionrequest/data/models/subscription_r
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:widget_zoom/widget_zoom.dart';
 
 import '../logic/subscription_request_cubit.dart';
 
@@ -59,6 +60,7 @@ class SubscriptionRequestScreen extends StatelessWidget {
             Border(bottom: BorderSide(color: AppColors.primaryDark)),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -101,6 +103,13 @@ class SubscriptionRequestScreen extends StatelessWidget {
               color: AppColors.primaryDark,
             ),
           ),
+          heightSpace(4),
+          Text(
+            request.user?.email ?? '',
+            style: AppTextStyles.medium.copyWith(
+              color: AppColors.primaryDark,
+            ),
+          ),
           const Divider(),
           Row(
             children: [
@@ -119,13 +128,16 @@ class SubscriptionRequestScreen extends StatelessWidget {
             ],
           ),
           heightSpace(4),
-          Container(
-            height: 220.h,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8).r,
-              image: DecorationImage(
-                image: NetworkImage(request.proof ?? ''),
-                fit: BoxFit.fill,
+          WidgetZoom(
+            heroAnimationTag: 'zoom',
+            zoomWidget: Container(
+              height: 220.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8).r,
+                image: DecorationImage(
+                  image: NetworkImage(request.proof ?? ''),
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
           ),

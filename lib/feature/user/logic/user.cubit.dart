@@ -19,14 +19,6 @@ class UserCubit extends Cubit<UserState> {
     );
   }
 
-  void addUser(String email, {bool? isAdmin}) async {
-    final result = await _userRepo.addAdmin(email, isAdmin: isAdmin);
-
-    result.when(
-      success: (user) => emit(state.addUsers([user])),
-      error: (error) => emit(state.updateError(error.message)),
-    );
-  }
 
   void deleteUser(UserModel user) async {
     final result = await _userRepo.deleteAdmin(user.id!);

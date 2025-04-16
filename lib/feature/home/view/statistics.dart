@@ -37,9 +37,9 @@ class _Statistics extends StatelessWidget {
             },
           ),
           _Item(
-            title: 'Utilisateurs abonnés',
+            title: 'Les abonnés',
             value: statistics.totalSubscribedUser,
-            onTap: () {},
+            onTap: () => context.to(SubscriptionRoute()),
           ),
           _Item(
             title: 'Les offres',
@@ -47,11 +47,8 @@ class _Statistics extends StatelessWidget {
           ),
           _Item(
             title: 'Les demandes d\'abonnement',
+            value: statistics.totalSubscriptionRequest,
             onTap: () => context.to(SubscriptionRequestRoute()),
-          ),
-          _Item(
-            title: 'Les abonnements',
-            onTap: () => context.to(SubscriptionRoute()),
           ),
         ],
       ),

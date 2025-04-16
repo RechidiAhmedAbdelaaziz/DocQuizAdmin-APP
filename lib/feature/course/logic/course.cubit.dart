@@ -21,18 +21,18 @@ class CourseCubit extends Cubit<CourseState> {
     );
   }
 
-  Future<void> addCourse(String name) async {
+  Future<void> addCourse(String name , bool isOpen) async {
     final result = await _courseRepo.createCourse(
-        majorId: major.id!, name: name);
+        majorId: major.id!, name: name , isOpen: isOpen);
     result.when(
       success: (course) => emit(state.addCourse(course)),
       error: (error) => emit(state.setError(error.message)),
     );
   }
 
-  Future<void> updateCourse(CourseModel course, String name) async {
+  Future<void> updateCourse(CourseModel course, String name, bool isOpen) async {
     final result =
-        await _courseRepo.updateCourse(course.id!, name: name);
+        await _courseRepo.updateCourse(course.id!, name: name, isOpen: isOpen);
     result.when(
       success: (course) => emit(state.updateCourse(course)),
       error: (error) => emit(state.setError(error.message)),

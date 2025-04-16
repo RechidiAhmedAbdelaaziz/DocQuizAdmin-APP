@@ -24,7 +24,9 @@ extension AlertDialogExtension on BuildContext {
               if (cancelText != null)
                 TextButton(
                   onPressed: () {
-                    if (onCancel != null) onCancel(context.back);
+                    onCancel != null
+                        ? onCancel(context.back)
+                        : context.back();
                   },
                   child: Text(
                     cancelText,
@@ -69,13 +71,12 @@ extension AlertDialogExtension on BuildContext {
   Future<T?> dialog<T>({required Widget child}) {
     return showDialog<T>(
       context: this,
-      builder:
-          (_) => Stack(
-            alignment: Alignment.center,
-            children: [
-              Material(color: Colors.transparent, child: child),
-            ],
-          ),
+      builder: (_) => Stack(
+        alignment: Alignment.center,
+        children: [
+          Material(color: Colors.transparent, child: child),
+        ],
+      ),
     );
   }
 

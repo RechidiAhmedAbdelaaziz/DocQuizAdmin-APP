@@ -14,6 +14,7 @@ class SubscriptionOfferModel extends Equatable {
     this.price,
     this.domain,
     this.levels = const [],
+    this.endDate,
   });
 
   @JsonKey(name: '_id')
@@ -23,6 +24,7 @@ class SubscriptionOfferModel extends Equatable {
   final int? price;
   final DomainModel? domain;
   final List<LevelModel> levels;
+  final DateTime? endDate;
 
   factory SubscriptionOfferModel.fromJson(
           Map<String, dynamic> json) =>

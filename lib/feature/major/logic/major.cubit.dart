@@ -21,9 +21,9 @@ class MajorCubit extends Cubit<MajorState> {
     );
   }
 
-  Future<void> addMajor(String name, bool isOpen) async {
+  Future<void> addMajor(String name) async {
     final result = await _majorRepo.createMajor(
-        levelId: level.id!, name: name, isOpen: isOpen);
+        levelId: level.id!, name: name);
     result.when(
       success: (major) => emit(state.addMajor(major)),
       error: (error) => emit(state.setError(error.message)),
@@ -31,9 +31,9 @@ class MajorCubit extends Cubit<MajorState> {
   }
 
   Future<void> updateMajor(
-      MajorModel major, String name, bool isOpen) async {
+      MajorModel major, String name) async {
     final result = await _majorRepo.updateMajor(major.id!,
-        name: name, isOpen: isOpen);
+        name: name);
     result.when(
       success: (major) => emit(state.updateMajor(major)),
       error: (error) => emit(state.setError(error.message)),

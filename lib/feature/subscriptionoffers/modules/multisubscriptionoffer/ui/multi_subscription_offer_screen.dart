@@ -1,4 +1,5 @@
 import 'package:admin_app/core/extension/alertdialog.extenstion.dart';
+import 'package:admin_app/core/extension/date_formatter.extension.dart';
 import 'package:admin_app/core/extension/navigator.extension.dart';
 import 'package:admin_app/core/shared/widget/pagination.widget.dart';
 import 'package:admin_app/core/themes/colors.dart';
@@ -152,15 +153,32 @@ class MultiSubscriptionOfferScreen extends StatelessWidget {
               ),
             ],
           ),
-          heightSpace(12),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-              '${offer.price} DA',
-              style: AppTextStyles.xLarge.copyWith(
+          heightSpace(24),
+          Row(
+            spacing: 2.w,
+            children: [
+              const Icon(
+                Icons.calendar_today,
                 color: AppColors.primary,
               ),
-            ),
+              Text(
+                offer.endDate?.toDayMonthYear() ?? '',
+                style: AppTextStyles.large.copyWith(
+                  color: AppColors.primaryDark,
+                ),
+              ),
+              const Spacer(),
+              const Icon(
+                Icons.monetization_on,
+                color: AppColors.primary,
+              ),
+              Text(
+                '${offer.price} DA',
+                style: AppTextStyles.large.copyWith(
+                  color: AppColors.primary,
+                ),
+              ),
+            ],
           ),
         ],
       ),

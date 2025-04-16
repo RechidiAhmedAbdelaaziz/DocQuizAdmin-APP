@@ -1,6 +1,7 @@
 import 'package:admin_app/core/extension/navigator.extension.dart';
 import 'package:admin_app/core/shared/models/named.model.dart';
 import 'package:admin_app/core/shared/widget/button.dart';
+import 'package:admin_app/core/shared/widget/date_field.dart';
 import 'package:admin_app/core/shared/widget/model_selector.dart';
 import 'package:admin_app/core/shared/widget/multi_model_selector.dart';
 import 'package:admin_app/core/shared/widget/text_field.dart';
@@ -24,6 +25,7 @@ class SubscriptionOfferFormScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dto = context.read<SubscriptionOfferFormCubit>().dto;
+
     return BlocListener<SubscriptionOfferFormCubit,
             SubscriptionOfferFormState>(
         listener: (context, state) {
@@ -115,6 +117,18 @@ class SubscriptionOfferFormScreen extends StatelessWidget {
                         isRequired: true,
                       ),
                       heightSpace(25),
+                      AppDateField(
+                        controller: dto.endDateController,
+                        label: "Date de fin",
+                        isRequired: true,
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime.now()
+                            .add(const Duration(days: 365)),
+                        validator: (value) => (value == null)
+                            ? 'Sil vous plaît entrez une date valide'
+                            : null,
+                      ),
+                      heightSpace(25),
                       AppButton.primary(
                         text: "Enregistrer",
                         suffixIcon: Icons.save,
@@ -127,7 +141,8 @@ class SubscriptionOfferFormScreen extends StatelessWidget {
                               .read<SubscriptionOfferFormCubit>()
                               .saveOffer();
                         },
-                      )
+                      ),
+                      heightSpace(12),
                     ],
                   ),
                 ),
